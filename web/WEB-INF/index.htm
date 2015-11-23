@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Start Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Hello World!</h1>
+<div>
+    <form method="post" action="UserServlet">
+        <input name="id" type="number" />
+        <input type="submit" />
+    </form>
+    <form method="post" action="AddUserServlet">
+        Name: <input name="name" type="text" />
+        Email: <input name="email" type="text" />
+        Password: <input name="pass" type="text" />
+        <select name="sel">
+            <option value="1">One</option>
+            <option value="2">One</option>
+            <option value="3">One</option>
+        </select>
+        <input type="submit" />
+    </form>
+</div>
+</body>
+</html>
