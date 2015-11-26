@@ -3,7 +3,28 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition>
+    <definition name="defaultTemplate" template="/WEB-INF/template/template.jsp">
+        <put-attribute name="header" value="/WEB-INF/template/header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/template/footer.jsp" />
+    </definition>
 
+        <definition name="mainTemplate" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/map.jsp" />
+    </definition>
+
+    <definition name="loginTemplate" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+        <put-attribute name="footer" value="" />
+    </definition>
+
+    <definition name="registrationTemplate" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/registration.jsp" />
+        <put-attribute name="footer" value="" />
+    </definition>
+
+    <definition name="newEventTemplate" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/newEvent.jsp" />
+        <put-attribute name="footer" value="" />
     </definition>
 </tiles-definitions>

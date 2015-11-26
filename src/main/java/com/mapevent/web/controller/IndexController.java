@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class IndexController {
     @RequestMapping(method = RequestMethod.GET)
     public String _index(ModelMap model) {
-        return "redirect:/index";
+        return "redirect:/map";
     }
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/map", method = RequestMethod.GET)
     public String index(ModelMap model) {
-        return "index";
+        return "map";
     }
 }
+
+
