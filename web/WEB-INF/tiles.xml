@@ -7,9 +7,12 @@
         <put-attribute name="header" value="/WEB-INF/template/header.jsp" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/WEB-INF/template/footer.jsp" />
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/resources/css/styles.css" />
+        </put-list-attribute>
     </definition>
 
-        <definition name="mainTemplate" extends="defaultTemplate">
+    <definition name="mainTemplate" extends="defaultTemplate">
         <put-attribute name="body" value="/WEB-INF/jsp/map.jsp" />
     </definition>
 
