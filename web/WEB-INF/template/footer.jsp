@@ -7,7 +7,10 @@
         <%--<head>--%>
             <%--<title></title>--%>
             <style type="text/css">
-                #foot { margin: 2px; padding: 0 }
+                #foot {
+                    margin: 2px;
+                    padding: 0;
+                }
             </style>
         <%--</head>--%>
         <%--<body>--%>
