@@ -8,26 +8,23 @@
 <tiles:importAttribute name="stylesheets"/>
 
 <html>
-  <head>
-      <%--<title>MapEvent in Action!</title>--%>
-      <style type="text/css">
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow:hidden;
-        }
-        /*#map { height: 83%; }*/
-      </style>
-          <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-          <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/styles.css" />
-          <%--<c:forEach var="css" items="${stylesheets}">--%>
-              <%--<link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">--%>
-          <%--</c:forEach>--%>
-  </head>
-  <body>
-    <tiles:insertAttribute name="header" />
-    <tiles:insertAttribute name="body" />
-    <tiles:insertAttribute name="footer" />
-  </body>
+    <head>
+        <style type="text/css">
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+        </style>
+
+        <%--<c:forEach var="css" items="${stylesheets}">--%>
+        <%--<link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">--%>
+        <%--</c:forEach>--%>
+    </head>
+    <body>
+        <tiles:insertAttribute name="header"/>
+        <tiles:insertAttribute name="body"/>
+        <tiles:insertAttribute name="footer"/>
+    </body>
 </html>
