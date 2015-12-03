@@ -7,13 +7,24 @@
         <put-attribute name="header" value="/WEB-INF/template/header.jsp" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/WEB-INF/template/footer.jsp" />
-        <put-list-attribute name="stylesheets">
-            <add-attribute value="/resources/css/styles.css" />
-        </put-list-attribute>
     </definition>
 
     <definition name="mainTemplate" extends="defaultTemplate">
         <put-attribute name="body" value="/WEB-INF/jsp/map.jsp" />
+
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/resources/css/main-style.css" />
+            <add-attribute value="/resources/css/checkbox.css" />
+            <add-attribute value="/resources/css/bootstrap.css" />
+            <add-attribute value="/resources/css/bootstrap-datetimepicker.min.css" />
+        </put-list-attribute>
+
+        <put-list-attribute name="javascripts">
+            <add-attribute value="/resources/js/bootstrap.min.js" />
+            <add-attribute value="/resources/js/bootstrap-datetimepicker.min.js" />
+            <add-attribute value="/resources/js/collapse.js" />
+            <add-attribute value="/resources/js/transition.js" />
+        </put-list-attribute>
     </definition>
 
     <definition name="loginTemplate" extends="defaultTemplate">
