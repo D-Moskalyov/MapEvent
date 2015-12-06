@@ -14,15 +14,15 @@
 
         <title>MapEvent in Action!</title>
 
+
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css" />
+        <%--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">--%>
+
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main-style.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/checkbox.css"/>
 
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css" />
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
-        <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+        <%--<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>--%>
         <script type="text/javascript" src="http://momentjs.com/downloads/moment.js"></script>
 
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/transition.js"></script>
@@ -95,7 +95,7 @@
                     </div>
                 </form>
 
-                <div class='col-md-5'>
+                <div class='col-md-12'>
                     <div class="form-group">
                         <div class='input-group date' id='datetimepicker6'>
                             <input type='text' class="form-control"/>
@@ -105,7 +105,7 @@
                         </div>
                     </div>
                 </div>
-                <div class='col-md-5'>
+                <div class='col-md-12'>
                     <div class="form-group">
                         <div class='input-group date' id='datetimepicker7'>
                             <input type='text' class="form-control"/>

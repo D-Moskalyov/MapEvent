@@ -10,6 +10,7 @@
 
 <html>
     <head>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
         <%--<c:forEach var="css" items="${stylesheets}">--%>
             <%--<link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">--%>
         <%--</c:forEach>--%>

@@ -1,0 +1,19 @@
+.right{
+    display: inline;
+    position: absolute;
+    right: 0px;
+    padding: 5px;
+}
+#head {
+    display: block;
+    height: 35px;
+}
+#head .btn-default {
+    margin-right: 3px;
+    height: 25px;
+}
+#title {
+    color: #269abc;
+    margin: 1%;
+    display: inline;
+}

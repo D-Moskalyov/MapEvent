@@ -6,17 +6,16 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-}
-
-#map {
-    height: 85%;
+    background-image: url("../images/website-backgrounds.jpg");
 }
 
 .container {
     position: relative;
-    height: 88%;
+    height: 90%;
     width: 100%;
     left: 0;
+    padding-right: 0px;
+    padding-left: 0px;
     -webkit-transition: left 0.4s ease-in-out;
     -moz-transition: left 0.4s ease-in-out;
     -ms-transition: left 0.4s ease-in-out;
@@ -60,18 +59,18 @@ html, body {
 }
 
 #sidebar {
-    background: #DF314D;
+    background: #008080;
     position: absolute;
     width: 240px;
     height: 100%;
     left: -240px;
+    padding-left: 10px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
 
 .main-content #sidebar-toggle {
     background: #DF314D;
-    /*border-radius: 3px;*/
     display: block;
     position: relative;
     padding: 10px 7px;

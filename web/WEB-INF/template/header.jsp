@@ -1,18 +1,12 @@
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
-<%--<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>--%>
-<%--<tiles:insertDefinition name="defaultTemplate">--%>
-    <%--<tiles:putAttribute name="header">--%>
-        <%--<html>--%>
-        <%--<head>--%>
-            <%--<title></title>--%>
-            <style type="text/css">
-                #title { margin: 1% }
-            </style>
-        <%--</head>--%>
-        <%--<body>--%>
-            <div id="title">MapEvent</div>
-        <%--</body>--%>
-        <%--</html>--%>
-    <%--</tiles:putAttribute>--%>
-<%--</tiles:insertDefinition>--%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css"/>
+
+<div id="head">
+    <div id="title">MapEvent</div>
+    <div class="right">
+        <button type="button" class="btn btn-default">Вход</button>
+        <button type="button" class="btn btn-default">Регистрация</button>
+        <button type="button" class="btn btn-default">Новое событие</button>
+    </div>
+</div>
+
