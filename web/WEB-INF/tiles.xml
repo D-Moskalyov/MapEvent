@@ -27,18 +27,37 @@
         </put-list-attribute>
     </definition>
 
-    <definition name="loginTemplate" extends="defaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+    <definition name="loginRegistrationTemplate" extends="defaultTemplate">
+        <put-attribute name="body" value="" />
         <put-attribute name="footer" value="" />
+
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/resources/css/login-reg.css" />
+        </put-list-attribute>
+
+        <put-list-attribute name="javascripts">
+            <add-attribute value="/resources/js/login-reg.js" />
+        </put-list-attribute>
     </definition>
 
-    <definition name="registrationTemplate" extends="defaultTemplate">
+    <definition name="loginTemplate" extends="loginRegistrationTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+    </definition>
+
+    <definition name="registrationTemplate" extends="loginRegistrationTemplate">
         <put-attribute name="body" value="/WEB-INF/jsp/registration.jsp" />
-        <put-attribute name="footer" value="" />
+    </definition>
+
+    <definition name="forgotTemplate" extends="loginRegistrationTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/forgot.jsp" />
     </definition>
 
     <definition name="newEventTemplate" extends="defaultTemplate">
         <put-attribute name="body" value="/WEB-INF/jsp/newEvent.jsp" />
         <put-attribute name="footer" value="" />
+
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/resources/css/new-event.css" />
+        </put-list-attribute>
     </definition>
 </tiles-definitions>

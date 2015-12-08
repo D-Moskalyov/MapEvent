@@ -19,8 +19,8 @@ public class UserController {
         return "registration";
     }
 
-    @RequestMapping(value = "/newevent", method = RequestMethod.GET)
-    public String newEvent(ModelMap model) {
-        return "newEvent";
+    @RequestMapping(value = "/forgot", method = RequestMethod.GET)
+    public String forgot(ModelMap model) {
+        return "forgot";
     }
 }

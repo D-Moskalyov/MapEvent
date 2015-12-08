@@ -30,11 +30,6 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
 
-        <%--<style type="text/css">--%>
-            <%--@import "/resources/less/variables.less";--%>
-            <%--@import "/resources/less/bootstrap-datetimepicker-build.less";--%>
-            <%--@import "/resources/less/_bootstrap-datetimepicker.less";--%>
-        <%--</style>--%>
 
         <div class="container">
 

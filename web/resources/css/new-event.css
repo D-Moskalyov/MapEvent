@@ -1,0 +1,9 @@
+@import "/resources/css/main-style.css";
+
+.main-content {
+    width: 80%;
+}
+
+.main-content .content #map {
+    height: 60%;
+}
