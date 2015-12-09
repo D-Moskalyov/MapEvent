@@ -14,7 +14,8 @@
 
         <title>New event</title>
 
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet"
+              href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/new-event.css"/>
 
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
@@ -23,32 +24,49 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/transition.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/collapse.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript"
+                src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
 
 
         <div class="container">
-            <div class="main-content">
-                <div class="content">
-                    <div id="map"></div>
+            <div class="block">
+                <div class="title">
+
                 </div>
 
-                <div class='col-md-12'>
+                <div id="map"></div>
+            </div>
+
+            <div class="block">
+
+                <div class="title">
+
+                </div>
+
+                <div class='col-md-3'>
                     <div class="form-group">
                         <div class='input-group date' id='datetimepicker6'>
                             <input type='text' class="form-control"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
                         </div>
                     </div>
                 </div>
-                <div class='col-md-12'>
+            </div>
+
+            <div class="block">
+                <div class="title">
+
+                </div>
+
+                <div class='col-md-3'>
                     <div class="form-group">
                         <div class='input-group date' id='datetimepicker7'>
                             <input type='text' class="form-control"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -56,11 +74,13 @@
         </div>
 
 
-
         <script type="text/javascript">
             $(function () {
                 $('#datetimepicker6').datetimepicker({
-                    //startDate: today
+                    //startDate: date
+                    //minDate: 0
+//                    Default: false,
+//                    Accepts: date
                 });
                 $('#datetimepicker7').datetimepicker({
                     //startDate: today,
@@ -68,22 +88,37 @@
                 });
                 $("#datetimepicker6").on("dp.change", function (e) {
                     $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+
+//                    $('#datetimepicker6').data("DateTimePicker").minDate(today);
+//                    $('#datetimepicker7').data("DateTimePicker").minDate(today);
                 });
                 $("#datetimepicker7").on("dp.change", function (e) {
                     $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+
+//                    $('#datetimepicker6').data("DateTimePicker").minDate(today);
+//                    $('#datetimepicker7').data("DateTimePicker").minDate(today);
+                });
+
+                $("#datetimepicker6").on("dp.error", function (e) {
+                    alert(e.data)
                 });
             });
         </script>
         <script type="text/javascript">
-//            var nowDate = new Date();
-//            var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(),
-//                    nowDate.getHours(), nowDate.getMinutes(), 0, 0);
-//
-//            var startDate = new Date();
-//            var fechaFin = new Date();
-//            var FromEndDate = new Date();
-//            var ToEndDate = new Date();
+            var nowDate = new Date();
+            var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(),
+                    nowDate.getHours(), nowDate.getMinutes(), 0, 0);
+            //
+            //            var date = new Date();
+            //            date.setDate(date.getDate()-1);
+            //
+            //            var startDate = new Date();
+            //            var fechaFin = new Date();
+            //            var FromEndDate = new Date();
+            //            var ToEndDate = new Date();
 
+            $('#datetimepicker6').data("DateTimePicker").minDate(today);
+            $('#datetimepicker7').data("DateTimePicker").minDate(today);
             var map;
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {

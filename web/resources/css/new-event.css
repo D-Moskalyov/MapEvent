@@ -1,9 +1,35 @@
 @import "/resources/css/main-style.css";
 
-.main-content {
-    width: 80%;
+.block {
+    border: solid;
+    border-color: green;
+    display: inline;
+    width: 100%;
+    height: 80%;
 }
 
-.main-content .content #map {
+.title {
+    border: solid;
+    border-color: blue;
+    float: left;
+    display: inline;
+    width: 15%;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.col-md-3{
+    border: solid;
+    border-color: red;
+    display: inline;
+    padding-left: 0;
+    max-width: 25%;
+}
+
+#map {
+    border: solid;
+    border-color: yellow;
+    display: inline;
+    width: 80%;
     height: 60%;
 }
