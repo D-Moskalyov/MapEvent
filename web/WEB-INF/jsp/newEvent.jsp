@@ -31,7 +31,15 @@
         <div class="container">
             <div class="block">
                 <div class="title">
+                    <h4>Заголовок:</h4>
+                </div>
 
+                <input type="text" class="form-control">
+            </div>
+
+            <div class="block map">
+                <div class="title">
+                    <h4>Место:</h4>
                 </div>
 
                 <div id="map"></div>
@@ -40,7 +48,7 @@
             <div class="block">
 
                 <div class="title">
-
+                    <h4>Начало:</h4>
                 </div>
 
                 <div class='col-md-3'>
@@ -57,7 +65,7 @@
 
             <div class="block">
                 <div class="title">
-
+                    <h4>Окончание:</h4>
                 </div>
 
                 <div class='col-md-3'>
@@ -70,6 +78,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="block dest">
+                <div class="title">
+                    <h4>Описание:</h4>
+                </div>
+
+                <textarea class="form-control" rows="5"></textarea>
             </div>
         </div>
 
