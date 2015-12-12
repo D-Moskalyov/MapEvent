@@ -6,7 +6,11 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-image: url("../images/website-backgrounds.jpg");
+    background-image: url("../images/logo.jpg");
+    -moz-background-size: 100%;
+    -webkit-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
 }
 
 .container {

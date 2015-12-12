@@ -31,7 +31,7 @@
         <div class="container">
             <div class="block">
                 <div class="title">
-                    <h4>Заголовок:</h4>
+                    <h4>Что:</h4>
                 </div>
 
                 <input type="text" class="form-control">
@@ -39,16 +39,24 @@
 
             <div class="block map">
                 <div class="title">
-                    <h4>Место:</h4>
+                    <h4>Где:</h4>
                 </div>
+                <input id="pac-input" class="controls" placeholder = "Начните..." type="text" />
 
                 <div id="map"></div>
             </div>
 
             <div class="block">
+                <div class="title">
+                    <h4>Здесь?</h4>
+                </div>
+                <p>sssss</p>
+            </div>
+
+            <div class="block">
 
                 <div class="title">
-                    <h4>Начало:</h4>
+                    <h4>Когда:</h4>
                 </div>
 
                 <div class='col-md-3'>
@@ -61,12 +69,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="block">
-                <div class="title">
-                    <h4>Окончание:</h4>
-                </div>
+                <h2>-</h2>
 
                 <div class='col-md-3'>
                     <div class="form-group">
@@ -79,9 +83,10 @@
                     </div>
                 </div>
             </div>
+
             <div class="block dest">
                 <div class="title">
-                    <h4>Описание:</h4>
+                    <h4>Дополнительно:</h4>
                 </div>
 
                 <textarea class="form-control" rows="5"></textarea>
@@ -120,6 +125,65 @@
             });
         </script>
         <script type="text/javascript">
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+//                    current pos
+                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 13,
+                    disableDefaultUI: true
+                });
+                //map.controls[google.maps.ControlPosition.TOP_LEFT].clear();
+
+                var input = document.getElementById('pac-input');
+                var searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                map.addListener('bounds_changed', function() {
+                    searchBox.setBounds(map.getBounds());
+                });
+
+                var markers = [];
+                searchBox.addListener('places_changed', function() {
+                    var places = searchBox.getPlaces();
+
+                    if (places.length == 0) {
+                        return;
+                    }
+
+                    markers.forEach(function(marker) {
+                        marker.setMap(null);
+                    });
+                    markers = [];
+
+                    var bounds = new google.maps.LatLngBounds();
+                    places.forEach(function(place) {
+                        var icon = {
+                            url: place.icon,
+                            size: new google.maps.Size(71, 71),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(25, 25)
+                        };
+
+                        markers.push(new google.maps.Marker({
+                            map: map,
+                            icon: icon,
+                            title: place.name,
+                            position: place.geometry.location
+                        }));
+
+                        if (place.geometry.viewport) {
+                            bounds.union(place.geometry.viewport);
+                        } else {
+                            bounds.extend(place.geometry.location);
+                        }
+                    });
+                    map.fitBounds(bounds);
+                });
+            }
+
+
             var nowDate = new Date();
             var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(),
                     nowDate.getHours(), nowDate.getMinutes(), 0, 0);
@@ -134,16 +198,9 @@
 
             $('#datetimepicker6').data("DateTimePicker").minDate(today);
             $('#datetimepicker7').data("DateTimePicker").minDate(today);
-            var map;
-            function initMap() {
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: -34.397, lng: 150.644},
-                    zoom: 8
-                });
-            }
         </script>
         <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Oq4jskDM9UEBBbDzWSioDqzY1R434mk&callback=initMap">
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Oq4jskDM9UEBBbDzWSioDqzY1R434mk&callback=initMap&libraries=places">
         </script>
         <c:forEach var="script" items="${javascripts}">
             <script src="<c:url value="${script}"/>"></script>
