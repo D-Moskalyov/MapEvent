@@ -29,94 +29,84 @@
 
 
         <div class="container">
-            <div class="block">
-                <div class="title">
-                    <h4>Что:</h4>
+            <%--<form>--%>
+                <div class="block">
+                    <div class="title">
+                        <h4>Что:</h4>
+                    </div>
+
+                    <input type="text" class="form-control">
                 </div>
 
-                <input type="text" class="form-control">
-            </div>
+                <div class="block map">
+                    <div class="title">
+                        <h4>Где:</h4>
+                    </div>
+                    <input id="pac-input" class="controls" placeholder = "Начните..." type="text" />
 
-            <div class="block map">
-                <div class="title">
-                    <h4>Где:</h4>
-                </div>
-                <input id="pac-input" class="controls" placeholder = "Начните..." type="text" />
-
-                <div id="map"></div>
-            </div>
-
-            <div class="block">
-                <div class="title">
-                    <h4>Здесь?</h4>
-                </div>
-                <p>sssss</p>
-            </div>
-
-            <div class="block">
-
-                <div class="title">
-                    <h4>Когда:</h4>
+                    <div id="map"></div>
                 </div>
 
-                <div class='col-md-3'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker6'>
-                            <input type='text' class="form-control"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                <div class="block">
+                    <div class="title">
+                        <h4>Здесь?</h4>
+                    </div>
+                    <p>sssss</p>
+                </div>
+
+                <div class="block">
+
+                    <div class="title">
+                        <h4>Когда:</h4>
+                    </div>
+
+                    <div class='col-md-3'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker6'>
+                                <input type='text' class="form-control"/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>-</h2>
+
+                    <div class='col-md-3'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker7'>
+                                <input type='text' class="form-control"/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <h2>-</h2>
-
-                <div class='col-md-3'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker7'>
-                            <input type='text' class="form-control"/>
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
+                <div class="block dest">
+                    <div class="title">
+                        <h4>Описание:</h4>
                     </div>
-                </div>
-            </div>
 
-            <div class="block dest">
-                <div class="title">
-                    <h4>Дополнительно:</h4>
+                    <textarea class="form-control" rows="5"></textarea>
                 </div>
-
-                <textarea class="form-control" rows="5"></textarea>
-            </div>
+            <%--</form>--%>
         </div>
 
 
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker6').datetimepicker({
-                    //startDate: date
-                    //minDate: 0
-//                    Default: false,
-//                    Accepts: date
-                });
+                $('#datetimepicker6').datetimepicker();
                 $('#datetimepicker7').datetimepicker({
-                    //startDate: today,
                     useCurrent: false //Important! See issue #1075
                 });
                 $("#datetimepicker6").on("dp.change", function (e) {
                     $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-
-//                    $('#datetimepicker6').data("DateTimePicker").minDate(today);
-//                    $('#datetimepicker7').data("DateTimePicker").minDate(today);
                 });
                 $("#datetimepicker7").on("dp.change", function (e) {
                     $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-
-//                    $('#datetimepicker6').data("DateTimePicker").minDate(today);
-//                    $('#datetimepicker7').data("DateTimePicker").minDate(today);
                 });
 
                 $("#datetimepicker6").on("dp.error", function (e) {
@@ -130,10 +120,10 @@
                 map = new google.maps.Map(document.getElementById('map'), {
 //                    current pos
                     center: {lat: -34.397, lng: 150.644},
-                    zoom: 13,
-                    disableDefaultUI: true
+                    zoom: 10,
+                    disableDefaultUI: true,
+                    draggableCursor:'auto'
                 });
-                //map.controls[google.maps.ControlPosition.TOP_LEFT].clear();
 
                 var input = document.getElementById('pac-input');
                 var searchBox = new google.maps.places.SearchBox(input);
@@ -181,23 +171,25 @@
                     });
                     map.fitBounds(bounds);
                 });
+
+                google.maps.event.addListener(map, 'click', function(event) {
+                    var lat = event.latLng.lat();
+                    var lng = event.latLng.lng();
+                    // populate yor box/field with lat, lng
+                    alert("Lat=" + lat + "; Lng=" + lng);
+                });
             }
 
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var nowDate = new Date();
+                var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(),
+                        nowDate.getHours(), nowDate.getMinutes(), 0, 0);
 
-            var nowDate = new Date();
-            var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(),
-                    nowDate.getHours(), nowDate.getMinutes(), 0, 0);
-            //
-            //            var date = new Date();
-            //            date.setDate(date.getDate()-1);
-            //
-            //            var startDate = new Date();
-            //            var fechaFin = new Date();
-            //            var FromEndDate = new Date();
-            //            var ToEndDate = new Date();
-
-            $('#datetimepicker6').data("DateTimePicker").minDate(today);
-            $('#datetimepicker7').data("DateTimePicker").minDate(today);
+                $('#datetimepicker6').data("DateTimePicker").minDate(today);
+                //$('#datetimepicker7').data("DateTimePicker").minDate(today);
+            });
         </script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Oq4jskDM9UEBBbDzWSioDqzY1R434mk&callback=initMap&libraries=places">

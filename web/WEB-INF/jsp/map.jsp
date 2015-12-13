@@ -37,6 +37,10 @@
 
                 <form>
                     <div class="check">
+                        <input type="checkbox" class="checkbox" id="allChk"/>
+                        <label for="allChk">Всё</label>
+                    </div>
+                    <div class="check">
                         <input type="checkbox" class="checkbox" id="businessChk"/>
                         <label for="businessChk">Бизнес</label>
                     </div>
@@ -88,29 +92,29 @@
                         <input type="checkbox" class="checkbox" id="comedyChk"/>
                         <label for="comedyChk">Comedy</label>
                     </div>
+
+
+                    <div class='col-md-12'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker6'>
+                                <input type='text' class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-md-12'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker7'>
+                                <input type='text' class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
                 </form>
-
-                <div class='col-md-12'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker6'>
-                            <input type='text' class="form-control"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-                        </div>
-                    </div>
-                </div>
-                <div class='col-md-12'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker7'>
-                            <input type='text' class="form-control"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <div class="main-content">
@@ -137,7 +141,8 @@
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: -34.397, lng: 150.644},
-                    zoom: 8
+                    zoom: 10,
+                    disableDefaultUI: true
                 });
             }
         </script>
@@ -146,8 +151,10 @@
             $(document).ready(function () {
                 $("[data-toggle]").click(function () {
                     var toggle_el = $(this).data("toggle");
-//              var myClass = $(toggle_el).attr("class");
-//              alert(myClass);
+
+              //var myClass = $(toggle_el).attr("class");
+              //alert(myClass);
+
 //              var checked = document.forms[0];
 //              var txt = "";
 //              var i;
@@ -157,6 +164,18 @@
 //                }
 //              }
 //              alert(txt);
+
+                    $('#allChk').change(function(){
+                        var checked = document.forms[0];
+                        if(this.checked){
+                            for (var i = 0; i < checked.length; i++)
+                                checked[i].checked = true;
+                        }
+                        else{
+                            for (var i = 0; i < checked.length; i++)
+                                checked[i].checked = false;
+                        }
+                    });
                     $(toggle_el).toggleClass("open-sidebar");
                 });
             });
