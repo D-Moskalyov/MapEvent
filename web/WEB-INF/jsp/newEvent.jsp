@@ -18,7 +18,7 @@
               href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/new-event.css"/>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+        <%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>--%>
         <script type="text/javascript" src="http://momentjs.com/downloads/moment.js"></script>
 
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/transition.js"></script>

@@ -21,7 +21,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main-style.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/checkbox.css"/>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+        <%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>--%>
         <%--<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>--%>
         <script type="text/javascript" src="http://momentjs.com/downloads/moment.js"></script>
 
@@ -165,18 +165,20 @@
 //              }
 //              alert(txt);
 
-                    $('#allChk').change(function(){
-                        var checked = document.forms[0];
-                        if(this.checked){
-                            for (var i = 0; i < checked.length; i++)
-                                checked[i].checked = true;
-                        }
-                        else{
-                            for (var i = 0; i < checked.length; i++)
-                                checked[i].checked = false;
-                        }
-                    });
+
                     $(toggle_el).toggleClass("open-sidebar");
+                });
+
+                $('#allChk').change(function(){
+                    var checked = document.forms[0];
+                    if(this.checked){
+                        for (var i = 0; i < checked.length; i++)
+                            checked[i].checked = true;
+                    }
+                    else{
+                        for (var i = 0; i < checked.length; i++)
+                            checked[i].checked = false;
+                    }
                 });
             });
         </script>
