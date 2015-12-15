@@ -124,6 +124,27 @@
                     disableDefaultUI: true,
                     draggableCursor:'auto'
                 });
+//
+//                var styles = [
+//                    {
+//                        featureType: "transit",
+//                        stylers: [
+//                            {visibility: "off"}
+//                        ]
+//                    }
+//                ];
+//                var styledMap = new google.maps.StyledMapType(styles,
+//                        {name: "Styled Map"});
+//                map.mapTypes.set('map_style', styledMap);
+//                map.setMapTypeId('map_style');
+//
+//                map.setOptions({styles: styles});
+
+//                this.getPanes().overlayMouseTarget.appendChild(map);
+//                var me = this;
+//                map.event.addDomListener(div, 'click', function() {
+//                    google.maps.event.trigger(me, 'click');
+//                });
 
                 var input = document.getElementById('pac-input');
                 var searchBox = new google.maps.places.SearchBox(input);
@@ -173,11 +194,13 @@
                 });
 
                 google.maps.event.addListener(map, 'click', function(event) {
+                    console.log(event);
                     var lat = event.latLng.lat();
                     var lng = event.latLng.lng();
                     // populate yor box/field with lat, lng
-                    alert("Lat=" + lat + "; Lng=" + lng);
+                    console.log("Lat=" + lat + "; Lng=" + lng);
                 });
+
             }
 
         </script>
