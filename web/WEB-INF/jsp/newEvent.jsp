@@ -124,21 +124,6 @@
                     disableDefaultUI: true,
                     draggableCursor:'auto'
                 });
-//
-//                var styles = [
-//                    {
-//                        featureType: "transit",
-//                        stylers: [
-//                            {visibility: "off"}
-//                        ]
-//                    }
-//                ];
-//                var styledMap = new google.maps.StyledMapType(styles,
-//                        {name: "Styled Map"});
-//                map.mapTypes.set('map_style', styledMap);
-//                map.setMapTypeId('map_style');
-//
-//                map.setOptions({styles: styles});
 
 //                this.getPanes().overlayMouseTarget.appendChild(map);
 //                var me = this;
