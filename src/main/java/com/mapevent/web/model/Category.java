@@ -1,6 +1,7 @@
 package com.mapevent.web.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -16,7 +17,14 @@ public class Category {
     @Column(name = "Title")
     private String title;
 
-//    @ManyToOne
-//    @JoinColumn(name ="Cat_Id")
-//    Category category;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    List<Event> events;
+
+    @ManyToMany
+    @JoinTable(name="parentChldCat",
+            joinColumns = @JoinColumn(name="prntID", referencedColumnName="catID"),
+            inverseJoinColumns = @JoinColumn(name="chldID", referencedColumnName="catID")
+    )
+    List<Category> categories;
 }

@@ -1,5 +1,6 @@
 drop database mapevent;
 create database mapevent;
+SET SQL_SAFE_UPDATES=0;
 
 CREATE TABLE Users
 (
@@ -21,9 +22,21 @@ PRIMARY KEY (Cat_Id),
 FOREIGN KEY (Cat_Prnt_Id) REFERENCES Categories(Cat_Id) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-insert into categories (Title) values("sadd");
+insert into categories (Title) values("Бизнес");
+insert into categories (Title) values("Кино");
+insert into categories (Title) values("Концерты");
+insert into categories (Title) values("Танцы");
+insert into categories (Title) values("Выставки");
+insert into categories (Title) values("Игры");
+insert into categories (Title) values("Фестивали");
+insert into categories (Title) values("Театр");
+insert into categories (Title) values("Спорт");
+insert into categories (Title) values("Квесты");
+insert into categories (Title) values("Благотворительность");
+insert into categories (Title) values("Встречи");
+insert into categories (Title) values("Comedy");
 select * from categories;
-delete from categories where Title="sadd";
+delete from categories;
 drop table categories;
 
 CREATE TABLE Places

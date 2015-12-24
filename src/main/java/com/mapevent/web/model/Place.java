@@ -33,6 +33,6 @@ public class Place {
     private double lng;
 
 
-//    @ManyToMany(mappedBy = "places")
-//    List<Event> events;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "place")
+    List<Event> events;
 }

@@ -33,6 +33,15 @@ public class Event {
     @Column(name = "Discription")
     private String discription;
 
-//    @ManyToOne(mappedBy = "events")
-//    List<Place> events;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "plcID", nullable = false)
+    Place place;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "uID", nullable = false)
+    User user;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "catID", nullable = false)
+    Category category;
 }

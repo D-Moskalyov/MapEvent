@@ -27,6 +27,6 @@ public class User {
     private String gender;
 
 
-//    @OneToMany(mappedBy = "user")
-//    List<Event> events;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    List<Event> events;
 }
