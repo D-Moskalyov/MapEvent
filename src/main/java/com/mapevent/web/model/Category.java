@@ -21,10 +21,10 @@ public class Category {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     List<Event> events;
 
-    @ManyToMany
-    @JoinTable(name="parentChldCat",
-            joinColumns = @JoinColumn(name="prntID", referencedColumnName="catID"),
-            inverseJoinColumns = @JoinColumn(name="chldID", referencedColumnName="catID")
-    )
-    List<Category> categories;
+//    @ManyToMany
+//    @JoinTable(name="parentChldCat",
+//            joinColumns = @JoinColumn(name="prntID", referencedColumnName="catID"),
+//            inverseJoinColumns = @JoinColumn(name="chldID", referencedColumnName="catID")
+//    )
+//    List<Category> categories;
 }
