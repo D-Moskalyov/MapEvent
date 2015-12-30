@@ -16,6 +16,10 @@ h2 {
     float: left;
 }
 
+/*.glyphicon {*/
+    /*background-image: url('../images/glyphicons_045_calendar.png');*/
+/*}*/
+
 .block {
     display: inline-block;
     width: 100%;
