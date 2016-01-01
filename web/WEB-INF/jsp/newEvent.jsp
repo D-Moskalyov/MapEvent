@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <tiles:insertDefinition name="newEventTemplate">
     <tiles:putAttribute name="body">
@@ -29,101 +31,126 @@
 
 
         <div class="container">
-            <div class="block">
 
-                <%--<form:form modelAttribute="diningForm">--%>
-                    <%--<form:input path="firstName"/>--%>
-                    <%--<form:errors path="firstName"/>--%>
-                    <%--…--%>
-                <%--</form:form>--%>
+            <spring:url value="/userAjaxBootstrap.htm" var="formUrl" />
+            <spring:url value="/userAjaxBootstrap.json" var="formJsonUrl" />
 
-                <div class="title">
-                    <h4>Что:</h4>
-                </div>
+            <form:form modelAttribute="newEventForm" action="${formUrl}" id="new-event-form">
+            <fieldset>
+                <div class="block">
 
-                <input type="text" id="what" class="form-control">
+                    <%--<form:form modelAttribute="diningForm">--%>
+                        <%--<form:input path="firstName"/>--%>
+                        <%--<form:errors path="firstName"/>--%>
+                        <%--…--%>
+                    <%--</form:form>--%>
 
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Выберите
-                        категорию
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Бизнес</a></li>
-                        <li><a href="#">Кино</a></li>
-                        <li><a href="#">Концерты</a></li>
-                        <li><a href="#">Танцы</a></li>
-                        <li><a href="#">Выставки</a></li>
-                        <li><a href="#">Игры</a></li>
-                        <li><a href="#">Фестивали</a></li>
-                        <li><a href="#">Театр</a></li>
-                        <li><a href="#">Спорт</a></li>
-                        <li><a href="#">Квесты</a></li>
-                        <li><a href="#">Благотворительность</a></li>
-                        <li><a href="#">Встречи</a></li>
-                        <li><a href="#">Comedy</a></li>
-                    </ul>
-                </div>
-            </div>
+                    <div class="title">
+                        <h4>Что:</h4>
+                    </div>
 
-            <div class="block map">
-                <div class="title">
-                    <h4>Где:</h4>
-                </div>
-                <input id="pac-input" class="controls" placeholder="Начните..." type="text"/>
+                    <form:input type="text" path="what" id="whatID" class="form-control"/>
+                    <span class="help-inline"><form:errors path="what" /></span>
 
-                <div id="map"></div>
-            </div>
-
-            <div class="block">
-                <div class="title">
-                    <h4>Здесь?</h4>
-                </div>
-                <p class="address" id="where"></p>
-            </div>
-
-            <div class="block">
-
-                <div class="title">
-                    <h4>Когда:</h4>
-                </div>
-
-                <div class='col-md-3'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker6'>
-                            <input type='text' id="whenSt" class="form-control"/>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                        </div>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Выберите
+                            категорию
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Бизнес</a></li>
+                            <li><a href="#">Кино</a></li>
+                            <li><a href="#">Концерты</a></li>
+                            <li><a href="#">Танцы</a></li>
+                            <li><a href="#">Выставки</a></li>
+                            <li><a href="#">Игры</a></li>
+                            <li><a href="#">Фестивали</a></li>
+                            <li><a href="#">Театр</a></li>
+                            <li><a href="#">Спорт</a></li>
+                            <li><a href="#">Квесты</a></li>
+                            <li><a href="#">Благотворительность</a></li>
+                            <li><a href="#">Встречи</a></li>
+                            <li><a href="#">Comedy</a></li>
+                        </ul>
+                        <form:input type="hidden" path="category" />
+                        <span class="help-inline"><form:errors path="category" /></span>
                     </div>
                 </div>
 
-                <h2>-</h2>
+                <div class="block map">
+                    <div class="title">
+                        <h4>Где:</h4>
+                    </div>
+                    <input id="pac-input" class="controls" placeholder="Начните..." type="text"/>
 
-                <div class='col-md-3'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker7'>
-                            <input type='text' id="whenFin" class="form-control"/>
+                    <div id="map" style="width: 80%; height: 300px"></div>
+
+                </div>
+
+                <div class="block">
+                    <div class="title">
+                        <h4>Здесь?</h4>
+                    </div>
+                    <p class="address" id="where"></p>
+                    <form:input type="hidden" path="street_number" />
+                    <span class="help-inline"><form:errors path="street_number" /></span>
+                    <form:input type="hidden" path="route" />
+                    <span class="help-inline"><form:errors path="route" /></span>
+                    <form:input type="hidden" path="locality" />
+                    <span class="help-inline"><form:errors path="locality" /></span>
+                    <form:input type="hidden" path="administrative_area_level_1" />
+                    <span class="help-inline"><form:errors path="administrative_area_level_1" /></span>
+                    <form:input type="hidden" path="country" />
+                    <span class="help-inline"><form:errors path="country" /></span>
+                </div>
+
+                <div class="block">
+
+                    <div class="title">
+                        <h4>Когда:</h4>
+                    </div>
+
+                    <div class='col-md-3'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker6'>
+                                <form:input path="whenStart" type='text' id="whenSt" class="form-control"/>
+                                <span class="help-inline"><form:errors path="whenStart" /></span>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>-</h2>
+
+                    <div class='col-md-3'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker7'>
+                                <form:input path="whenFinish"  type='text' id="whenFin" class="form-control"/>
+                                <span class="help-inline"><form:errors path="whenFinish" /></span>
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="block dest">
-                <div class="title">
-                    <h4>Описание:</h4>
+                <div class="block dest">
+                    <div class="title">
+                        <h4>Описание:</h4>
+                    </div>
+
+                    <form:textarea path="description" class="form-control" id="dest" rows="5"></form:textarea>
+                    <span class="help-inline"><form:errors path="description" /></span>
+                    <%--<button type="button" id="complete" class="btn btn-primary" onclick="submit()">Готово</button>--%>
                 </div>
 
-                <textarea class="form-control" id="dest" rows="5"></textarea>
-                <button type="button" id="complete" class="btn btn-default" onclick="submit()">Готово</button>
-            </div>
-
-            <%--<div class="block">--%>
-                <%--<button type="button" id="submit" class="btn btn-default">Готово</button>--%>
-            <%--</div>--%>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Готово</button>
+                </div>
+            </fieldset>
+            </form:form>
         </div>
 
 
@@ -201,8 +228,8 @@
                             }, callback);
 
                             function callback(place, status) {
-                                searchPlace(place, status);
-                                markerAndBoundsCreate(place);
+                                if(searchPlace(place, status))
+                                    markerAndBoundsCreate(place);
                             }
                         }
                     });
@@ -241,7 +268,7 @@
         </script>
         <script type="text/javascript">
             function submit() {
-                console.log($('#what').get(0).innerText);
+                console.log($('#whatID').get(0).innerText);
                 console.log($('#where').get(0).innerText);
                 console.log($('#whenSt').get(0).innerText);
                 console.log($('#whenFin').get(0).innerText);
@@ -255,24 +282,30 @@
                     var address = document.getElementsByClassName('address');
                     var addressTxt = "";
                     var street_number = "";
+                    var control = 0;
                     address_components.forEach(function (item) {
                         var types = item.types;
                         types.forEach(function (type) {
                             switch (type) {
                                 case 'street_number':
                                     street_number = ", " + item.long_name;
+                                    control++;
                                     break;
                                 case 'route':
                                     addressTxt = item.long_name + street_number + ", ";
+                                    control++;
                                     break;
                                 case 'locality':
                                     addressTxt = addressTxt + item.long_name + ", ";
+                                    control++;
                                     break;
                                 case 'administrative_area_level_1':
                                     addressTxt = addressTxt + item.long_name + ", ";
+                                    control++;
                                     break;
                                 case 'country':
                                     addressTxt = addressTxt + item.long_name;
+                                    control++;
                                     break;
                                 default:
                                     break;
@@ -280,7 +313,12 @@
                         });
                     });
                     console.log(addressTxt);
-                    $("p.address").text(addressTxt);
+
+                    if(control == 5){
+                        $("p.address").text(addressTxt);
+                        return true;
+                    }
+                    return false;
                 }
             }
             function markerAndBoundsCreate(place) {
