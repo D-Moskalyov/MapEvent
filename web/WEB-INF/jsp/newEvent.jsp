@@ -32,124 +32,162 @@
 
         <div class="container">
 
-            <spring:url value="/userAjaxBootstrap.htm" var="formUrl" />
-            <spring:url value="/userAjaxBootstrap.json" var="formJsonUrl" />
+            <spring:url value="/event/newevent" var="formUrl"/>
+            <spring:url value="/event/newevent.json" var="formJsonUrl"/>
 
             <form:form modelAttribute="newEventForm" action="${formUrl}" id="new-event-form">
-            <fieldset>
-                <div class="block">
+                <fieldset>
+                    <div class="block">
 
-                    <%--<form:form modelAttribute="diningForm">--%>
-                        <%--<form:input path="firstName"/>--%>
-                        <%--<form:errors path="firstName"/>--%>
-                        <%--…--%>
-                    <%--</form:form>--%>
+                            <%--<form:form modelAttribute="diningForm">--%>
+                            <%--<form:input path="firstName"/>--%>
+                            <%--<form:errors path="firstName"/>--%>
+                            <%--…--%>
+                            <%--</form:form>--%>
 
-                    <div class="title">
-                        <h4>Что:</h4>
+                        <div class="title">
+                            <h4>Что:</h4>
+                        </div>
+                        <div class="contentForm">
+                            <div class="check-group" id="what">
+                                <form:input type="text" path="what" class="form-control"/>
+                                <span class="help-inline"><form:errors path="validTitle"/></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="title">
+                            <h4/>
+                        </div>
+                        <div class="contentForm">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Выберите
+                                    категорию
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Бизнес</a></li>
+                                    <li><a href="#">Кино</a></li>
+                                    <li><a href="#">Концерты</a></li>
+                                    <li><a href="#">Танцы</a></li>
+                                    <li><a href="#">Выставки</a></li>
+                                    <li><a href="#">Игры</a></li>
+                                    <li><a href="#">Фестивали</a></li>
+                                    <li><a href="#">Театр</a></li>
+                                    <li><a href="#">Спорт</a></li>
+                                    <li><a href="#">Квесты</a></li>
+                                    <li><a href="#">Благотворительность</a></li>
+                                    <li><a href="#">Встречи</a></li>
+                                    <li><a href="#">Comedy</a></li>
+                                </ul>
+                                <div class="check-group" id="category">
+                                    <form:input type="hidden" path="category" id="categoryID"/>
+                                    <span class="help-inline"><form:errors path="category"/></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <form:input type="text" path="what" id="whatID" class="form-control"/>
-                    <span class="help-inline"><form:errors path="what" /></span>
+                    <div class="block map">
+                        <div class="title">
+                            <h4>Где:</h4>
+                        </div>
+                        <div class="contentForm">
+                            <input id="pac-input" class="controls" placeholder="Начните..." type="text"/>
 
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Выберите
-                            категорию
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Бизнес</a></li>
-                            <li><a href="#">Кино</a></li>
-                            <li><a href="#">Концерты</a></li>
-                            <li><a href="#">Танцы</a></li>
-                            <li><a href="#">Выставки</a></li>
-                            <li><a href="#">Игры</a></li>
-                            <li><a href="#">Фестивали</a></li>
-                            <li><a href="#">Театр</a></li>
-                            <li><a href="#">Спорт</a></li>
-                            <li><a href="#">Квесты</a></li>
-                            <li><a href="#">Благотворительность</a></li>
-                            <li><a href="#">Встречи</a></li>
-                            <li><a href="#">Comedy</a></li>
-                        </ul>
-                        <form:input type="hidden" path="category" />
-                        <span class="help-inline"><form:errors path="category" /></span>
-                    </div>
-                </div>
+                            <div id="map" style="width: 100%; height: 300px"></div>
+                        </div>
 
-                <div class="block map">
-                    <div class="title">
-                        <h4>Где:</h4>
-                    </div>
-                    <input id="pac-input" class="controls" placeholder="Начните..." type="text"/>
-
-                    <div id="map" style="width: 80%; height: 300px"></div>
-
-                </div>
-
-                <div class="block">
-                    <div class="title">
-                        <h4>Здесь?</h4>
-                    </div>
-                    <p class="address" id="where"></p>
-                    <form:input type="hidden" path="street_number" />
-                    <span class="help-inline"><form:errors path="street_number" /></span>
-                    <form:input type="hidden" path="route" />
-                    <span class="help-inline"><form:errors path="route" /></span>
-                    <form:input type="hidden" path="locality" />
-                    <span class="help-inline"><form:errors path="locality" /></span>
-                    <form:input type="hidden" path="administrative_area_level_1" />
-                    <span class="help-inline"><form:errors path="administrative_area_level_1" /></span>
-                    <form:input type="hidden" path="country" />
-                    <span class="help-inline"><form:errors path="country" /></span>
-                </div>
-
-                <div class="block">
-
-                    <div class="title">
-                        <h4>Когда:</h4>
                     </div>
 
-                    <div class='col-md-3'>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker6'>
-                                <form:input path="whenStart" type='text' id="whenSt" class="form-control"/>
-                                <span class="help-inline"><form:errors path="whenStart" /></span>
+                    <div class="block">
+                        <div class="title">
+                            <h4>Здесь?</h4>
+                        </div>
+                        <div class="contentForm">
+                            <p class="address" id="where"></p>
+
+                            <div class="check-group" id="validAddress">
+                                <form:input type="hidden" path="street_number" id="street_numberID"/>
+                                <form:input type="hidden" path="route" id="routeID"/>
+                                <form:input type="hidden" path="locality" id="localityID"/>
+                                <form:input type="hidden" path="administrative_area_level_1"
+                                            id="administrative_area_level_1ID"/>
+                                <form:input type="hidden" path="country" id="countryID"/>
+                                <form:input type="hidden" path="lat" id="latID"/>
+                                <form:input type="hidden" path="lng" id="lngID"/>
+                                <form:input type="hidden" path="placeID" id="placeIDID"/>
+                                <span class="help-inline"><form:errors path="validAddress"/></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="title">
+                            <h5>Когда:</h5>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="title">
+                            <h4>Начало:</h4>
+                        </div>
+                        <div class="contentForm">
+                            <div class='col-md-3'>
+                                <div class="form-group">
+                                    <div class='input-group date' id='datetimepicker6'>
+                                        <div class="check-group" id="whenStart">
+                                            <form:input path="whenStart" type='text' class="form-control"/>
+                                        </div>
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <h2>-</h2>
-
-                    <div class='col-md-3'>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker7'>
-                                <form:input path="whenFinish"  type='text' id="whenFin" class="form-control"/>
-                                <span class="help-inline"><form:errors path="whenFinish" /></span>
+                    <div class="block">
+                        <div class="title">
+                            <h4>Окончание:</h4>
+                        </div>
+                        <div class="contentForm">
+                            <div class='col-md-3'>
+                                <div class="form-group">
+                                    <div class='input-group date' id='datetimepicker7'>
+                                        <div class="check-group" id="whenFinish">
+                                            <form:input path="whenFinish" type='text' class="form-control"/>
+                                        </div>
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="help-inline"><form:errors path="validDate"/></span>
+                        </div>
+                    </div>
+
+                    <div class="block dest">
+                        <div class="title">
+                            <h4>Описание:</h4>
+                        </div>
+                        <div class="contentForm">
+                            <div class="check-group" id="description">
+                                <form:textarea path="description" id="textArea" class="form-control" rows="5"/>
+                                <span class="help-inline"><form:errors path="validDest"/></span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="block dest">
-                    <div class="title">
-                        <h4>Описание:</h4>
+                    <div class="block form-actions">
+                        <div class="title">
+                            <h4/>
+                        </div>
+                        <div class="contentForm">
+                            <button type="submit" class="btn btn-primary">Готово</button>
+                        </div>
                     </div>
-
-                    <form:textarea path="description" class="form-control" id="dest" rows="5"></form:textarea>
-                    <span class="help-inline"><form:errors path="description" /></span>
-                    <%--<button type="button" id="complete" class="btn btn-primary" onclick="submit()">Готово</button>--%>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Готово</button>
-                </div>
-            </fieldset>
+                </fieldset>
             </form:form>
         </div>
 
@@ -176,24 +214,49 @@
                         nowDate.getHours(), nowDate.getMinutes(), 0, 0);
 
                 $('#datetimepicker6').data("DateTimePicker").minDate(today);
+                console.log($('#categoryID')[0].value);
+                if ($('#categoryID')[0].value != "")
+                    $('.dropdown-toggle').html($('#categoryID')[0].value + ' <span class="caret"></span>');
 
                 $(".dropdown-menu li a").click(function () {
                     $(this).parents('.dropdown').find('.dropdown-toggle').html($(this).text() + ' <span class="caret"></span>');
+                    $('#categoryID')[0].value = $(this).text();
+                    console.log($(this).text());
                     //$(this).parents('.dropdown').find('.dropdown-toggle').value($(this).text() + ' <span class="caret"></span>');
+                });
+
+
+                var $form = $('#new-event-form');
+                $form.bind('submit', function (e) {
+                // Ajax validation
+                var $inputs = $form.find('input,textarea');
+                var data = collectFormData($inputs);
+                $.post('${formJsonUrl}', data, function (response) {
+                console.log(response);
+                $form.find('.check-group').removeClass('error');
+                $form.find('.help-inline').empty();
+                $form.find('.alert').remove();
+
+                if (response.status == 'FAIL') {
+                for (var i = 0; i < response.errorMessageList.length; i++) {
+                var item = response.errorMessageList[i];
+                var $checkGroup = $('#' + item.fieldName);
+                $checkGroup.addClass('error');
+                $checkGroup.find('.help-inline').html(item.message);
+                }
+                } else {
+                $form.unbind('submit');
+                $form.submit();
+                }
+                }, 'json');
+
+                e.preventDefault();
+                return false;
                 });
 
                 //$("#complete").click(submit);
 
             });
-
-            //            $(document).ready(function () {
-            //                var nowDate = new Date();
-            //                var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(),
-            //                        nowDate.getHours(), nowDate.getMinutes(), 0, 0);
-            //
-            //                $('#datetimepicker6').data("DateTimePicker").minDate(today);
-            //                //$('#datetimepicker7').data("DateTimePicker").minDate(today);
-            //            });
         </script>
         <script type="text/javascript">
             var map;
@@ -209,7 +272,8 @@
                 service = new google.maps.places.PlacesService(map);
 
                 google.maps.event.addListener(map, 'click', function (event) {
-                    console.log(event);
+                    //console.log("click");
+                    //console.log(event);
                     var lat = event.latLng.lat();
                     var lng = event.latLng.lng();
                     var pyrmont = {lat: lat, lng: lng};
@@ -221,14 +285,14 @@
                         types: ['establishment']
                     }, function (results, status) {
                         if (status === google.maps.places.PlacesServiceStatus.OK) {
-                            console.log(results);
+                            //console.log(results);
                             var place_id = results[0].place_id;
                             service.getDetails({
                                 placeId: place_id
                             }, callback);
 
                             function callback(place, status) {
-                                if(searchPlace(place, status))
+                                if (searchPlace(place, status))
                                     markerAndBoundsCreate(place);
                             }
                         }
@@ -243,6 +307,7 @@
                     searchBox.setBounds(map.getBounds());
                 });
                 searchBox.addListener('places_changed', function () {
+                    //console.log("places_changed");
                     var places = searchBox.getPlaces();
 
                     if (places.length == 0) {
@@ -267,16 +332,25 @@
 
         </script>
         <script type="text/javascript">
-            function submit() {
-                console.log($('#whatID').get(0).innerText);
-                console.log($('#where').get(0).innerText);
-                console.log($('#whenSt').get(0).innerText);
-                console.log($('#whenFin').get(0).innerText);
-                console.log($('#dest').get(0).innerText);
+            //            function submit() {
+            //                console.log($('#whatID').get(0).innerText);
+            //                console.log($('#where').get(0).innerText);
+            //                console.log($('#whenSt').get(0).innerText);
+            //                console.log($('#whenFin').get(0).innerText);
+            //                console.log($('#dest').get(0).innerText);
+            //            }
+            function collectFormData(fields) {
+                var data = {};
+                for (var i = 0; i < fields.length; i++) {
+                    var $item = $(fields[i]);
+                    if (typeof $item.attr('name') !== 'undefined')
+                        data[$item.attr('name')] = $item.val();
+                }
+                return data;
             }
             function searchPlace(place, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    console.log(place);
+                    //console.log(place);
 
                     var address_components = place.address_components;
                     var address = document.getElementsByClassName('address');
@@ -290,31 +364,40 @@
                                 case 'street_number':
                                     street_number = ", " + item.long_name;
                                     control++;
+                                    //console.log($('#street_numberID')[0]);
+                                    $('#street_numberID')[0].value = item.long_name;
                                     break;
                                 case 'route':
                                     addressTxt = item.long_name + street_number + ", ";
                                     control++;
+                                    $('#routeID')[0].value = item.long_name;
                                     break;
                                 case 'locality':
                                     addressTxt = addressTxt + item.long_name + ", ";
                                     control++;
+                                    $('#localityID')[0].value = item.long_name;
                                     break;
                                 case 'administrative_area_level_1':
                                     addressTxt = addressTxt + item.long_name + ", ";
                                     control++;
+                                    $('#administrative_area_level_1ID')[0].value = item.long_name;
                                     break;
                                 case 'country':
                                     addressTxt = addressTxt + item.long_name;
                                     control++;
+                                    $('#countryID')[0].value = item.long_name;
                                     break;
                                 default:
                                     break;
                             }
                         });
                     });
-                    console.log(addressTxt);
+                    //console.log(addressTxt);
 
-                    if(control == 5){
+                    if (control == 5) {
+                        $('#latID')[0].value = place.geometry.location.lat();
+                        $('#lngID')[0].value = place.geometry.location.lng();
+                        $('#placeIDID')[0].value = place.place_id;
                         $("p.address").text(addressTxt);
                         return true;
                     }
