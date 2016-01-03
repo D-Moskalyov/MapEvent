@@ -16,9 +16,9 @@ h2 {
     float: left;
 }
 
-.error {
-    color: red;
-}
+/*.error {*/
+    /*color: red;*/
+/*}*/
 
 .success {
     color: green;
@@ -106,5 +106,22 @@ h2 {
 
 #pac-input:focus {
     border-color: #4d90fe;
+}
+
+.check-group.error input, .check-group.error select, .check-group.error textarea {
+    color: #b94a48;
+    border-color: #b94a48;
+}
+
+#pac-input.error {
+    border-color: #b94a48;
+}
+
+.dropdown-toggle.error {
+    border-color: #b94a48;
+}
+
+.col-md-3 .help-inline{
+    margin:-10px;
 }
 

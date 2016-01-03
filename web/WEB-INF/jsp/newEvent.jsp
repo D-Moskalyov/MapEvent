@@ -35,7 +35,7 @@
             <spring:url value="/event/newevent" var="formUrl"/>
             <spring:url value="/event/newevent.json" var="formJsonUrl"/>
 
-            <form:form modelAttribute="newEventForm" action="${formUrl}" id="new-event-form">
+            <form:form modelAttribute="newEventForm" class="form-horizontal" action="${formUrl}" id="new-event-form">
                 <fieldset>
                     <div class="block">
 
@@ -49,7 +49,7 @@
                             <h4>Что:</h4>
                         </div>
                         <div class="contentForm">
-                            <div class="check-group" id="what">
+                            <div class="check-group" class="controls" class="control-group" id="validTitle">
                                 <form:input type="text" path="what" class="form-control"/>
                                 <span class="help-inline"><form:errors path="validTitle"/></span>
                             </div>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="contentForm">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" id="buttonTogle" type="button" data-toggle="dropdown">
                                     Выберите
                                     категорию
                                     <span class="caret"></span></button>
@@ -157,13 +157,16 @@
                                         <div class="check-group" id="whenFinish">
                                             <form:input path="whenFinish" type='text' class="form-control"/>
                                         </div>
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
                                     </div>
                                 </div>
+                                <div class="check-group" id="validDate">
+                                    <span class="help-inline"><form:errors path="validDate"/></span>
+                                </div>
                             </div>
-                            <span class="help-inline"><form:errors path="validDate"/></span>
+
                         </div>
                     </div>
 
@@ -172,7 +175,7 @@
                             <h4>Описание:</h4>
                         </div>
                         <div class="contentForm">
-                            <div class="check-group" id="description">
+                            <div class="check-group" id="validDest">
                                 <form:textarea path="description" id="textArea" class="form-control" rows="5"/>
                                 <span class="help-inline"><form:errors path="validDest"/></span>
                             </div>
@@ -194,6 +197,18 @@
 
         <script type="text/javascript">
             $(function () {
+                if("${newEventForm.placeID}" != ""){
+                    var address_route = "${newEventForm.route}";
+                    var address_street_number = "${newEventForm.street_number}";
+                    var address_locality = "${newEventForm.locality}";
+                    var address_administrative_area_level_1 = "${newEventForm.administrative_area_level_1}";
+                    var address_country = "${newEventForm.country}";
+                    var address_string = address_route + ', ' + address_street_number + ', ' +
+                            address_locality + ', ' + address_administrative_area_level_1 + ', ' + address_country;
+                    $("p.address").text(address_string);
+                }
+
+
                 $('#datetimepicker6').datetimepicker();
                 $('#datetimepicker7').datetimepicker({
                     useCurrent: false //Important! See issue #1075
@@ -214,48 +229,82 @@
                         nowDate.getHours(), nowDate.getMinutes(), 0, 0);
 
                 $('#datetimepicker6').data("DateTimePicker").minDate(today);
-                console.log($('#categoryID')[0].value);
+                //console.log($('#categoryID')[0].value);
                 if ($('#categoryID')[0].value != "")
                     $('.dropdown-toggle').html($('#categoryID')[0].value + ' <span class="caret"></span>');
 
                 $(".dropdown-menu li a").click(function () {
                     $(this).parents('.dropdown').find('.dropdown-toggle').html($(this).text() + ' <span class="caret"></span>');
                     $('#categoryID')[0].value = $(this).text();
-                    console.log($(this).text());
+                    $('#buttonTogle').removeClass('error');
+                    //console.log($(this).text());
                     //$(this).parents('.dropdown').find('.dropdown-toggle').value($(this).text() + ' <span class="caret"></span>');
+                });
+
+                $("input, textarea").focus(function(){
+                    //var $checkGroup = $(this).find('.check-group');
+                    //console.log($checkGroup);
+                    $(this).find('.check-group').removeClass('error');
                 });
 
 
                 var $form = $('#new-event-form');
                 $form.bind('submit', function (e) {
-                // Ajax validation
-                var $inputs = $form.find('input,textarea');
-                var data = collectFormData($inputs);
-                $.post('${formJsonUrl}', data, function (response) {
-                console.log(response);
-                $form.find('.check-group').removeClass('error');
-                $form.find('.help-inline').empty();
-                $form.find('.alert').remove();
+                    // Ajax validation
+                    var $inputs = $form.find('input,textarea');
+                    var data = collectFormData($inputs);
+                    $.post('${formJsonUrl}', data, function (response) {
+                        $form.find('.check-group').removeClass('error');
+                        $('#buttonTogle').removeClass('error');
+                        $('#pac-input').removeClass('error');
+                        $form.find('.help-inline').empty();
+                        $form.find('.alert').remove();
 
-                if (response.status == 'FAIL') {
-                for (var i = 0; i < response.errorMessageList.length; i++) {
-                var item = response.errorMessageList[i];
-                var $checkGroup = $('#' + item.fieldName);
-                $checkGroup.addClass('error');
-                $checkGroup.find('.help-inline').html(item.message);
-                }
-                } else {
-                $form.unbind('submit');
-                $form.submit();
-                }
-                }, 'json');
+                        if (response.status == 'FAIL') {
+                            for (var i = 0; i < response.errorMessageList.length; i++) {
+                                var item = response.errorMessageList[i];
+                                switch (item.fieldName) {
+                                    case 'validDate':
+                                        var $whenStart = $('#whenStart');
+                                        //console.log($whenStart);
+                                        var $whenFinish = $('#whenFinish');
+                                        //console.log($whenFinish);
+                                        $whenStart.addClass('error');
+                                        $whenFinish.addClass('error');
+                                        var $validDate = $('#validDate');
+                                        $validDate.find('.help-inline').html(item.message);
+                                        break;
+                                    case 'validAddress':
+                                        //console.log($('#pac-input'));
+                                        var $pac_input = $('#pac-input');
+                                        $pac_input.addClass('error');
+                                        var $checkGroup = $('#' + item.fieldName);
+                                        $checkGroup.addClass('error');
+                                        $checkGroup.find('.help-inline').html(item.message);
+                                        break;
+                                    case 'category':
+                                        //console.log($('.dropdown-toggle')[0]);
+                                        $('#buttonTogle').addClass('error');
+                                        var $checkGroup = $('#' + item.fieldName);
+                                        $checkGroup.addClass('error');
+                                        $checkGroup.find('.help-inline').html(item.message);
+                                        break;
+                                    default:
+                                        var $checkGroup = $('#' + item.fieldName);
+                                        $checkGroup.addClass('error');
+                                        $checkGroup.find('.help-inline').html(item.message);
+                                        break;
+                                }
+                            }
+                        } else {
+                            $form.unbind('submit');
+                            $form.submit();
+                        }
+                    }, 'json');
 
-                e.preventDefault();
-                return false;
+                    e.preventDefault();
+                    return false;
                 });
-
-                //$("#complete").click(submit);
-
             });
         </script>
         <script type="text/javascript">
@@ -270,6 +319,18 @@
                     draggableCursor: 'auto'
                 });
                 service = new google.maps.places.PlacesService(map);
+
+                if("${newEventForm.placeID}" != ""){
+                    //console.log("${newEventForm.placeID}");
+                    service.getDetails({
+                        placeId: "${newEventForm.placeID}"
+                    }, callback);
+
+                    function callback(place, status) {
+                        searchPlace(place, status);
+                        markerAndBoundsCreate(place);
+                    }
+                }
 
                 google.maps.event.addListener(map, 'click', function (event) {
                     //console.log("click");
