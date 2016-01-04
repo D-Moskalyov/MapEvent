@@ -4,44 +4,43 @@ package com.mapevent.web.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Size;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NewEventForm {
-    //@NotEmpty(message = "Ââåäèòå çàãîëîâîê")
-    //@Size(min = 5, message = "Çàãîëîâîê äîëæåí ñîñòàÿòü íå ìåíåå ÷åì èç 5 ñèìâîëîâ")
+    //@NotEmpty(message = "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ·Ğ°Ğ³Ğ¾Ğ»Ğ¾Ğ²Ğ¾Ğº")
+    //@Size(min = 5, message = "Ğ—Ğ°Ğ³Ğ¾Ğ»Ğ¾Ğ²Ğ¾Ğº Ğ´Ğ¾Ğ»Ğ¶ĞµĞ½ ÑĞ¾ÑÑ‚Ğ°ÑÑ‚ÑŒ Ğ½Ğµ Ğ¼ĞµĞ½ĞµĞµ Ñ‡ĞµĞ¼ Ğ¸Ğ· 5 ÑĞ¸Ğ¼Ğ²Ğ¾Ğ»Ğ¾Ğ²")
     private String what;
 
-    @NotEmpty(message = "Âûáåğèòå êàòåãîğèş")
+    @NotEmpty(message = "Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ ĞºĞ°Ñ‚ĞµĞ³Ğ¾Ñ€Ğ¸Ñ")
     private String category;
 
-    //@NotEmpty(message = "Âûáåğèòå òî÷íûé àäğåñ")
+    //@NotEmpty(message = "Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ñ‚Ğ¾Ñ‡Ğ½Ñ‹Ğ¹ Ğ°Ğ´Ñ€ĞµÑ")
     private String street_number;
-    //@NotEmpty(message = "Âûáåğèòå òî÷íûé àäğåñ")
+    //@NotEmpty(message = "Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ñ‚Ğ¾Ñ‡Ğ½Ñ‹Ğ¹ Ğ°Ğ´Ñ€ĞµÑ")
     private String route;
-    //@NotEmpty(message = "Âûáåğèòå òî÷íûé àäğåñ")
+    //@NotEmpty(message = "Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ñ‚Ğ¾Ñ‡Ğ½Ñ‹Ğ¹ Ğ°Ğ´Ñ€ĞµÑ")
     private String locality;
-    //@NotEmpty(message = "Âûáåğèòå òî÷íûé àäğåñ")
+    //@NotEmpty(message = "Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ñ‚Ğ¾Ñ‡Ğ½Ñ‹Ğ¹ Ğ°Ğ´Ñ€ĞµÑ")
     private String administrative_area_level_1;
-    //@NotEmpty(message = "Âûáåğèòå òî÷íûé àäğåñ")
+    //@NotEmpty(message = "Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ñ‚Ğ¾Ñ‡Ğ½Ñ‹Ğ¹ Ğ°Ğ´Ñ€ĞµÑ")
     private String country;
-    //@NotEmpty(message = "Âûáåğèòå òî÷íûé àäğåñ")
+    //@NotEmpty(message = "Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ñ‚Ğ¾Ñ‡Ğ½Ñ‹Ğ¹ Ğ°Ğ´Ñ€ĞµÑ")
     private String lat;
-    //@NotEmpty(message = "Âûáåğèòå òî÷íûé àäğåñ")
+    //@NotEmpty(message = "Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ñ‚Ğ¾Ñ‡Ğ½Ñ‹Ğ¹ Ğ°Ğ´Ñ€ĞµÑ")
     private String lng;
-    //@NotEmpty(message = "Âûáåğèòå òî÷íûé àäğåñ")
+    //@NotEmpty(message = "Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ñ‚Ğ¾Ñ‡Ğ½Ñ‹Ğ¹ Ğ°Ğ´Ñ€ĞµÑ")
     private String placeID;
 
-    //@NotEmpty(message = "Óñòàíîâèòå äàòó è âğåìÿ íà÷àëà ñîáûòèÿ")
+    //@NotEmpty(message = "Ğ£ÑÑ‚Ğ°Ğ½Ğ¾Ğ²Ğ¸Ñ‚Ğµ Ğ´Ğ°Ñ‚Ñƒ Ğ¸ Ğ²Ñ€ĞµĞ¼Ñ Ğ½Ğ°Ñ‡Ğ°Ğ»Ğ° ÑĞ¾Ğ±Ñ‹Ñ‚Ğ¸Ñ")
     private String whenStart;
 
-    //@NotEmpty(message = "Óñòàíîâèòå äàòó è âğåìÿ îêîí÷àíèÿ ñîáûòèÿ")
+    //@NotEmpty(message = "Ğ£ÑÑ‚Ğ°Ğ½Ğ¾Ğ²Ğ¸Ñ‚Ğµ Ğ´Ğ°Ñ‚Ñƒ Ğ¸ Ğ²Ñ€ĞµĞ¼Ñ Ğ¾ĞºĞ¾Ğ½Ñ‡Ğ°Ğ½Ğ¸Ñ ÑĞ¾Ğ±Ñ‹Ñ‚Ğ¸Ñ")
     private String whenFinish;
 
-    //@NotEmpty(message = "Ââåäèòå êğàòêîå îïèñàíèå")
-    //@Size(min = 5, message = "Íå ìåíåå ïÿòè ñèìâîëîâ")
+    //@NotEmpty(message = "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ ĞºÑ€Ğ°Ñ‚ĞºĞ¾Ğµ Ğ¾Ğ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ")
+    //@Size(min = 5, message = "ĞĞµ Ğ¼ĞµĞ½ĞµĞµ Ğ¿ÑÑ‚Ğ¸ ÑĞ¸Ğ¼Ğ²Ğ¾Ğ»Ğ¾Ğ²")
     private String description;
 
     public NewEventForm() {
@@ -60,16 +59,16 @@ public class NewEventForm {
         this.placeID = "";
     }
 
-    @AssertTrue(message="Ïğîâåğüòå çàãîëîâîê")
+    @AssertTrue(message="ĞŸÑ€Ğ¾Ğ²ĞµÑ€ÑŒÑ‚Ğµ Ğ·Ğ°Ğ³Ğ¾Ğ»Ğ¾Ğ²Ğ¾Ğº")
     public boolean isValidTitle() {
         if(what.length() > 5)
             return true;
         return false;
     }
 
-    @AssertTrue(message="Ïğîâåğüòå äàòû")
+    @AssertTrue(message="ĞŸÑ€Ğ¾Ğ²ĞµÑ€ÑŒÑ‚Ğµ Ğ´Ğ°Ñ‚Ñ‹")
     public boolean isValidDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm a");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         Date nowDate = new Date();
         formatter.format(nowDate);
         Date today = new Date(nowDate.getYear(), nowDate.getMonth(), nowDate.getDate(),
@@ -94,7 +93,7 @@ public class NewEventForm {
         }
     }
 
-    @AssertTrue(message="Âûáåğèòå àäğåñ")
+    @AssertTrue(message="Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ Ğ°Ğ´Ñ€ĞµÑ")
     public boolean isValidAddress() {
         if(street_number != "" & route != "" & locality != "" & administrative_area_level_1 != ""
                 & country != "" & lat != "" & lng != "" & placeID != "")
@@ -102,7 +101,7 @@ public class NewEventForm {
         return false;
     }
 
-    @AssertTrue(message="Ïğîâåğüòå îïèñàíèå")
+    @AssertTrue(message="ĞŸÑ€Ğ¾Ğ²ĞµÑ€ÑŒÑ‚Ğµ Ğ¾Ğ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ")
     public boolean isValidDest() {
         if(description.length() > 5)
             return true;

@@ -23,7 +23,7 @@
 
         <%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>--%>
         <%--<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>--%>
-        <script type="text/javascript" src="http://momentjs.com/downloads/moment.js"></script>
+        <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.js"></script>
 
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/transition.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/collapse.js"></script>
@@ -185,8 +185,11 @@
 
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker6').datetimepicker();
+                $('#datetimepicker6').datetimepicker({
+                    locale: 'ru'
+                });
                 $('#datetimepicker7').datetimepicker({
+                    locale: 'ru',
                     useCurrent: false //Important! See issue #1075
                 });
                 $("#datetimepicker6").on("dp.change", function (e) {

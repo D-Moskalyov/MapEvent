@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -21,7 +21,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/new-event.css"/>
 
         <%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>--%>
-        <script type="text/javascript" src="http://momentjs.com/downloads/moment.js"></script>
+        <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.js"></script>
 
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/transition.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/collapse.js"></script>
@@ -35,7 +35,8 @@
             <spring:url value="/event/newevent" var="formUrl"/>
             <spring:url value="/event/newevent.json" var="formJsonUrl"/>
 
-            <form:form modelAttribute="newEventForm" class="form-horizontal" action="${formUrl}" id="new-event-form">
+            <form:form modelAttribute="newEventForm" class="form-horizontal" action="${formUrl}" method="post"
+                       id="new-event-form" accept-charset="UTF-8">
                 <fieldset>
                     <div class="block">
 
@@ -197,20 +198,24 @@
 
         <script type="text/javascript">
             $(function () {
-                if("${newEventForm.placeID}" != ""){
-                    var address_route = "${newEventForm.route}";
-                    var address_street_number = "${newEventForm.street_number}";
-                    var address_locality = "${newEventForm.locality}";
-                    var address_administrative_area_level_1 = "${newEventForm.administrative_area_level_1}";
-                    var address_country = "${newEventForm.country}";
-                    var address_string = address_route + ', ' + address_street_number + ', ' +
-                            address_locality + ', ' + address_administrative_area_level_1 + ', ' + address_country;
-                    $("p.address").text(address_string);
-                }
+                <%--if("${newEventForm.placeID}" != ""){--%>
+                    <%--var address_route = "${newEventForm.route}";--%>
+                    <%--var address_street_number = "${newEventForm.street_number}";--%>
+                    <%--var address_locality = "${newEventForm.locality}";--%>
+                    <%--var address_administrative_area_level_1 = "${newEventForm.administrative_area_level_1}";--%>
+                    <%--var address_country = "${newEventForm.country}";--%>
+                    <%--var address_string = address_route + ', ' + address_street_number + ', ' +--%>
+                            <%--address_locality + ', ' + address_administrative_area_level_1 + ', ' + address_country;--%>
+                    <%--console.log(address_string);--%>
+                    <%--$("p.address").text(address_string);--%>
+                <%--}--%>
 
 
-                $('#datetimepicker6').datetimepicker();
+                $('#datetimepicker6').datetimepicker({
+                    locale: 'ru'
+                });
                 $('#datetimepicker7').datetimepicker({
+                    locale: 'ru',
                     useCurrent: false //Important! See issue #1075
                 });
                 $("#datetimepicker6").on("dp.change", function (e) {
@@ -242,69 +247,67 @@
                 });
 
                 $("input, textarea").focus(function(){
-                    //var $checkGroup = $(this).find('.check-group');
-                    //console.log($checkGroup);
-                    $(this).find('.check-group').removeClass('error');
+                    $(this).find('.check-group').removeClass('error');//don't work
                 });
 
 
-                var $form = $('#new-event-form');
-                $form.bind('submit', function (e) {
-                    // Ajax validation
-                    var $inputs = $form.find('input,textarea');
-                    var data = collectFormData($inputs);
-                    $.post('${formJsonUrl}', data, function (response) {
-                        $form.find('.check-group').removeClass('error');
-                        $('#buttonTogle').removeClass('error');
-                        $('#pac-input').removeClass('error');
-                        $form.find('.help-inline').empty();
-                        $form.find('.alert').remove();
+                <%--var $form = $('#new-event-form');--%>
+                <%--$form.bind('submit', function (e) {--%>
+                    <%--// Ajax validation--%>
+                    <%--var $inputs = $form.find('input,textarea');--%>
+                    <%--var data = collectFormData($inputs);--%>
+                    <%--$.post('${formJsonUrl}', data, function (response) {--%>
+                        <%--$form.find('.check-group').removeClass('error');--%>
+                        <%--$('#buttonTogle').removeClass('error');--%>
+                        <%--$('#pac-input').removeClass('error');--%>
+                        <%--$form.find('.help-inline').empty();--%>
+                        <%--$form.find('.alert').remove();--%>
 
-                        if (response.status == 'FAIL') {
-                            for (var i = 0; i < response.errorMessageList.length; i++) {
-                                var item = response.errorMessageList[i];
-                                switch (item.fieldName) {
-                                    case 'validDate':
-                                        var $whenStart = $('#whenStart');
-                                        //console.log($whenStart);
-                                        var $whenFinish = $('#whenFinish');
-                                        //console.log($whenFinish);
-                                        $whenStart.addClass('error');
-                                        $whenFinish.addClass('error');
-                                        var $validDate = $('#validDate');
-                                        $validDate.find('.help-inline').html(item.message);
-                                        break;
-                                    case 'validAddress':
-                                        //console.log($('#pac-input'));
-                                        var $pac_input = $('#pac-input');
-                                        $pac_input.addClass('error');
-                                        var $checkGroup = $('#' + item.fieldName);
-                                        $checkGroup.addClass('error');
-                                        $checkGroup.find('.help-inline').html(item.message);
-                                        break;
-                                    case 'category':
-                                        //console.log($('.dropdown-toggle')[0]);
-                                        $('#buttonTogle').addClass('error');
-                                        var $checkGroup = $('#' + item.fieldName);
-                                        $checkGroup.addClass('error');
-                                        $checkGroup.find('.help-inline').html(item.message);
-                                        break;
-                                    default:
-                                        var $checkGroup = $('#' + item.fieldName);
-                                        $checkGroup.addClass('error');
-                                        $checkGroup.find('.help-inline').html(item.message);
-                                        break;
-                                }
-                            }
-                        } else {
-                            $form.unbind('submit');
-                            $form.submit();
-                        }
-                    }, 'json');
+                        <%--if (response.status == 'FAIL') {--%>
+                            <%--for (var i = 0; i < response.errorMessageList.length; i++) {--%>
+                                <%--var item = response.errorMessageList[i];--%>
+                                <%--switch (item.fieldName) {--%>
+                                    <%--case 'validDate':--%>
+                                        <%--var $whenStart = $('#whenStart');--%>
+                                        <%--//console.log($whenStart);--%>
+                                        <%--var $whenFinish = $('#whenFinish');--%>
+                                        <%--//console.log($whenFinish);--%>
+                                        <%--$whenStart.addClass('error');--%>
+                                        <%--$whenFinish.addClass('error');--%>
+                                        <%--var $validDate = $('#validDate');--%>
+                                        <%--$validDate.find('.help-inline').html(item.message);--%>
+                                        <%--break;--%>
+                                    <%--case 'validAddress':--%>
+                                        <%--//console.log($('#pac-input'));--%>
+                                        <%--var $pac_input = $('#pac-input');--%>
+                                        <%--$pac_input.addClass('error');--%>
+                                        <%--var $checkGroup = $('#' + item.fieldName);--%>
+                                        <%--$checkGroup.addClass('error');--%>
+                                        <%--$checkGroup.find('.help-inline').html(item.message);--%>
+                                        <%--break;--%>
+                                    <%--case 'category':--%>
+                                        <%--//console.log($('.dropdown-toggle')[0]);--%>
+                                        <%--$('#buttonTogle').addClass('error');--%>
+                                        <%--var $checkGroup = $('#' + item.fieldName);--%>
+                                        <%--$checkGroup.addClass('error');--%>
+                                        <%--$checkGroup.find('.help-inline').html(item.message);--%>
+                                        <%--break;--%>
+                                    <%--default:--%>
+                                        <%--var $checkGroup = $('#' + item.fieldName);--%>
+                                        <%--$checkGroup.addClass('error');--%>
+                                        <%--$checkGroup.find('.help-inline').html(item.message);--%>
+                                        <%--break;--%>
+                                <%--}--%>
+                            <%--}--%>
+                        <%--} else {--%>
+                            <%--$form.unbind('submit');--%>
+                            <%--$form.submit();--%>
+                        <%--}--%>
+                    <%--}, 'json');--%>
 
-                    e.preventDefault();
-                    return false;
-                });
+                    <%--e.preventDefault();--%>
+                    <%--return false;--%>
+                <%--});--%>
             });
         </script>
         <script type="text/javascript">
