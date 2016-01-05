@@ -1,4 +1,4 @@
-package com.mapevent.web.model;
+package com.mapevent.web.modelForm;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.mapevent.web.model;
+package com.mapevent.web.modelDB;
 
 import javax.persistence.*;
 import java.util.List;

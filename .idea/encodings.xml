@@ -2,7 +2,11 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/NewEventForm.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/modelForm/ForgotForm.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/modelForm/LoginForm.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/modelForm/NewEventForm.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/modelForm/RegistrationForm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/WEB-INF/template/header.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/web/resources/js/new-event.js" charset="UTF-8" />
   </component>
 </project>

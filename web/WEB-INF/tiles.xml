@@ -60,4 +60,13 @@
             <add-attribute value="/resources/css/new-event.css" />
         </put-list-attribute>
     </definition>
+
+    <definition name="accountTemplate" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/account.jsp" />
+        <put-attribute name="footer" value="" />
+
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/resources/css/account.css" />
+        </put-list-attribute>
+    </definition>
 </tiles-definitions>

@@ -15,7 +15,7 @@
 
 
        <context:component-scan base-package="com.mapevent.web.service"/>
-       <context:component-scan base-package="com.mapevent.web.model"/>
+       <context:component-scan base-package="com.mapevent.web.modelDB"/>
        <context:component-scan base-package="com.mapevent.web.controller"/>
 
 
@@ -39,7 +39,7 @@
               </property>
               <property name="packagesToScan">
                      <list>
-                            <value>com.mapevent.web.model</value>
+                            <value>com.mapevent.web.modelDB</value>
                      </list>
               </property>
        </bean>
