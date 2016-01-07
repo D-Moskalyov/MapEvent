@@ -1,20 +1,20 @@
-(function($) {
+$(function($) {
     "use strict";
 
-    // Options for Message
-    //----------------------------------------------
+    //// Options for Message
+    ////----------------------------------------------
     var options = {
         'btn-loading': '<i class="fa fa-spinner fa-pulse"></i>',
         'btn-success': '<i class="fa fa-check"></i>',
         'btn-error': '<i class="fa fa-remove"></i>',
         'msg-success': 'All Good! Redirecting...',
         'msg-error': 'Wrong login credentials!',
-        'useAJAX': true,
+        //'useAJAX': true,
     };
 
-    // Login Form
-    //----------------------------------------------
-    // Validation
+    //// Login Form
+    ////----------------------------------------------
+    //// Validation
     $("#login-form").validate({
         rules: {
             lg_username: "required",
@@ -26,17 +26,16 @@
     // Form Submission
     $("#login-form").submit(function() {
         remove_loading($(this));
-
-        if(options['useAJAX'] == true)
-        {
+        //if(options['useAJAX'] == true)
+        //{
             // Dummy AJAX request (Replace this with your AJAX code)
             // If you don't want to use AJAX, remove this
-            dummy_submit_form($(this));
+            submit_log_form($(this));
 
             // Cancel the normal submission.
             // If you don't want to use AJAX, remove this
             return false;
-        }
+        //}
     });
 
     // Register Form
@@ -70,51 +69,52 @@
             }
         }
     });
-
-    // Form Submission
+    //
+    //// Form Submission
     $("#register-form").submit(function() {
         remove_loading($(this));
 
-        if(options['useAJAX'] == true)
-        {
+        //if(options['useAJAX'] == true)
+        //{
             // Dummy AJAX request (Replace this with your AJAX code)
             // If you don't want to use AJAX, remove this
-            dummy_submit_form($(this));
+            submit_reg_form($(this));
 
             // Cancel the normal submission.
             // If you don't want to use AJAX, remove this
             return false;
-        }
+        //}
     });
-
-    // Forgot Password Form
-    //----------------------------------------------
-    // Validation
+    //
+    //// Forgot Password Form
+    ////----------------------------------------------
+    //// Validation
     $("#forgot-password-form").validate({
         rules: {
-            fp_email: "required",
+            fp_email: {
+                required: true,
+                email: true
+            },
         },
         errorClass: "form-invalid"
     });
-
-    // Form Submission
+    //
+    //// Form Submission
     $("#forgot-password-form").submit(function() {
         remove_loading($(this));
 
-        if(options['useAJAX'] == true)
-        {
-            // Dummy AJAX request (Replace this with your AJAX code)
-            // If you don't want to use AJAX, remove this
-            dummy_submit_form($(this));
+        //if(options['useAJAX'] == true)
+        //{
+            submit_forg_form($(this));
 
             // Cancel the normal submission.
             // If you don't want to use AJAX, remove this
             return false;
-        }
+        //}
     });
-
-    // Loading
-    //----------------------------------------------
+    //
+    //// Loading
+    ////----------------------------------------------
     function remove_loading($form)
     {
         $form.find('[type=submit]').removeClass('error success');
@@ -138,19 +138,129 @@
         $form.find('.login-form-main-message').addClass('show error').html(options['msg-error']);
     }
 
-    // Dummy Submit Form (Remove this)
-    //----------------------------------------------
-    // This is just a dummy form submission. You should use your AJAX function or remove this function if you are not using AJAX.
-    function dummy_submit_form($form)
+    function collectFormData(fields) {
+        var data = {};
+        for (var i = 0; i < fields.length; i++) {
+            var $item = $(fields[i]);
+            data[$item.attr('name')] = $item.val();
+        }
+        return data;
+    }
+
+    function submit_log_form($form)
     {
         if($form.valid())
         {
             form_loading($form);
+            var $inputs = $form.find('input');
+            var data = collectFormData($inputs);
+            $.post(formJsonUrlFromELtoJSLog, data, function (response) {
+                if (response.status == 'FAIL') {
+                    console.log('FAILlog_form');
+                } else {
+                    console.log('SUCCESSlog_form');
 
-            setTimeout(function() {
-                form_success($form);
-            }, 2000);
+                    setTimeout(function() {
+                        form_success($form);
+                    }, 2000);
+                    //$form.unbind('submit');
+                    //$form.submit();
+                }
+            }, 'json');
+
+            //$.ajax({
+            //    url: formJsonUrlFromELtoJSLog,
+            //    type: "POST",
+            //    data: data,
+            //    headers: {
+            //        'Accept': 'application/json',
+            //        'Content-Type': 'application/json; charset=utf-8'
+            //    },
+            //    //contentType: "application/json; charset=utf-8",
+            //    dataType: "json",
+            //    success: function(response){
+            //        if (response.status == 'FAIL') {
+            //            console.log('FAIL');
+            //        } else {
+            //            console.log('SUCCESS');
+            //            //$form.unbind('submit');
+            //            //$form.submit();
+            //        }
+            //    },
+            //    error: function(response){
+            //        console.log(response);
+            //    }
+            //});
+
+            //$.postJSON = function(formJsonUrlFromELtoJSLog, data, callback) {
+            //    return jQuery.ajax({
+            //        headers: {
+            //            'Accept': 'application/json',
+            //            'Content-Type': 'application/json'
+            //        },
+            //        'type': 'POST',
+            //        'url': formJsonUrlFromELtoJSLog ,
+            //        'data': JSON.stringify(data),
+            //        'dataType': 'json',
+            //        'success': function(response){
+            //                    if (response.status == 'FAIL') {
+            //                        console.log('FAIL');
+            //                    } else {
+            //                        console.log('SUCCESS');
+            //                        //$form.unbind('submit');
+            //                        //$form.submit();
+            //                    }
+            //        }
+            //    });
+            //};
+
         }
     }
 
-})(jQuery);
+    function submit_reg_form($form)
+    {
+        if($form.valid())
+        {
+            form_loading($form);
+            var $inputs = $form.find('input');
+            var data = collectFormData($inputs);
+            $.post(formJsonUrlFromELtoJSReg, data, function (response) {
+                if (response.status == 'FAIL') {
+                    console.log('FAILreg_form');
+                } else {
+                    console.log('SUCCESSreg_form');
+
+                    setTimeout(function() {
+                        form_success($form);
+                    }, 2000);
+                    //$form.unbind('submit');
+                    //$form.submit();
+                }
+            }, 'json');
+        }
+    }
+
+    function submit_forg_form($form)
+    {
+        if($form.valid())
+        {
+            form_loading($form);
+            var $inputs = $form.find('input');
+            var data = collectFormData($inputs);
+            $.post(formJsonUrlFromELtoJSForg, data, function (response) {
+                if (response.status == 'FAIL') {
+                    console.log('FAILforg_form');
+                } else {
+                    console.log('SUCCESSforg_form');
+
+                    setTimeout(function() {
+                        form_success($form);
+                    }, 2000);
+                    //$form.unbind('submit');
+                    //$form.submit();
+                }
+            }, 'json');
+        }
+    }
+
+});

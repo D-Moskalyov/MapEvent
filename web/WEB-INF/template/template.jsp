@@ -11,6 +11,8 @@
 <html>
     <head>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+
         <%--<c:forEach var="css" items="${stylesheets}">--%>
             <%--<link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">--%>
         <%--</c:forEach>--%>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <tiles:insertDefinition name="loginTemplate">
     <tiles:putAttribute name="body">
@@ -14,22 +15,23 @@
 
         <title>Login</title>
 
-
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login-reg.css" />
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login-reg.js"></script>
-
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login-reg.css" />
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login-reg.js"></script>
 
 
         <div class="text-center" style="padding:50px 0">
+
+            <spring:url value="/user/registration.json" var="formJsonUrlReg"/>
+
             <div class="logo">register</div>
             <!-- Main Form -->
             <div class="login-form-1">
-                <form id="register-form" class="text-left">
+                <form id="register-form" class="text-left" method="post">
                     <div class="login-form-main-message"></div>
                     <div class="main-login-form">
                         <div class="login-group">
@@ -78,6 +80,9 @@
             <!-- end:Main Form -->
         </div>
 
+        <script>
+            var formJsonUrlFromELtoJSReg = '${formJsonUrlReg}';
+        </script>
 
         <c:forEach var="script" items="${javascripts}">
             <script src="<c:url value="${script}"/>"></script>

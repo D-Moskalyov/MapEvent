@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css"/>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+<%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>--%>
 
 <div id="head">
     <img src="../../resources/images/logo.png" class="logo" id="logo">
