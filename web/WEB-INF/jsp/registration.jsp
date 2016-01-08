@@ -82,6 +82,7 @@
 
         <script>
             var formJsonUrlFromELtoJSReg = '${formJsonUrlReg}';
+            var pathToRedirectReg = '${param.path}';
         </script>
 
         <c:forEach var="script" items="${javascripts}">

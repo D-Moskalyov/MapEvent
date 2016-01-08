@@ -55,6 +55,7 @@
 
         <script>
             var formJsonUrlFromELtoJSForg = '${formJsonUrlForg}';
+            var pathToRedirectForg = '${param.path}';
         </script>
 
         <c:forEach var="script" items="${javascripts}">

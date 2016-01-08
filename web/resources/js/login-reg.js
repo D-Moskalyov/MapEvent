@@ -132,18 +132,44 @@ $(function($) {
         $form.find('.login-form-main-message').addClass('show success').html(options['msg-success']);
     }
 
-    function form_failed($form)
+    function form_failed($form, response)
     {
         $form.find('[type=submit]').addClass('error').html(options['btn-error']);
-        $form.find('.login-form-main-message').addClass('show error').html(options['msg-error']);
+
+        var responseJSON = JSON.parse(JSON.stringify(response));
+        var errorMessageList = responseJSON.errorMessageList;
+        var message = "</br>";
+        errorMessageList.forEach(function(item, i, errorMessageList) {
+            message += item.fieldName;
+            message += ": ";
+            message += item.message;
+            message += "</br>";
+        });
+
+        $form.find('.login-form-main-message').addClass('show error').html(options['msg-error'] + message);
     }
 
     function collectFormData(fields) {
         var data = {};
         for (var i = 0; i < fields.length; i++) {
             var $item = $(fields[i]);
-            data[$item.attr('name')] = $item.val();
+            if($item.attr('type') == 'checkbox'){
+                if($item.is(':checked'))
+                    data[$item.attr('name')] = 'on';
+                else
+                    data[$item.attr('name')] = 'off';
+            }
+            else if($item.attr('type') == 'radio'){
+                if($item.is(':checked'))
+                    data[$item.attr('id')] = 'on';
+                else
+                    data[$item.attr('id')] = 'off';
+            }
+            else{
+                data[$item.attr('name')] = $item.val();
+            }
         }
+        console.log(data);
         return data;
     }
 
@@ -157,11 +183,13 @@ $(function($) {
             $.post(formJsonUrlFromELtoJSLog, data, function (response) {
                 if (response.status == 'FAIL') {
                     console.log('FAILlog_form');
+                    form_failed($form, response);
                 } else {
                     console.log('SUCCESSlog_form');
-
+                    form_success($form);
                     setTimeout(function() {
-                        form_success($form);
+                        console.log('redir');
+                        window.location.replace("/" + pathToRedirectLog);
                     }, 2000);
                     //$form.unbind('submit');
                     //$form.submit();
@@ -230,8 +258,10 @@ $(function($) {
                 } else {
                     console.log('SUCCESSreg_form');
 
+                    form_success($form);
                     setTimeout(function() {
-                        form_success($form);
+                        console.log('redir');
+                        window.location.replace("/" + pathToRedirectReg);
                     }, 2000);
                     //$form.unbind('submit');
                     //$form.submit();
@@ -253,8 +283,10 @@ $(function($) {
                 } else {
                     console.log('SUCCESSforg_form');
 
+                    form_success($form);
                     setTimeout(function() {
-                        form_success($form);
+                        console.log('redir');
+                        window.location.replace("/" + pathToRedirectForg);
                     }, 2000);
                     //$form.unbind('submit');
                     //$form.submit();

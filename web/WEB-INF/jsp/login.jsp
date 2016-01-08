@@ -60,6 +60,7 @@
 
         <script>
             var formJsonUrlFromELtoJSLog = '${formJsonUrlLog}';
+            var pathToRedirectLog = '${param.path}';
         </script>
 
         <c:forEach var="script" items="${javascripts}">
