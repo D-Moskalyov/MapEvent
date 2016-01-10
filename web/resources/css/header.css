@@ -9,11 +9,10 @@
 }
 #head {
     display: block;
-    height: 35px;
+    height: 40px;
 }
 #head .btn-default {
     margin-right: 3px;
-    height: 25px;
 }
 #title {
     color: #269abc;

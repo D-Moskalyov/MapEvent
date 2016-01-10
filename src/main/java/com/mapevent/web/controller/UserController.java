@@ -2,6 +2,10 @@ package com.mapevent.web.controller;
 
 
 import com.mapevent.web.modelForm.*;
+import com.mapevent.web.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +16,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    UserService userService;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(ModelMap model) {
         return "login";
@@ -33,7 +41,14 @@ public class UserController {
         ValidationResponse res = new ValidationResponse();
 
         Map<String, String[]> map = request.getParameterMap();
-        map = null;
+
+        try {
+            UserDetails userDetails = userService.loadUserByUsername(map.get("lg_username")[0]);
+            if(!userService.authenticateUser(userDetails))
+                res.setStatus("FAIL");
+        } catch (UsernameNotFoundException e){
+            res.setStatus("FAIL");
+        }
 
         return res;
     }
