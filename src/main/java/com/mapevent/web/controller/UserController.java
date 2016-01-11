@@ -2,7 +2,10 @@ package com.mapevent.web.controller;
 
 
 import com.mapevent.web.modelForm.*;
+import com.mapevent.web.service.MD5;
 import com.mapevent.web.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,12 +14,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     UserService userService;
 
@@ -39,16 +43,28 @@ public class UserController {
     public @ResponseBody
     ValidationResponse processLoginAjaxJson(HttpServletRequest request){
         ValidationResponse res = new ValidationResponse();
+        ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
 
         Map<String, String[]> map = request.getParameterMap();
 
         try {
             UserDetails userDetails = userService.loadUserByUsername(map.get("lg_username")[0]);
-            if(!userService.authenticateUser(userDetails))
+//            logger.debug("MD5", MD5.getHash(map.get("lg_password")[0]));
+            if(MD5.getHash(map.get("lg_password")[0]).equals(userDetails.getPassword())){
+                if(!userService.authenticateUser(userDetails, map.get("lg_remember")[0])) {
+                    res.setStatus("FAIL");
+                    errorMessages.add(new ErrorMessage("authenticate", "error"));
+                }
+            }
+            else{
                 res.setStatus("FAIL");
+                errorMessages.add(new ErrorMessage("", "password is wrong"));
+            }
         } catch (UsernameNotFoundException e){
             res.setStatus("FAIL");
+            errorMessages.add(new ErrorMessage("", e.getMessage()));
         }
+        res.setErrorMessageList(errorMessages);
 
         return res;
     }
@@ -73,9 +89,9 @@ public class UserController {
     public @ResponseBody
     ValidationResponse processRegAjaxJson(HttpServletRequest request){
         ValidationResponse res = new ValidationResponse();
+        ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
 
         Map<String, String[]> map = request.getParameterMap();
-        map = null;
 
         return res;
     }

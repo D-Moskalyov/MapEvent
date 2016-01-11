@@ -6,6 +6,9 @@
 <div id="head">
     <img src="../../resources/images/logo.png" class="logo" id="logo">
     <div class="right">
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                Welcome : ${pageContext.request.userPrincipal.name}
+        </c:if>
         <button type="button" id="log" class="btn btn-default">Вход</button>
         <button type="button" id="reg"class="btn btn-default">Регистрация</button>
         <button type="button" id="nev"class="btn btn-default">Новое событие</button>

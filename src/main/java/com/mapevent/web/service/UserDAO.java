@@ -5,8 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.spi.ProviderUtil;
 import java.util.List;
 
 @Repository(value = "userDAO")
@@ -27,9 +27,19 @@ public class UserDAO implements UserService {
     @Qualifier(value = "sessionFactory")
     SessionFactory sf;
 
-    public boolean authenticateUser(UserDetails userDetails) {
-        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails,
-                userDetails.getPassword(), userDetails.getAuthorities());
+    public boolean authenticateUser(UserDetails userDetails, String remember) {
+        AbstractAuthenticationToken auth;
+        if(remember.equals("on")) {
+            auth = new UsernamePasswordAuthenticationToken(userDetails,
+                    userDetails.getPassword(), userDetails.getAuthorities());
+        }
+        else{
+            auth = new RememberMeAuthenticationToken(userDetails.getUsername(),
+                    userDetails, userDetails.getAuthorities());
+            RememberMeAuthenticationProvider provider = new RememberMeAuthenticationProvider()
+            //auth.setDetails();
+        }
+
         authMgr.authenticate(auth);
         if(auth.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(auth);
@@ -48,7 +58,7 @@ public class UserDAO implements UserService {
                 q.setString("email", s);
                 users = q.list();
                 if (users.isEmpty()) {
-                    throw new UsernameNotFoundException("User " + s + " not found");
+                    throw new UsernameNotFoundException("User or email " + s + " not found");
                 }
                 else
                     return users.get(0);
