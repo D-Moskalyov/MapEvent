@@ -34,9 +34,18 @@
                                    <!--authentication-failure-url="/user/login?error=true" />-->
               <!--<security:logout logout-url="/user/logout" logout-success-url="/" />-->
        </security:http>
+       <!--<bean id="webSecurityExpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />-->
+       <!--<bean id="webInvocationPrivilegeEvaluator" class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">-->
+              <!--<constructor-arg ref="filterSecurityInterceptor">-->
+       <!--</bean>-->
        <security:authentication-manager id="authMgr">
               <security:authentication-provider user-service-ref="userDAO" />
+              <security:authentication-provider ref="rememberMeAuthenticationProvider" />
        </security:authentication-manager>
+
+       <bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+              <constructor-arg name="key" value="com.mapevent.web" />
+       </bean>
 
        <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
               <property name="location">

@@ -67,6 +67,8 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:4.0.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:4.0.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:4.0.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:4.0.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:4.0.3.RELEASE" />
         </element>
       </element>
     </root>

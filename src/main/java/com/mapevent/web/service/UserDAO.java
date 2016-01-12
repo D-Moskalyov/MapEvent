@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.*;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,20 +30,24 @@ public class UserDAO implements UserService {
 
     public boolean authenticateUser(UserDetails userDetails, String remember) {
         AbstractAuthenticationToken auth;
-        if(remember.equals("on")) {
+        if(remember.equals("off")) {
             auth = new UsernamePasswordAuthenticationToken(userDetails,
                     userDetails.getPassword(), userDetails.getAuthorities());
         }
         else{
-            auth = new RememberMeAuthenticationToken(userDetails.getUsername(),
+            auth = new RememberMeAuthenticationToken("com.mapevent.web",
                     userDetails, userDetails.getAuthorities());
-            RememberMeAuthenticationProvider provider = new RememberMeAuthenticationProvider()
-            //auth.setDetails();
         }
 
         authMgr.authenticate(auth);
         if(auth.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(auth);
+//            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//            if(authentication != null){
+//                if(authentication instanceof RememberMeAuthenticationToken){
+//                    authentication = null;
+//                }
+//            }
             return true;
         }
         return false;
