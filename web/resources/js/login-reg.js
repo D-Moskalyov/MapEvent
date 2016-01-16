@@ -255,6 +255,7 @@ $(function($) {
             $.post(formJsonUrlFromELtoJSReg, data, function (response) {
                 if (response.status == 'FAIL') {
                     console.log('FAILreg_form');
+                    form_failed($form, response);
                 } else {
                     console.log('SUCCESSreg_form');
 

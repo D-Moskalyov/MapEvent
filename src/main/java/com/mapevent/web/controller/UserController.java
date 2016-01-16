@@ -4,6 +4,8 @@ package com.mapevent.web.controller;
 import com.mapevent.web.modelForm.*;
 import com.mapevent.web.service.MD5;
 import com.mapevent.web.service.UserService;
+import com.mapevent.web.service.Utils;
+import com.mapevent.web.service.WaitConfirmsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +13,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.*;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.security.Security;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
+import java.util.Properties;
 
 @Controller
 @RequestMapping("/user")
@@ -23,6 +38,8 @@ public class UserController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     UserService userService;
+    @Autowired
+    WaitConfirmsService waitConfirmsService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(ModelMap model) {
@@ -38,6 +55,12 @@ public class UserController {
 //            return "account";
 //        }
 //    }
+
+    @RequestMapping(value="/login", method=RequestMethod.POST)
+    String processLoginNotAjaxJson(@ModelAttribute(value="loginForm") @Valid LoginForm loginForm, BindingResult result ){
+        //result.addError(new ObjectError("Ajax not available", "try later"));
+            return "login";
+    }
 
     @RequestMapping(value="/login.json", method=RequestMethod.POST)
     public @ResponseBody
@@ -85,14 +108,35 @@ public class UserController {
 //        }
 //    }
 
+    @RequestMapping(value="/registration", method=RequestMethod.POST)
+    String processRegNotAjaxJson(@ModelAttribute(value="registration") @Valid RegistrationForm registrationForm, BindingResult result ){
+        //result.addError(new ObjectError("Ajax not available", "try later"));
+        return "registration";
+    }
+
     @RequestMapping(value="/registration.json", method=RequestMethod.POST)
     public @ResponseBody
-    ValidationResponse processRegAjaxJson(HttpServletRequest request){
+    ValidationResponse processRegAjaxJson(HttpServletRequest request) {
         ValidationResponse res = new ValidationResponse();
         ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
 
         Map<String, String[]> map = request.getParameterMap();
+        if (userService.isAlreadyExist(map.get("reg_username")[0]) | userService.isAlreadyExist(map.get("reg_email")[0])) {
+            res.setStatus("FAIL");
+            errorMessages.add(new ErrorMessage("", "user or email already exist"));
+        }
+        else{
+            String validPath = "Приветстыуем. Для завершения процесса регистрации пройдите по следующему адресу : " +
+                    "localhost:8080/user/confirm?confirmPath=" +
+                    MD5.getHash(map.get("reg_password")[0] + map.get("reg_username")[0] + map.get("reg_email")[0]);
+            if(Utils.SendMessage(map.get("reg_email")[0], "Activate account", validPath)){
+                String fr = "fsf";
+                fr = null;
+            }
 
+        }
+
+        res.setErrorMessageList(errorMessages);
         return res;
     }
 
@@ -120,5 +164,11 @@ public class UserController {
         map = null;
 
         return res;
+    }
+
+    @RequestMapping(value = "/confirm", method = RequestMethod.GET)
+    public String confirm(ModelMap model, @RequestParam("confirmPath") String code) {
+        waitConfirmsService.checkCode(code);
+        return "confirm";
     }
 }

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <tiles:insertDefinition name="newEventTemplate">
     <tiles:putAttribute name="body">
@@ -32,7 +33,16 @@
 
 
         <div class="container">
-
+            <security:authentication property="principal.username" />
+            <security:authorize access="hasRole('ROLE_USER')">
+                <div>ROLE_USER</div>
+            </security:authorize>
+            <security:authorize access="hasRole('ROLE_ANONYMOUS')">
+                <div>ROLE_ANONYMOUS</div>
+            </security:authorize>
+            <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_ANONYMOUS')">
+                <div>hasAnyRole</div>
+            </security:authorize>
             <spring:url value="/event/newevent" var="formUrl"/>
             <spring:url value="/event/newevent.json" var="formJsonUrl"/>
 

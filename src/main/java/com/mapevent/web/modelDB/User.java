@@ -1,5 +1,6 @@
 package com.mapevent.web.modelDB;
 
+import org.hibernate.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -40,6 +41,9 @@ public class User implements Serializable, UserDetails {
     @Column(name = "Gender")
     private String gender;
 
+    @Column(name = "Enable")
+    private boolean enable;
+
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<Event> events;
@@ -53,6 +57,7 @@ public class User implements Serializable, UserDetails {
 
     public boolean isEnabled() {
         return true;
+        //return enable;
     }
 
     public boolean isCredentialsNonExpired() {
@@ -67,6 +72,58 @@ public class User implements Serializable, UserDetails {
         return userName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Integer getuID() {
+        return uID;
+    }
+
+    public void setuID(Integer uID) {
+        this.uID = uID;
+    }
+
     public boolean isAccountNonExpired() {
         return true;
     }
@@ -74,6 +131,9 @@ public class User implements Serializable, UserDetails {
     public boolean isAccountNonLocked() {
         return true;
     }
+
+
+
 
     @Override
     public boolean equals(Object obj) {

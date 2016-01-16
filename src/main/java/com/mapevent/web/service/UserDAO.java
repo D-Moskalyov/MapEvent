@@ -74,4 +74,19 @@ public class UserDAO implements UserService {
         //}
         //return null;
     }
+
+    public boolean isAlreadyExist(String str){
+        Query q = sf.getCurrentSession().createQuery("from User u where u.userName = :userName");
+        q.setString("userName", str);
+        List<User> users = q.list();
+        if (users.isEmpty()) {
+            q = sf.getCurrentSession().createQuery("from User u where u.email = :email");
+            q.setString("email", str);
+            users = q.list();
+            if (users.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

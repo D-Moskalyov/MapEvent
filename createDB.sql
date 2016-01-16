@@ -2,6 +2,7 @@ drop database mapevent;
 create database mapevent;
 SET SQL_SAFE_UPDATES=0;
 
+
 CREATE TABLE Users
 (
 U_Id int NOT NULL AUTO_INCREMENT,
@@ -10,6 +11,7 @@ FullName varchar(255),
 Email varchar(255) UNIQUE,
 Password varchar(255),
 Gender varchar(255),
+Enable boolean,
 PRIMARY KEY (U_Id)
 );
 
@@ -77,7 +79,8 @@ PRIMARY KEY (Img_Id),
 FOREIGN KEY (Ev_Id) REFERENCES Events(Ev_Id) ON DELETE CASCADE
 );
 
+insert into users (Username, FullName, Email, Password, Gender, Enable) values("dima", "D M", "viva-barca@i.ua", "b59c67bf196a4758191e42f76670ceba", "male", false);
 insert into Images (Address_Img, Ev_Id) values("sadd", 5);
-select * from Images;
+select * from Users;
 delete from Images where Address_Img="sadd";
 drop table Images;

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <tiles:insertDefinition name="loginTemplate">
     <tiles:putAttribute name="body">
@@ -30,6 +31,7 @@
             <div class="logo">login</div>
             <!-- Main Form -->
             <div class="login-form-1">
+                <%--<form:errors path="Ajax not available"/>--%>
                 <form id="login-form" class="text-left" method="post">
                     <div class="login-form-main-message"></div>
                     <div class="main-login-form">
