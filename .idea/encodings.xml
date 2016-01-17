@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/modelForm/RegistrationForm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/WEB-INF/template/header.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/resources/css/login-reg.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/web/resources/js/confirm.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/resources/js/new-event.js" charset="UTF-8" />
   </component>
 </project>

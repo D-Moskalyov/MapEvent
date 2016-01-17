@@ -1,3 +1,13 @@
+select * from Users;
+select * from categories;
+select * from events;
+select * from images;
+select * from places;
+select * from waitconfirms;
+
+delete from users;
+drop table categories;
+
 drop database mapevent;
 create database mapevent;
 SET SQL_SAFE_UPDATES=0;
@@ -37,9 +47,6 @@ insert into categories (Title) values("Квесты");
 insert into categories (Title) values("Благотворительность");
 insert into categories (Title) values("Встречи");
 insert into categories (Title) values("Comedy");
-select * from categories;
-delete from categories;
-drop table categories;
 
 CREATE TABLE Places
 (
@@ -79,8 +86,21 @@ PRIMARY KEY (Img_Id),
 FOREIGN KEY (Ev_Id) REFERENCES Events(Ev_Id) ON DELETE CASCADE
 );
 
+CREATE TABLE Waitconfirms
+(
+WC_Id int NOT NULL AUTO_INCREMENT,
+Username varchar(255) UNIQUE,
+FullName varchar(255),
+Email varchar(255) UNIQUE,
+Password varchar(255),
+Gender varchar(255),
+HashConfirm varchar(255),
+Send_Email datetime,
+PRIMARY KEY (WC_Id)
+);
+
 insert into users (Username, FullName, Email, Password, Gender, Enable) values("dima", "D M", "viva-barca@i.ua", "b59c67bf196a4758191e42f76670ceba", "male", false);
 insert into Images (Address_Img, Ev_Id) values("sadd", 5);
-select * from Users;
+
 delete from Images where Address_Img="sadd";
 drop table Images;

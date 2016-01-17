@@ -1,13 +1,12 @@
 package com.mapevent.web.modelDB;
 
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
-public class WaitConfirms {
+@Entity
+@Table(name = "waitconfirms")
+public class WaitConfirm {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "WC_Id")
@@ -34,12 +33,12 @@ public class WaitConfirms {
     @Column(name = "Send_Email")
     private Date send_Email;
 
-    public Date getSend_Email() {
-        return send_Email;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setSend_Email(Date send_Email) {
-        this.send_Email = send_Email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
@@ -82,12 +81,12 @@ public class WaitConfirms {
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public Date getSend_Email() {
+        return send_Email;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setSend_Email(Date send_Email) {
+        this.send_Email = send_Email;
     }
 
     public Integer getwC_Id() {

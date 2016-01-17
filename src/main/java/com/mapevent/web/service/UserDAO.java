@@ -1,8 +1,10 @@
 package com.mapevent.web.service;
 
 import com.mapevent.web.modelDB.User;
+import com.mapevent.web.utils.MD5;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.*;
@@ -75,18 +77,41 @@ public class UserDAO implements UserService {
         //return null;
     }
 
-    public boolean isAlreadyExist(String str){
+    public boolean save(User user){
+        sf.getCurrentSession().save(user);
+        return true;
+    }
+
+    public boolean userAlreadyExist(String username){
         Query q = sf.getCurrentSession().createQuery("from User u where u.userName = :userName");
-        q.setString("userName", str);
+        q.setString("userName", username);
         List<User> users = q.list();
         if (users.isEmpty()) {
-            q = sf.getCurrentSession().createQuery("from User u where u.email = :email");
-            q.setString("email", str);
-            users = q.list();
-            if (users.isEmpty()) {
-                return false;
-            }
+            return false;
         }
         return true;
+    }
+
+    public boolean emailAlreadyExist(String email){
+        Query q = sf.getCurrentSession().createQuery("from User u where u.email = :email");
+        q.setString("email", email);
+        List<User> users = q.list();
+        if (users.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean updateUserPassword(String email, String pass) {
+        Query q = sf.getCurrentSession().createQuery("from User u where u.email = :email");
+        q.setString("email", email);
+        List<User> users = q.list();
+        if (!users.isEmpty()) {
+            User user = users.get(0);
+            user.setPassword(MD5.getHash(pass));
+            sf.getCurrentSession().update(user);
+            return true;
+        }
+        return false;
     }
 }

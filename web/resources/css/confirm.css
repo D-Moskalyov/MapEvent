@@ -1,0 +1,13 @@
+@import "/resources/css/main-style.css";
+
+.message {
+    padding: 30px;
+}
+
+.success{
+    color: green;
+}
+
+.error{
+    color: red;
+}

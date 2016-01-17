@@ -48,6 +48,17 @@ public class User implements Serializable, UserDetails {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<Event> events;
 
+    public User() {
+    }
+
+    public User(String email, boolean enable, String fullName, String gender, String password, String userName) {
+        this.email = email;
+        this.enable = enable;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.password = password;
+        this.userName = userName;
+    }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> list = new ArrayList();

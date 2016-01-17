@@ -1,4 +1,4 @@
-package com.mapevent.web.service;
+package com.mapevent.web.utils;
 
 import javax.mail.Message;
 import javax.mail.Session;
@@ -9,7 +9,7 @@ import java.security.Security;
 import java.util.Date;
 import java.util.Properties;
 
-public class Utils {
+public class GoogleMessenger {
     public static boolean SendMessage(String to, String theme, String textMsg){
         Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
         final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
@@ -37,7 +37,7 @@ public class Utils {
 //                msg.setRecipients(Message.RecipientType.CC, InternetAddress.parse(map.get("reg_email")[0], false));
 //            }
 
-            msg.setSubject("reg confirm");
+            msg.setSubject(theme);
             msg.setText(textMsg, "utf-8");
             msg.setSentDate(new Date());
 

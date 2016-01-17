@@ -7,7 +7,9 @@ $(function($) {
         'btn-loading': '<i class="fa fa-spinner fa-pulse"></i>',
         'btn-success': '<i class="fa fa-check"></i>',
         'btn-error': '<i class="fa fa-remove"></i>',
-        'msg-success': 'All Good! Redirecting...',
+        'msg-success-log': 'All Good! Redirecting...',
+        'msg-success-reg': 'All Good! Check the e-mail and finish...',
+        'msg-success-forgot': 'All Good! Check the e-mail for new password...',
         'msg-error': 'Wrong login credentials!',
         //'useAJAX': true,
     };
@@ -129,7 +131,13 @@ $(function($) {
     function form_success($form)
     {
         $form.find('[type=submit]').addClass('success').html(options['btn-success']);
-        $form.find('.login-form-main-message').addClass('show success').html(options['msg-success']);
+        if($form.attr("id") == "register-form")
+            $form.find('.login-form-main-message').addClass('show success').html(options['msg-success-reg']);
+        else if($form.attr("id") == "forgot-password-form"){
+            $form.find('.login-form-main-message').addClass('show success').html(options['msg-success-forgot']);
+        }
+        else
+            $form.find('.login-form-main-message').addClass('show success').html(options['msg-success-log']);
     }
 
     function form_failed($form, response)
@@ -182,10 +190,10 @@ $(function($) {
             var data = collectFormData($inputs);
             $.post(formJsonUrlFromELtoJSLog, data, function (response) {
                 if (response.status == 'FAIL') {
-                    console.log('FAILlog_form');
+                    //console.log('FAILlog_form');
                     form_failed($form, response);
                 } else {
-                    console.log('SUCCESSlog_form');
+                    //console.log('SUCCESSlog_form');
                     form_success($form);
                     setTimeout(function() {
                         console.log('redir');
@@ -254,10 +262,10 @@ $(function($) {
             var data = collectFormData($inputs);
             $.post(formJsonUrlFromELtoJSReg, data, function (response) {
                 if (response.status == 'FAIL') {
-                    console.log('FAILreg_form');
+                    //console.log('FAILreg_form');
                     form_failed($form, response);
                 } else {
-                    console.log('SUCCESSreg_form');
+                    //console.log('SUCCESSreg_form');
 
                     form_success($form);
                     setTimeout(function() {
@@ -280,10 +288,10 @@ $(function($) {
             var data = collectFormData($inputs);
             $.post(formJsonUrlFromELtoJSForg, data, function (response) {
                 if (response.status == 'FAIL') {
-                    console.log('FAILforg_form');
+                    //console.log('FAILforg_form');
+                    form_failed($form, response);
                 } else {
-                    console.log('SUCCESSforg_form');
-
+                    //console.log('SUCCESSforg_form');
                     form_success($form);
                     setTimeout(function() {
                         console.log('redir');

@@ -1,4 +1,4 @@
-package com.mapevent.web.service;
+package com.mapevent.web.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
