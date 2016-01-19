@@ -59,7 +59,7 @@
             </div>
             <!-- end:Main Form -->
         </div>
-
+        <%--<csrf disabled="true"/>--%>
         <script>
             var formJsonUrlFromELtoJSLog = '${formJsonUrlLog}';
             var pathToRedirectLog = '${param.path}';

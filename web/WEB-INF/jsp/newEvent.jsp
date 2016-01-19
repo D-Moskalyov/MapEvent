@@ -33,16 +33,6 @@
 
 
         <div class="container">
-            <security:authentication property="principal.username" />
-            <security:authorize access="hasRole('ROLE_USER')">
-                <div>ROLE_USER</div>
-            </security:authorize>
-            <security:authorize access="hasRole('ROLE_ANONYMOUS')">
-                <div>ROLE_ANONYMOUS</div>
-            </security:authorize>
-            <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_ANONYMOUS')">
-                <div>hasAnyRole</div>
-            </security:authorize>
             <spring:url value="/event/newevent" var="formUrl"/>
             <spring:url value="/event/newevent.json" var="formJsonUrl"/>
 

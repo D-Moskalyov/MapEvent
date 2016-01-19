@@ -188,7 +188,9 @@ $(function($) {
             form_loading($form);
             var $inputs = $form.find('input');
             var data = collectFormData($inputs);
+            console.log("before");
             $.post(formJsonUrlFromELtoJSLog, data, function (response) {
+                console.log("after");
                 if (response.status == 'FAIL') {
                     //console.log('FAILlog_form');
                     form_failed($form, response);

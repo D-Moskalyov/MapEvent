@@ -7,7 +7,8 @@
 <div id="head">
     <img src="../../resources/images/logo.png" class="logo" id="logo">
     <div class="right">
-        <security:authentication property="principal.username" />
+        <%--<security:authentication property="principal.username" />--%>
+        <%--<security:authentication property="principal.authorities" />--%>
         <security:authorize access="hasRole('ROLE_USER')">
             <div>ROLE_USER</div>
         </security:authorize>
