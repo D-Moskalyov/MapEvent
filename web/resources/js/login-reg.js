@@ -14,6 +14,18 @@ $(function($) {
         //'useAJAX': true,
     };
 
+    //$(document).ajaxSend(function(e, xhr, options) {
+    //    console.log(csrfHeader);
+    //    xhr.setRequestHeader(csrfHeader, csrfToken);
+    //});
+
+    //$.ajaxSetup({
+    //    beforeSend: function(xhr, settings) {
+    //        console.log(csrfToken);
+    //        xhr.setRequestHeader(csrfHeader, csrfToken);
+    //    }
+    //});
+
     //// Login Form
     ////----------------------------------------------
     //// Validation
@@ -177,7 +189,7 @@ $(function($) {
                 data[$item.attr('name')] = $item.val();
             }
         }
-        console.log(data);
+        //console.log(data);
         return data;
     }
 
@@ -189,68 +201,62 @@ $(function($) {
             var $inputs = $form.find('input');
             var data = collectFormData($inputs);
             console.log("before");
-            $.post(formJsonUrlFromELtoJSLog, data, function (response) {
-                console.log("after");
-                if (response.status == 'FAIL') {
-                    //console.log('FAILlog_form');
-                    form_failed($form, response);
-                } else {
-                    //console.log('SUCCESSlog_form');
-                    form_success($form);
-                    setTimeout(function() {
-                        console.log('redir');
-                        window.location.replace("/" + pathToRedirectLog);
-                    }, 2000);
-                    //$form.unbind('submit');
-                    //$form.submit();
-                }
-            }, 'json');
 
-            //$.ajax({
-            //    url: formJsonUrlFromELtoJSLog,
-            //    type: "POST",
-            //    data: data,
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'Content-Type': 'application/json; charset=utf-8'
-            //    },
-            //    //contentType: "application/json; charset=utf-8",
-            //    dataType: "json",
-            //    success: function(response){
-            //        if (response.status == 'FAIL') {
-            //            console.log('FAIL');
-            //        } else {
-            //            console.log('SUCCESS');
-            //            //$form.unbind('submit');
-            //            //$form.submit();
-            //        }
-            //    },
-            //    error: function(response){
-            //        console.log(response);
+            var headers = {};
+            headers[csrfHeader] = csrfToken;
+
+            //$.post(formJsonUrlFromELtoJSLog, headers, data, function (response) {
+            //    console.log("after");
+            //    if (response.status == 'FAIL') {
+            //        //console.log('FAILlog_form');
+            //        form_failed($form, response);
+            //    } else {
+            //        //console.log('SUCCESSlog_form');
+            //        form_success($form);
+            //        setTimeout(function() {
+            //            console.log('redir');
+            //            window.location.replace("/" + pathToRedirectLog);
+            //        }, 2000);
+            //        //$form.unbind('submit');
+            //        //$form.submit();
             //    }
-            //});
+            //}, 'json');
 
-            //$.postJSON = function(formJsonUrlFromELtoJSLog, data, callback) {
-            //    return jQuery.ajax({
-            //        headers: {
-            //            'Accept': 'application/json',
-            //            'Content-Type': 'application/json'
-            //        },
-            //        'type': 'POST',
-            //        'url': formJsonUrlFromELtoJSLog ,
-            //        'data': JSON.stringify(data),
-            //        'dataType': 'json',
-            //        'success': function(response){
-            //                    if (response.status == 'FAIL') {
-            //                        console.log('FAIL');
-            //                    } else {
-            //                        console.log('SUCCESS');
-            //                        //$form.unbind('submit');
-            //                        //$form.submit();
-            //                    }
-            //        }
-            //    });
-            //};
+            data[csrfParameter] = csrfToken;
+            console.log(data);
+            headers['Accept'] = 'application/json';
+            headers['Content-Type'] = 'application/json; charset=utf-8';
+            console.log(headers);
+            $.ajax({
+                url: formJsonUrlFromELtoJSLog,
+                type: "POST",
+                headers: headers,
+                //headers: {
+                //    'Accept': 'application/json',
+                //    'Content-Type': 'application/json; charset=utf-8'
+                //},
+                data: data,
+                dataType: "json",
+                success: function(response){
+                    console.log("after");
+                    if (response.status == 'FAIL') {
+                        //console.log('FAILlog_form');
+                        form_failed($form, response);
+                    } else {
+                        //console.log('SUCCESSlog_form');
+                        form_success($form);
+                        setTimeout(function() {
+                            console.log('redir');
+                            window.location.replace("/" + pathToRedirectLog);
+                        }, 2000);
+                        //$form.unbind('submit');
+                        //$form.submit();
+                    }
+                },
+                error: function(response){
+                    console.log(response);
+                }
+            });
 
         }
     }

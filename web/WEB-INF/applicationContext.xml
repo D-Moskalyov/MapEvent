@@ -25,18 +25,29 @@
        <security:http authentication-manager-ref="authMgr" auto-config='true' use-expressions='true'>
 
               <security:intercept-url pattern="/user/login" access="hasAnyRole('ROLE_ANONYMOUS')" />
-              <!--<security:intercept-url pattern="/user/login.json" access="hasAnyRole('ROLE_ANONYMOUS')" />-->
               <security:intercept-url pattern="/user/registration" access="hasRole('ROLE_ANONYMOUS')" />
+              <security:intercept-url pattern="/user/forgot" access="hasRole('ROLE_ANONYMOUS')" />
               <security:intercept-url pattern="/resources/**" access="hasRole('ROLE_ANONYMOUS')" />
               <security:intercept-url pattern="/map" access="hasRole('ROLE_ANONYMOUS')" />
+
+              <!--<security:intercept-url pattern="/user/login.json" access="hasAnyRole('ROLE_ANONYMOUS')" />-->
+
               <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
               <security:form-login login-page="/user/login"/>
                                    <!--login-processing-url="/static/j_spring_security_check"-->
                                    <!--default-target-url="/map"-->
                                    <!--authentication-failure-url="/user/login?error=true" />-->
               <!--<security:logout logout-url="/user/logout" logout-success-url="/" />-->
+
+              <!--<security:csrf disabled="true" />-->
+              <!--<security:headers disabled="true" />-->
+
+              <!--<security:csrf request-matcher-ref="csrfSecurityRequestMatcher"/>-->
        </security:http>
-       <!--<bean id="webSecurityExpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />-->
+
+       <!--<bean id="csrfSecurityRequestMatcher" class="com.mapevent.web.utils.CsrfSecurityRequestMatcher"/>-->
+
+        <!--<bean id="webSecurityExpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />-->
        <!--<bean id="webInvocationPrivilegeEvaluator" class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">-->
               <!--<constructor-arg ref="filterSecurityInterceptor">-->
        <!--</bean>-->

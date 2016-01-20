@@ -3,6 +3,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="securiry" uri="http://www.springframework.org/security/tags" %>
 
 <tiles:insertDefinition name="loginTemplate">
     <tiles:putAttribute name="body">
@@ -20,6 +21,8 @@
         <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+        <securiry:csrfMetaTags />
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login-reg.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login-reg.js"></script>
@@ -63,6 +66,14 @@
         <script>
             var formJsonUrlFromELtoJSLog = '${formJsonUrlLog}';
             var pathToRedirectLog = '${param.path}';
+
+            var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+            var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+            var csrfToken = $("meta[name='_csrf']").attr("content");
+
+            console.log(csrfParameter);
+            console.log(csrfHeader);
+            console.log(csrfToken);
         </script>
 
         <c:forEach var="script" items="${javascripts}">

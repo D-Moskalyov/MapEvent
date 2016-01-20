@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72403c14-ff3a-45d7-b3c8-c51b7e31d27c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/CsrfSecurityRequestMatcher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/template/header.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/template/header.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resources/js/login-reg.js" afterPath="$PROJECT_DIR$/web/resources/js/login-reg.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/login.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/newEvent.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/newEvent.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MapEvent.iws" />
@@ -56,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="13" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
+              <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
               <folding>
                 <element signature="e#1378#1446#0" expanded="false" />
                 <element signature="method#processLoginNotAjaxJson#0;class#UserController#0" expanded="false" />
@@ -68,22 +66,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/template/header.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="6.5384617">
-              <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="applicationContext.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/applicationContext.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.09254499">
-              <caret line="27" column="14" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="109" />
-              <folding />
+            <state vertical-scroll-proportion="1.2493573">
+              <caret line="44" column="83" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="83" />
+              <folding>
+                <element signature="e#4187#4207#0" expanded="true" />
+                <element signature="e#4261#4278#0" expanded="true" />
+                <element signature="e#4337#4355#0" expanded="true" />
+                <element signature="e#4414#4436#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,8 +84,8 @@
       <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.807692">
-              <caret line="61" column="8" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="35" />
+            <state vertical-scroll-proportion="-5.0">
+              <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -102,15 +95,25 @@
         <entry file="file://$PROJECT_DIR$/web/resources/js/login-reg.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="192" column="16" selection-start-line="192" selection-start-column="16" selection-end-line="192" selection-end-column="16" />
+              <caret line="230" column="45" selection-start-line="230" selection-start-column="21" selection-end-line="230" selection-end-column="45" />
               <folding>
                 <element signature="e#137#598#0" expanded="false" />
-                <element signature="e#605#620#0" expanded="false" />
-                <element signature="e#726#870#0" expanded="false" />
-                <element signature="e#743#828#0" expanded="false" />
-                <element signature="e#936#1336#0" expanded="false" />
-                <element signature="e#1465#2449#0" expanded="false" />
-                <element signature="e#2526#2927#0" expanded="false" />
+                <element signature="e#949#964#0" expanded="false" />
+                <element signature="e#1070#1214#0" expanded="false" />
+                <element signature="e#1087#1172#0" expanded="false" />
+                <element signature="e#1280#1680#0" expanded="false" />
+                <element signature="e#1809#2793#0" expanded="false" />
+                <element signature="e#2870#3271#0" expanded="false" />
+                <element signature="e#3426#3595#0" expanded="false" />
+                <element signature="e#3679#3954#0" expanded="false" />
+                <element signature="e#4075#4239#0" expanded="false" />
+                <element signature="e#4278#4371#0" expanded="false" />
+                <element signature="e#4410#4968#0" expanded="false" />
+                <element signature="e#5016#5593#0" expanded="false" />
+                <element signature="e#5632#6362#0" expanded="false" />
+                <element signature="e#6695#6766#0" expanded="false" />
+                <element signature="e#8931#9777#0" expanded="false" />
+                <element signature="e#9820#10669#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -140,7 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/eventPage.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/ValidationResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/ErrorMessage.java" />
         <option value="$PROJECT_DIR$/web/resources/css/new-event.css" />
@@ -186,10 +188,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/GoogleMessenger.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/UserController.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/template/header.jsp" />
-        <option value="$PROJECT_DIR$/web/resources/js/login-reg.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/jsp/newEvent.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/web/WEB-INF/jsp/login.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/CsrfSecurityRequestMatcher.java" />
+        <option value="$PROJECT_DIR$/web/resources/js/login-reg.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" />
       </list>
     </option>
@@ -263,8 +266,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -570,6 +571,8 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1004,7 +1007,8 @@
       <workItem from="1453018948023" duration="25052000" />
       <workItem from="1453142258364" duration="5609000" />
       <workItem from="1453149226652" duration="205000" />
-      <workItem from="1453224985062" duration="10625000" />
+      <workItem from="1453224985062" duration="10992000" />
+      <workItem from="1453310521395" duration="9124000" />
     </task>
     <task id="LOCAL-00001" summary="start">
       <created>1448210229995</created>
@@ -1186,11 +1190,17 @@
       <option name="project" value="LOCAL" />
       <updated>1453066692288</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Spring security work; Ajax - POST - .json don't work">
+      <created>1453238090581</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1453238090581</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="445779000" />
+    <option name="totallyTimeSpent" value="455270000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1289,7 +1299,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bootstrap; mvc:resources mapping add" />
     <MESSAGE value="Bootstrap correct;" />
     <MESSAGE value="Login/Reg form add;" />
     <MESSAGE value="div correct;" />
@@ -1314,7 +1323,8 @@
     <MESSAGE value="spring-security-taglibs add; RememberMeAuthenticationToken/Provider ok; security:authorize... in jsp don't work" />
     <MESSAGE value="WaitConfirms" />
     <MESSAGE value="complete registration; add confirm; add forgot" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete registration; add confirm; add forgot" />
+    <MESSAGE value="Spring security work; Ajax - POST - .json don't work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Spring security work; Ajax - POST - .json don't work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1343,8 +1353,14 @@
           <properties />
           <option name="timeStamp" value="154" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/CsrfSecurityRequestMatcher.java</url>
+          <line>13</line>
+          <properties />
+          <option name="timeStamp" value="157" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="155" />
+      <option name="time" value="158" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1353,20 +1369,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c694cb3d-7ed7-4663-91be-f69df422310b/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27045456">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1403,14 +1405,14 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/200605e0/c694cb3d-7ed7-4663-91be-f69df422310b/mapevent..users">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1577,13 +1579,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/createDB.sql">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.55">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/forgot.jsp">
@@ -1668,19 +1670,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/template/header.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.5384617">
-          <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/resources/js/new-event.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.375">
           <caret line="57" column="44" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1692,32 +1685,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="13" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
-          <folding>
-            <element signature="e#1378#1446#0" expanded="false" />
-            <element signature="method#processLoginNotAjaxJson#0;class#UserController#0" expanded="false" />
-            <element signature="e#3461#3536#0" expanded="false" />
-            <element signature="method#processRegNotAjaxJson#0;class#UserController#0" expanded="false" />
-            <element signature="e#7260#7329#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/newEvent.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846">
           <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.807692">
-          <caret line="61" column="8" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -1730,27 +1701,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/template/header.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="9.192307">
+          <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0">
+          <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.2.3.RELEASE/spring-beans-4.2.3.RELEASE.jar!/org/springframework/beans/factory/xml/spring-beans-4.2.xsd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33173078">
+          <caret line="539" column="4" selection-start-line="539" selection-start-column="4" selection-end-line="539" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
+          <folding>
+            <element signature="e#1378#1446#0" expanded="false" />
+            <element signature="method#processLoginNotAjaxJson#0;class#UserController#0" expanded="false" />
+            <element signature="e#3461#3536#0" expanded="false" />
+            <element signature="method#processRegNotAjaxJson#0;class#UserController#0" expanded="false" />
+            <element signature="e#7260#7329#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/resources/js/login-reg.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="192" column="16" selection-start-line="192" selection-start-column="16" selection-end-line="192" selection-end-column="16" />
+          <caret line="230" column="45" selection-start-line="230" selection-start-column="21" selection-end-line="230" selection-end-column="45" />
           <folding>
             <element signature="e#137#598#0" expanded="false" />
-            <element signature="e#605#620#0" expanded="false" />
-            <element signature="e#726#870#0" expanded="false" />
-            <element signature="e#743#828#0" expanded="false" />
-            <element signature="e#936#1336#0" expanded="false" />
-            <element signature="e#1465#2449#0" expanded="false" />
-            <element signature="e#2526#2927#0" expanded="false" />
+            <element signature="e#949#964#0" expanded="false" />
+            <element signature="e#1070#1214#0" expanded="false" />
+            <element signature="e#1087#1172#0" expanded="false" />
+            <element signature="e#1280#1680#0" expanded="false" />
+            <element signature="e#1809#2793#0" expanded="false" />
+            <element signature="e#2870#3271#0" expanded="false" />
+            <element signature="e#3426#3595#0" expanded="false" />
+            <element signature="e#3679#3954#0" expanded="false" />
+            <element signature="e#4075#4239#0" expanded="false" />
+            <element signature="e#4278#4371#0" expanded="false" />
+            <element signature="e#4410#4968#0" expanded="false" />
+            <element signature="e#5016#5593#0" expanded="false" />
+            <element signature="e#5632#6362#0" expanded="false" />
+            <element signature="e#6695#6766#0" expanded="false" />
+            <element signature="e#8931#9777#0" expanded="false" />
+            <element signature="e#9820#10669#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/CsrfSecurityRequestMatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32692307">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/applicationContext.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.09254499">
-          <caret line="27" column="14" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="109" />
-          <folding />
+        <state vertical-scroll-proportion="1.2493573">
+          <caret line="44" column="83" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="83" />
+          <folding>
+            <element signature="e#4187#4207#0" expanded="true" />
+            <element signature="e#4261#4278#0" expanded="true" />
+            <element signature="e#4337#4355#0" expanded="true" />
+            <element signature="e#4414#4436#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
