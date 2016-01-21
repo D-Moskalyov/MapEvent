@@ -13,7 +13,7 @@
             <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
         </c:forEach>
 
-        <title>Login</title>
+        <title>Registration</title>
 
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>

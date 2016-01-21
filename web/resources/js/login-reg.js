@@ -19,12 +19,12 @@ $(function($) {
     //    xhr.setRequestHeader(csrfHeader, csrfToken);
     //});
 
-    //$.ajaxSetup({
-    //    beforeSend: function(xhr, settings) {
-    //        console.log(csrfToken);
-    //        xhr.setRequestHeader(csrfHeader, csrfToken);
-    //    }
-    //});
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            console.log(csrfToken);
+            xhr.setRequestHeader(csrfHeader, csrfToken);
+        }
+    });
 
     //// Login Form
     ////----------------------------------------------
@@ -200,63 +200,58 @@ $(function($) {
             form_loading($form);
             var $inputs = $form.find('input');
             var data = collectFormData($inputs);
-            console.log("before");
+            //data[csrfParameter] = csrfToken;
 
-            var headers = {};
-            headers[csrfHeader] = csrfToken;
-
-            //$.post(formJsonUrlFromELtoJSLog, headers, data, function (response) {
-            //    console.log("after");
-            //    if (response.status == 'FAIL') {
-            //        //console.log('FAILlog_form');
-            //        form_failed($form, response);
-            //    } else {
-            //        //console.log('SUCCESSlog_form');
-            //        form_success($form);
-            //        setTimeout(function() {
-            //            console.log('redir');
-            //            window.location.replace("/" + pathToRedirectLog);
-            //        }, 2000);
-            //        //$form.unbind('submit');
-            //        //$form.submit();
-            //    }
-            //}, 'json');
-
-            data[csrfParameter] = csrfToken;
-            console.log(data);
-            headers['Accept'] = 'application/json';
-            headers['Content-Type'] = 'application/json; charset=utf-8';
-            console.log(headers);
-            $.ajax({
-                url: formJsonUrlFromELtoJSLog,
-                type: "POST",
-                headers: headers,
-                //headers: {
-                //    'Accept': 'application/json',
-                //    'Content-Type': 'application/json; charset=utf-8'
-                //},
-                data: data,
-                dataType: "json",
-                success: function(response){
-                    console.log("after");
-                    if (response.status == 'FAIL') {
-                        //console.log('FAILlog_form');
-                        form_failed($form, response);
-                    } else {
-                        //console.log('SUCCESSlog_form');
-                        form_success($form);
-                        setTimeout(function() {
-                            console.log('redir');
-                            window.location.replace("/" + pathToRedirectLog);
-                        }, 2000);
-                        //$form.unbind('submit');
-                        //$form.submit();
-                    }
-                },
-                error: function(response){
-                    console.log(response);
+            $.post(formJsonUrlFromELtoJSLog, data, function (response) {
+                if (response.status == 'FAIL') {
+                    //console.log('FAILlog_form');
+                    form_failed($form, response);
+                } else {
+                    //console.log('SUCCESSlog_form');
+                    form_success($form);
+                    setTimeout(function() {
+                        console.log('redir');
+                        window.location.replace("/" + pathToRedirectLog);
+                    }, 2000);
+                    //$form.unbind('submit');
+                    //$form.submit();
                 }
-            });
+            }, 'json');
+
+            //var headers = {};
+            //headers[csrfHeader] = csrfToken;
+            //headers['Accept'] = 'application/json';
+            ////headers['Content-Type'] = 'application/json; charset=utf-8';
+            //
+            //$.ajax({
+            //    url: formJsonUrlFromELtoJSLog,
+            //    type: "POST",
+            //    headers: headers,
+            //    //headers: {
+            //    //    'Accept': 'application/json',
+            //    //    'Content-Type': 'application/json; charset=utf-8'
+            //    //},
+            //    data: data,
+            //    dataType: "json",
+            //    success: function(response){
+            //        if (response.status == 'FAIL') {
+            //            //console.log('FAILlog_form');
+            //            form_failed($form, response);
+            //        } else {
+            //            //console.log('SUCCESSlog_form');
+            //            form_success($form);
+            //            setTimeout(function() {
+            //                console.log('redir');
+            //                window.location.replace("/" + pathToRedirectLog);
+            //            }, 2000);
+            //            //$form.unbind('submit');
+            //            //$form.submit();
+            //        }
+            //    },
+            //    error: function(response){
+            //        console.log(response);
+            //    }
+            //});
 
         }
     }

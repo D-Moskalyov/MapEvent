@@ -161,15 +161,11 @@ public class UserController {
         return "forgot";
     }
 
-//    @RequestMapping(value = "/forgot", method = RequestMethod.POST)
-//    public String processForgotDefault(@ModelAttribute(value="forgotForm") @Valid ForgotForm forgotForm, BindingResult result ) {
-//        if(result.hasErrors()) {
-//            return "forgot";
-//        }
-//        else {
-//            return "account";
-//        }
-//    }
+    @RequestMapping(value="/forgot", method=RequestMethod.POST)
+    String processForgotNotAjaxJson(@ModelAttribute(value="forgot") @Valid ForgotForm forgotForm, BindingResult result ){
+        //result.addError(new ObjectError("Ajax not available", "try later"));
+        return "forgot";
+    }
 
     @RequestMapping(value="/forgot.json", method=RequestMethod.POST)
     public @ResponseBody
@@ -195,6 +191,11 @@ public class UserController {
 
         res.setErrorMessageList(errorMessages);
         return res;
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String profile(ModelMap model) {
+        return "profile";
     }
 
     @RequestMapping(value = "/confirm", method = RequestMethod.GET)

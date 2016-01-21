@@ -9,21 +9,19 @@
     <div class="right">
         <%--<security:authentication property="principal.username" />--%>
         <%--<security:authentication property="principal.authorities" />--%>
-        <security:authorize access="hasRole('ROLE_USER')">
-            <div>ROLE_USER</div>
-        </security:authorize>
-        <security:authorize access="hasRole('ROLE_ANONYMOUS')">
-            <div>ROLE_ANONYMOUS</div>
-        </security:authorize>
-        <security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_ANONYMOUS')">
-            <div>hasAnyRole</div>
-        </security:authorize>
+
         <%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
                 <%--Welcome : ${pageContext.request.userPrincipal.name}--%>
         <%--</c:if>--%>
-        <button type="button" id="log" class="btn btn-default">Вход</button>
-        <button type="button" id="reg"class="btn btn-default">Регистрация</button>
-        <button type="button" id="nev"class="btn btn-default">Новое событие</button>
+        <security:authorize access="hasRole('ROLE_ANONYMOUS')">
+            <button type="button" id="log" class="btn btn-default">Вход</button>
+            <button type="button" id="reg"class="btn btn-default">Регистрация</button>
+        </security:authorize>
+        <security:authorize access="hasRole('ROLE_USER')">
+            <button type="button" id="nev"class="btn btn-default">Новое событие</button>
+            <button type="button" id="usPage"class="btn btn-default">Профиль</button>
+            <button type="button" id="logout"class="btn btn-default">Выход</button>
+        </security:authorize>
     </div>
 </div>
 <%--</html>--%>
@@ -40,6 +38,15 @@
         });
         $('#nev').click(function(){
             window.location.href='/event/newevent';
+        });
+        $('#usPage').click(function(){
+            <security:authorize access="hasRole('ROLE_USER')">
+                console.log("<security:authentication property='principal.username'/>");
+                window.location.href='/user/profile';
+            </security:authorize>
+        });
+        $('#logout').click(function(){
+            window.location.href='/user/logout';
         });
 
 //        $('#log').click(function() {

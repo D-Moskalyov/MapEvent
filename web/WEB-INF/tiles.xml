@@ -69,4 +69,16 @@
             <add-attribute value="/resources/css/account.css" />
         </put-list-attribute>
     </definition>
+
+    <definition name="profileTemplate" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/profile.jsp" />
+        <put-attribute name="footer" value="" />
+
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/resources/css/profile.css" />
+        </put-list-attribute>
+        <put-list-attribute name="javascripts">
+            <add-attribute value="/resources/js/profile.js" />
+        </put-list-attribute>
+    </definition>
 </tiles-definitions>
