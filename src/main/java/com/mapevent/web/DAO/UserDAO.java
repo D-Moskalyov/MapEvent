@@ -1,22 +1,19 @@
-package com.mapevent.web.service;
+package com.mapevent.web.DAO;
 
-import com.mapevent.web.modelDB.User;
+import com.mapevent.web.model.User;
+import com.mapevent.web.service.UserService;
 import com.mapevent.web.utils.MD5;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.*;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.spi.ProviderUtil;
 import java.util.List;
 
 @Repository(value = "userDAO")

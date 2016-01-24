@@ -1,6 +1,5 @@
-package com.mapevent.web.modelDB;
+package com.mapevent.web.model;
 
-import org.hibernate.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

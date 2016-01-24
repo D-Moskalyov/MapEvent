@@ -1,9 +1,9 @@
 package com.mapevent.web.controller;
 
 
-import com.mapevent.web.modelForm.ErrorMessage;
-import com.mapevent.web.modelForm.NewEventForm;
-import com.mapevent.web.modelForm.ValidationResponse;
+import com.mapevent.web.utils.ErrorMessage;
+import com.mapevent.web.DTO.NewEventForm;
+import com.mapevent.web.utils.ValidationResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;

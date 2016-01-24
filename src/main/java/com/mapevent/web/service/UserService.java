@@ -1,7 +1,7 @@
 package com.mapevent.web.service;
 
 
-import com.mapevent.web.modelDB.User;
+import com.mapevent.web.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

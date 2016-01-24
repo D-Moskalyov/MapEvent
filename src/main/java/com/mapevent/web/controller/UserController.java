@@ -1,17 +1,18 @@
 package com.mapevent.web.controller;
 
 
-import com.mapevent.web.modelDB.User;
-import com.mapevent.web.modelDB.WaitConfirm;
-import com.mapevent.web.modelForm.*;
-import com.mapevent.web.utils.MD5;
+import com.mapevent.web.model.User;
+import com.mapevent.web.model.WaitConfirm;
+import com.mapevent.web.DTO.*;
+import com.mapevent.web.utils.*;
 import com.mapevent.web.service.UserService;
-import com.mapevent.web.utils.GoogleMessenger;
 import com.mapevent.web.service.WaitConfirmsService;
-import com.mapevent.web.utils.RandomPassword;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
@@ -38,16 +39,6 @@ public class UserController {
     public String login(ModelMap model) {
         return "login";
     }
-
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String processLoginDefault(@ModelAttribute(value="loginForm") @Valid LoginForm loginForm, BindingResult result ) {
-//        if(result.hasErrors()) {
-//            return "login";
-//        }
-//        else {
-//            return "account";
-//        }
-//    }
 
     @RequestMapping(value="/login", method=RequestMethod.POST)
     String processLoginNotAjaxJson(@ModelAttribute(value="loginForm") @Valid LoginForm loginForm, BindingResult result ){
@@ -85,21 +76,13 @@ public class UserController {
         return res;
     }
 
+
+
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(ModelMap model) {
         return "registration";
     }
-
-//    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-//    public String processRegDefault(@ModelAttribute(value="regForm") @Valid RegistrationForm registrationForm, BindingResult result ) {
-//        if(result.hasErrors()) {
-//            return "registration";
-//        }
-//        else {
-//            //writeDB
-//            return "account";
-//        }
-//    }
 
     @RequestMapping(value="/registration", method=RequestMethod.POST)
     String processRegNotAjaxJson(@ModelAttribute(value="registration") @Valid RegistrationForm registrationForm, BindingResult result ){
@@ -156,6 +139,9 @@ public class UserController {
         return res;
     }
 
+
+
+
     @RequestMapping(value = "/forgot", method = RequestMethod.GET)
     public String forgot(ModelMap model) {
         return "forgot";
@@ -193,10 +179,41 @@ public class UserController {
         return res;
     }
 
+
+
+
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(ModelMap model) {
         return "profile";
     }
+
+    @RequestMapping(value="/profile", method=RequestMethod.POST)
+    String processProfileNotAjaxJson(@ModelAttribute(value="profile") @Valid ChangePassForm changePassForm, BindingResult result ){
+        //result.addError(new ObjectError("Ajax not available", "try later"));
+        return "profile";
+    }
+
+    @RequestMapping(value="/profile.json", method=RequestMethod.POST)
+    public @ResponseBody
+    ValidationResponse processProfileAjaxJson(HttpServletRequest request){
+        ValidationResponse res = new ValidationResponse();
+        //ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
+        Map<String, String[]> map = request.getParameterMap();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication == null || !(map.get("change_password")[0].equals(map.get("change_password_confirm")[0]))) {
+            res.setStatus("FAIL");
+        }
+        else {
+            User user = (User) authentication.getPrincipal();
+            if(!userService.updateUserPassword(user.getEmail(), map.get("change_password")[0]))
+                res.setStatus("FAIL");
+        }
+        return res;
+    }
+
+
+
 
     @RequestMapping(value = "/confirm", method = RequestMethod.GET)
     public String confirm(ModelMap model, @RequestParam("confirmPath") String code) {

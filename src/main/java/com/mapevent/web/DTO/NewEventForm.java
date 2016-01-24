@@ -1,4 +1,4 @@
-package com.mapevent.web.modelForm;
+package com.mapevent.web.DTO;
 
 
 import org.hibernate.validator.constraints.NotEmpty;

@@ -1,8 +1,5 @@
-package com.mapevent.web.modelForm;
+package com.mapevent.web.DTO;
 
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 
 public class ForgotForm {
     //@NotEmpty(message = "Поле обязательно для заполнения")

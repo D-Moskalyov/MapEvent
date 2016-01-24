@@ -22,7 +22,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-        <securiry:csrfMetaTags />
+        <%--<securiry:csrfMetaTags />--%>
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login-reg.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login-reg.js"></script>
@@ -67,13 +67,13 @@
             var formJsonUrlFromELtoJSLog = '${formJsonUrlLog}';
             var pathToRedirectLog = '${param.path}';
 
-            var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-            var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-            var csrfToken = $("meta[name='_csrf']").attr("content");
+//            var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+//            var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+//            var csrfToken = $("meta[name='_csrf']").attr("content");
 
-            console.log(csrfParameter);
-            console.log(csrfHeader);
-            console.log(csrfToken);
+//            console.log(csrfParameter);
+//            console.log(csrfHeader);
+//            console.log(csrfToken);
         </script>
 
         <c:forEach var="script" items="${javascripts}">

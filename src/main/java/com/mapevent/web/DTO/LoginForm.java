@@ -1,8 +1,5 @@
-package com.mapevent.web.modelForm;
+package com.mapevent.web.DTO;
 
-
-import org.hibernate.validator.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 public class LoginForm {
     //@NotEmpty(message = "Поле обязательно для заполнения")

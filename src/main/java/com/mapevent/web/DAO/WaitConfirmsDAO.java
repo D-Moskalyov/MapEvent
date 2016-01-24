@@ -1,7 +1,9 @@
-package com.mapevent.web.service;
+package com.mapevent.web.DAO;
 
-import com.mapevent.web.modelDB.User;
-import com.mapevent.web.modelDB.WaitConfirm;
+import com.mapevent.web.model.User;
+import com.mapevent.web.model.WaitConfirm;
+import com.mapevent.web.service.UserService;
+import com.mapevent.web.service.WaitConfirmsService;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import java.util.List;
 
 @Repository(value = "waitConfirmsDAO")
 @Transactional
-public class WaitConfirmsDAO implements WaitConfirmsService{
+public class WaitConfirmsDAO implements WaitConfirmsService {
     @Autowired
     @Qualifier(value = "sessionFactory")
     SessionFactory sf;

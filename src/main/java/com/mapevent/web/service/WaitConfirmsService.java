@@ -1,8 +1,8 @@
 package com.mapevent.web.service;
 
 
-import com.mapevent.web.modelDB.User;
-import com.mapevent.web.modelDB.WaitConfirm;
+import com.mapevent.web.model.User;
+import com.mapevent.web.model.WaitConfirm;
 
 public interface WaitConfirmsService {
     int save(WaitConfirm wtC);

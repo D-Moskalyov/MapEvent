@@ -1,4 +1,4 @@
-package com.mapevent.web.modelForm;
+package com.mapevent.web.utils;
 
 
 public class ErrorMessage {
