@@ -1,6 +1,7 @@
 package com.mapevent.web.controller;
 
 
+import com.mapevent.web.model.Event;
 import com.mapevent.web.utils.ErrorMessage;
 import com.mapevent.web.DTO.NewEventForm;
 import com.mapevent.web.utils.ValidationResponse;
@@ -9,10 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -56,5 +55,11 @@ public class EventController {
         }
 
         return res;
+    }
+
+    @RequestMapping(path = "/{eventID}", method = RequestMethod.GET)
+    public ModelAndView showEventPage(@PathVariable String eventID, Model model) {
+        Event event = new Event();
+        return new ModelAndView("event", "event", event);
     }
 }

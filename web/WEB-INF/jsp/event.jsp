@@ -3,7 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
 
-<tiles:insertDefinition name="accountTemplate">
+<tiles:insertDefinition name="eventPageTemplate">
   <tiles:putAttribute name="body">
 
     <%--<tiles:importAttribute name="javascripts"/>--%>
@@ -13,8 +13,9 @@
       <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
     </c:forEach>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/account.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/event.css"/>
 
+    <div>${event}</div>
 
     <c:forEach var="script" items="${javascripts}">
       <script src="<c:url value="${script}"/>"></script>
