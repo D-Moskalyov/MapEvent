@@ -43,7 +43,7 @@ public class GoogleMessenger {
 
             Transport t = (Transport) session.getTransport("smtps");
 
-            t.connect("smtp.gmail.com", "moscalevd@gmail.com", "");
+            t.connect("smtp.gmail.com", "", "");
             t.sendMessage(msg, msg.getAllRecipients());
             t.close();
         } catch (Exception e) {

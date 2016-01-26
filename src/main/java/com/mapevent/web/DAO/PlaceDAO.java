@@ -1,5 +1,6 @@
 package com.mapevent.web.DAO;
 
+import com.mapevent.web.model.Place;
 import com.mapevent.web.service.PlaceService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,4 +14,9 @@ public class PlaceDAO implements PlaceService{
     @Autowired
     @Qualifier(value = "sessionFactory")
     SessionFactory sf;
+
+    public int saveOrUpdate(Place place) {
+        sf.getCurrentSession().saveOrUpdate(place);
+        return place.getPlcID();
+    }
 }

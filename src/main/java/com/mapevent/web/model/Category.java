@@ -27,4 +27,37 @@ public class Category {
 //            inverseJoinColumns = @JoinColumn(name="chldID", referencedColumnName="catID")
 //    )
 //    List<Category> categories;
+
+
+    public Integer getCatID() {
+        return catID;
+    }
+
+    public void setCatID(Integer catID) {
+        this.catID = catID;
+    }
+
+    public String getCatPrntID() {
+        return catPrntID;
+    }
+
+    public void setCatPrntID(String catPrntID) {
+        this.catPrntID = catPrntID;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

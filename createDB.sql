@@ -9,6 +9,7 @@ delete from users;
 drop table categories;
 
 drop database mapevent;
+
 create database mapevent;
 SET SQL_SAFE_UPDATES=0;
 
@@ -51,6 +52,7 @@ insert into categories (Title) values("Comedy");
 CREATE TABLE Places
 (
 Plc_Id int NOT NULL AUTO_INCREMENT,
+Plc_Id_Google varchar(255),
 Address_Line_1 varchar(255),
 Address_Line_2 varchar(255),
 City varchar(255),
@@ -67,6 +69,7 @@ Ev_Id int NOT NULL AUTO_INCREMENT,
 U_Id int,
 Cat_Id int,
 Plc_Id int,
+Title varchar(255),
 Have_Imgs boolean NOT NULL DEFAULT 0,
 Start datetime,
 Finish datetime,
@@ -100,7 +103,7 @@ PRIMARY KEY (WC_Id)
 );
 
 insert into users (Username, FullName, Email, Password, Gender, Enable) values("dima", "D M", "viva-barca@i.ua", "b59c67bf196a4758191e42f76670ceba", "male", false);
-insert into Images (Address_Img, Ev_Id) values("sadd", 5);
 
+insert into Images (Address_Img, Ev_Id) values("sadd", 5);
 delete from Images where Address_Img="sadd";
-drop table Images;
+drop table events;

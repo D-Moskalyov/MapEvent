@@ -1,5 +1,6 @@
 package com.mapevent.web.DAO;
 
+import com.mapevent.web.model.Event;
 import com.mapevent.web.service.EventService;
 import com.mapevent.web.service.PlaceService;
 import org.hibernate.SessionFactory;
@@ -15,6 +16,10 @@ public class EventDAO implements EventService{
     @Qualifier(value = "sessionFactory")
     SessionFactory sf;
 
-    @Autowired
-    PlaceService placeService;
+//    @Autowired
+//    PlaceService placeService;
+
+    public int save(Event event) {
+        return (Integer) sf.getCurrentSession().save(event);
+    }
 }
