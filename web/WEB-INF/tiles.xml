@@ -57,16 +57,16 @@
         <put-attribute name="footer" value="" />
 
         <put-list-attribute name="stylesheets">
-            <add-attribute value="/resources/css/new-event.css" />
+            <add-attribute value="/resources/css/new-myEvent.css" />
         </put-list-attribute>
     </definition>
 
     <definition name="eventPageTemplate" extends="defaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/jsp/event.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/myEvent.jsp" />
         <put-attribute name="footer" value="" />
 
         <put-list-attribute name="stylesheets">
-            <add-attribute value="/resources/css/event.css" />
+            <add-attribute value="/resources/css/myEvent.css" />
         </put-list-attribute>
     </definition>
 

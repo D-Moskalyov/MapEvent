@@ -1,8 +1,8 @@
 package com.mapevent.web.service;
 
 
-import com.mapevent.web.model.Event;
+import com.mapevent.web.model.MyEvent;
 
 public interface EventService {
-    int save(Event event);
+    int save(MyEvent myEvent);
 }

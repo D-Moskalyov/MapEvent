@@ -45,7 +45,7 @@ public class User implements Serializable, UserDetails {
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    List<Event> events;
+    List<MyEvent> myEvents;
 
     public User() {
     }
@@ -142,8 +142,13 @@ public class User implements Serializable, UserDetails {
         return true;
     }
 
+    public List<MyEvent> getMyEvents() {
+        return myEvents;
+    }
 
-
+    public void setMyEvents(List<MyEvent> myEvents) {
+        this.myEvents = myEvents;
+    }
 
     @Override
     public boolean equals(Object obj) {

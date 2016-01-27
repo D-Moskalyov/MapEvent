@@ -1,13 +1,12 @@
 package com.mapevent.web.controller;
 
 
-import com.mapevent.web.model.Event;
+import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.model.Place;
 import com.mapevent.web.model.User;
 import com.mapevent.web.service.CategoryService;
 import com.mapevent.web.service.EventService;
 import com.mapevent.web.service.PlaceService;
-import com.mapevent.web.service.UserService;
 import com.mapevent.web.utils.ErrorMessage;
 import com.mapevent.web.DTO.NewEventForm;
 import com.mapevent.web.utils.ValidationResponse;
@@ -26,7 +25,6 @@ import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -61,41 +59,56 @@ public class EventController {
     ValidationResponse processFormAjaxJson(Model model, @ModelAttribute(value="newEventForm") @Valid NewEventForm newEventForm, BindingResult result ){
         ValidationResponse res = new ValidationResponse();
         if(!result.hasErrors()){
-            Place place = new Place();
+            String plcIDGoogle = newEventForm.getPlaceID();
+            String addressLine1 = newEventForm.getRoute();
+            String addressLine2 = newEventForm.getStreet_number();
+            String city = newEventForm.getLocality();
+            String state = newEventForm.getAdministrative_area_level_1();
+            String country = newEventForm.getCountry();
+            Double lat = Double.parseDouble(newEventForm.getLat());
+            Double lng = Double.parseDouble(newEventForm.getLng());
 
-            place.setPlcIDGoogle(newEventForm.getPlaceID());
-            place.setAddressLine1(newEventForm.getRoute());
-            place.setAddressLine2(newEventForm.getStreet_number());
-            place.setCity(newEventForm.getLocality());
-            place.setState(newEventForm.getAdministrative_area_level_1());
-            place.setCountry(newEventForm.getCountry());
-            place.setLat(Double.parseDouble(newEventForm.getLat()));
-            place.setLng(Double.parseDouble(newEventForm.getLng()));
+            int idPlace = placeService.placeAlreadyExist(plcIDGoogle, addressLine1, addressLine2,
+                                                        city, state, country, lat, lng);
 
-            int idPlace = placeService.saveOrUpdate(place);
+            if(idPlace == 0) {
+                Place place = new Place();
 
-            Event event = new Event();
+                place.setPlcIDGoogle(newEventForm.getPlaceID());
+                place.setAddressLine1(newEventForm.getRoute());
+                place.setAddressLine2(newEventForm.getStreet_number());
+                place.setCity(newEventForm.getLocality());
+                place.setState(newEventForm.getAdministrative_area_level_1());
+                place.setCountry(newEventForm.getCountry());
+                place.setLat(Double.parseDouble(newEventForm.getLat()));
+                place.setLng(Double.parseDouble(newEventForm.getLng()));
 
-            event.setPlcID(idPlace);
-            event.setTitle(newEventForm.getWhat());
-            event.setDiscription(newEventForm.getDescription());
-            event.setHaveImgs(false);
+                idPlace = placeService.saveOrUpdate(place);
+            }
+
+            MyEvent myEvent = new MyEvent();
+
+            myEvent.setPlcID(idPlace);
+            myEvent.setTitle(newEventForm.getWhat());
+            myEvent.setDiscription(newEventForm.getDescription());
+            myEvent.setHaveImgs(false);
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             try {
-                event.setStart(formatter.parse(newEventForm.getWhenStart()));
-                event.setFinish(formatter.parse(newEventForm.getWhenFinish()));
+                myEvent.setStart(formatter.parse(newEventForm.getWhenStart()));
+                myEvent.setFinish(formatter.parse(newEventForm.getWhenFinish()));
 
                 int catID = categoryService.getCatID(newEventForm.getCategory());
-                if(catID != 0)
-                    event.setCatID(catID);
+                if(catID != 0) {
+                    myEvent.setCatID(catID);
+                }
 
                 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
                 if(authentication != null) {
                     User user = (User) authentication.getPrincipal();
-                    event.setuID(user.getuID());
+                    myEvent.setuID(user.getuID());
 
-                    eventService.save(event);
+                    eventService.save(myEvent);
 
                     res.setStatus("SUCCESS");
                 }
@@ -123,7 +136,7 @@ public class EventController {
 
     @RequestMapping(path = "/{eventID}", method = RequestMethod.GET)
     public ModelAndView showEventPage(@PathVariable String eventID, Model model) {
-        Event event = new Event();
-        return new ModelAndView("event", "event", event);
+        MyEvent myEvent = new MyEvent();
+        return new ModelAndView("event", "event", myEvent);
     }
 }

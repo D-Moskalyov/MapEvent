@@ -13,9 +13,9 @@
       <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
     </c:forEach>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/event.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/myEvent.css"/>
 
-    <div>${event}</div>
+    <div>${myEvent}</div>
 
     <c:forEach var="script" items="${javascripts}">
       <script src="<c:url value="${script}"/>"></script>

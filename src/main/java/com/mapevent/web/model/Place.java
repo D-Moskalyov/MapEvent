@@ -18,7 +18,7 @@ public class Place {
     private String addressLine1;
 
     @Column(name = "Address_Line_2")
-    private String AddressLine2;
+    private String addressLine2;
 
     @Column(name = "City")
     private String city;
@@ -37,7 +37,7 @@ public class Place {
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "place")
-    List<Event> events;
+    List<MyEvent> myEvents;
 
     public double getLat() {
         return lat;
@@ -56,11 +56,11 @@ public class Place {
     }
 
     public String getAddressLine2() {
-        return AddressLine2;
+        return addressLine2;
     }
 
     public void setAddressLine2(String addressLine2) {
-        AddressLine2 = addressLine2;
+        this.addressLine2 = addressLine2;
     }
 
     public String getCity() {
@@ -79,12 +79,12 @@ public class Place {
         this.country = country;
     }
 
-    public List<Event> getEvents() {
-        return events;
+    public List<MyEvent> getMyEvents() {
+        return myEvents;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    public void setMyEvents(List<MyEvent> myEvents) {
+        this.myEvents = myEvents;
     }
 
     public double getLng() {

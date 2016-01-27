@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "events")
-public class Event {
+public class MyEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Ev_Id")
@@ -47,6 +47,14 @@ public class Event {
     @JoinColumn(name = "catID", nullable = false)
     Category category;
 
+    public boolean isHaveImgs() {
+        return haveImgs;
+    }
+
+    public void setHaveImgs(boolean haveImgs) {
+        this.haveImgs = haveImgs;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -87,14 +95,6 @@ public class Event {
         this.finish = finish;
     }
 
-    public boolean isHaveImgs() {
-        return haveImgs;
-    }
-
-    public void setHaveImgs(boolean haveImgs) {
-        this.haveImgs = haveImgs;
-    }
-
     public Place getPlace() {
         return place;
     }
@@ -119,6 +119,14 @@ public class Event {
         this.start = start;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public int getuID() {
         return uID;
     }
@@ -133,13 +141,5 @@ public class Event {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 }

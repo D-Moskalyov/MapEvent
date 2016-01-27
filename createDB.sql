@@ -5,13 +5,24 @@ select * from images;
 select * from places;
 select * from waitconfirms;
 
+select * from places where Plc_Id_Google="ChIJBVXQG_CgJ0ERON-jp0YRZE0" and 
+						   Address_Line_1="вулиця Сумська" and 
+                           Address_Line_2="2" and 
+                           City="Харків" and 
+                           State="Харківська" and 
+                           Country="Украина" and 
+                           Lat="49.993351" and 
+                           Lng="36.232372";
+
 delete from users;
 drop table categories;
 
+use pizzeriadb;
 drop database mapevent;
 
 create database mapevent;
 SET SQL_SAFE_UPDATES=0;
+use mapevent;
 
 
 CREATE TABLE Users

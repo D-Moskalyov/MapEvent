@@ -15,7 +15,7 @@
             <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
         </c:forEach>
 
-        <title>New event</title>
+        <title>New myEvent</title>
 
         <link rel="stylesheet"
               href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css"/>
