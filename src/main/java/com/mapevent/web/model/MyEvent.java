@@ -37,11 +37,11 @@ public class MyEvent {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "plcID", nullable = false)
-    Place place;
+    public Place place;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "uID", nullable = false)
-    User user;
+    public User user;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "catID", nullable = false)
@@ -65,6 +65,7 @@ public class MyEvent {
 
     public int getCatID() {
         return catID;
+        //return  category.getCatID();
     }
 
     public void setCatID(int catID) {
@@ -105,6 +106,7 @@ public class MyEvent {
 
     public int getPlcID() {
         return plcID;
+        //return place.getPlcID();
     }
 
     public void setPlcID(int plcID) {
@@ -129,6 +131,7 @@ public class MyEvent {
 
     public int getuID() {
         return uID;
+        //return user.getuID();
     }
 
     public void setuID(int uID) {

@@ -46,8 +46,10 @@ public class PlaceDAO implements PlaceService{
         q.setString("city", city);
         q.setString("state", state);
         q.setString("country", country);
-        q.setDouble("lat", Double.parseDouble(df.format(lat)));
-        q.setDouble("lng", Double.parseDouble(df.format(lng)));
+        double dblat = (double)(Math.round(lat * 1000000d) / 1000000d);
+        double dblng = (double)(Math.round(lng * 1000000d) / 1000000d);
+        q.setDouble("lat", dblat);
+        q.setDouble("lng", dblng);
 
         List<Place> places = q.list();
         if (places.isEmpty()) {

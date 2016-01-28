@@ -5,17 +5,9 @@ select * from images;
 select * from places;
 select * from waitconfirms;
 
-select * from places where Plc_Id_Google="ChIJBVXQG_CgJ0ERON-jp0YRZE0" and 
-						   Address_Line_1="вулиця Сумська" and 
-                           Address_Line_2="2" and 
-                           City="Харків" and 
-                           State="Харківська" and 
-                           Country="Украина" and 
-                           Lat="49.993351" and 
-                           Lng="36.232372";
 
-delete from users;
-drop table categories;
+
+
 
 use pizzeriadb;
 drop database mapevent;
@@ -114,6 +106,25 @@ PRIMARY KEY (WC_Id)
 );
 
 insert into users (Username, FullName, Email, Password, Gender, Enable) values("dima", "D M", "viva-barca@i.ua", "b59c67bf196a4758191e42f76670ceba", "male", false);
+insert into places (Plc_Id_Google, Address_Line_1, Address_Line_2, City, State, Country, Lat, Lng) values("asca", "casv" ,"vdsv", "vds", "csac", "casc", 4.535642, 7.536743);
+
+use mapevent;
+
+
+
+
+
+select * from places where Plc_Id_Google="ChIJBVXQG_CgJ0ERON-jp0YRZE0" and 
+						   Address_Line_1="вулиця Сумська" and 
+                           Address_Line_2="2" and 
+                           City="Харків" and 
+                           State="Харківська" and 
+                           Country="Украина" and 
+                           Lat="49.993351" and 
+                           Lng="36.232372";
+
+delete from users;
+drop table categories;
 
 insert into Images (Address_Img, Ev_Id) values("sadd", 5);
 delete from Images where Address_Img="sadd";

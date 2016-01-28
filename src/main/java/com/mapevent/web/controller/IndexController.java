@@ -29,24 +29,24 @@ public class IndexController {
     @RequestMapping(value = "/map", method = RequestMethod.GET)
     public String index(ModelMap model) {
 
-//        MyEvent myEvent = new MyEvent();
-//
-//        myEvent.setPlcID(2);
-//        myEvent.setTitle("Событие");
-//        myEvent.setDiscription("Захват мира");
-//        myEvent.setHaveImgs(false);
-//
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-//        try {
-//            myEvent.setStart(formatter.parse("01.02.2016 21:05"));
-//            myEvent.setFinish(formatter.parse("02.03.2016 21:06"));
-//            myEvent.setCatID(4);
-//            myEvent.setuID(1);
-//
-//            eventService.save(myEvent);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        MyEvent myEvent = new MyEvent();
+
+        myEvent.setPlcID(1);
+        myEvent.setTitle("Событие");
+        myEvent.setDiscription("Захват мира");
+        myEvent.setHaveImgs(false);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        try {
+            myEvent.setStart(formatter.parse("01.02.2016 21:05"));
+            myEvent.setFinish(formatter.parse("02.03.2016 21:06"));
+            myEvent.setCatID(4);
+            myEvent.setuID(1);
+
+            eventService.save(myEvent);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return "map";
     }

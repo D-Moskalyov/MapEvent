@@ -80,8 +80,11 @@ public class EventController {
                 place.setCity(newEventForm.getLocality());
                 place.setState(newEventForm.getAdministrative_area_level_1());
                 place.setCountry(newEventForm.getCountry());
-                place.setLat(Double.parseDouble(newEventForm.getLat()));
-                place.setLng(Double.parseDouble(newEventForm.getLng()));
+                //(double)(Math.round(Double.parseDouble(newEventForm.getLng()) * 1000000d) / 1000000d);
+                double dblat = (double)(Math.round(Double.parseDouble(newEventForm.getLat()) * 1000000d) / 1000000d);
+                double dblng = (double)(Math.round(Double.parseDouble(newEventForm.getLng()) * 1000000d) / 1000000d);
+                place.setLat(dblat);
+                place.setLng(dblng);
 
                 idPlace = placeService.saveOrUpdate(place);
             }
