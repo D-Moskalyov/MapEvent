@@ -230,4 +230,20 @@ public class UserController {
         }
         return "confirm";
     }
+
+
+
+
+    @RequestMapping(value="/favorite.json", method=RequestMethod.POST)
+    public @ResponseBody
+    ValidationResponse processFavoritetAjaxJson(HttpServletRequest request){
+        ValidationResponse res = new ValidationResponse();
+        ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
+        Map<String, String[]> map = request.getParameterMap();
+
+
+
+        res.setErrorMessageList(errorMessages);
+        return res;
+    }
 }

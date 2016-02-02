@@ -9,6 +9,7 @@ import com.mapevent.web.service.EventService;
 import com.mapevent.web.service.PlaceService;
 import com.mapevent.web.utils.ErrorMessage;
 import com.mapevent.web.DTO.NewEventForm;
+import com.mapevent.web.utils.EventNotExistException;
 import com.mapevent.web.utils.ValidationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,7 +26,9 @@ import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/event")
@@ -140,6 +143,14 @@ public class EventController {
     @RequestMapping(path = "/{eventID}", method = RequestMethod.GET)
     public ModelAndView showEventPage(@PathVariable String eventID, Model model) {
         MyEvent myEvent = new MyEvent();
-        return new ModelAndView("event", "event", myEvent);
+        Map map = new HashMap<String, Object>();
+        try {
+            myEvent = eventService.getEventByID(Integer.parseInt(eventID));
+        } catch (EventNotExistException e) {
+            return new ModelAndView("./map");
+        }
+        map.put("event", myEvent);
+        map.put("user", 1);
+        return new ModelAndView("event", map);
     }
 }

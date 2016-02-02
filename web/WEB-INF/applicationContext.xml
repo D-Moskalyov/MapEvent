@@ -31,8 +31,8 @@
               <security:intercept-url pattern="/resources/**" access="permitAll" />
               <security:intercept-url pattern="/map" access="permitAll" />
               <!--<security:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />-->
-              <security:intercept-url pattern="/myEvent/newEvent" access="hasRole('ROLE_USER')" />
-              <security:intercept-url pattern="/myEvent/*" access="permitAll" />
+              <security:intercept-url pattern="/event/newEvent" access="hasRole('ROLE_USER')" />
+              <security:intercept-url pattern="/event/*" access="permitAll" />
               <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
               <security:form-login login-page="/user/login"/>
                                    <!--login-processing-url="/static/j_spring_security_check"-->

@@ -21,7 +21,7 @@ $(function($) {
 
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
-            console.log(csrfToken);
+            //console.log(csrfToken);
             xhr.setRequestHeader(csrfHeader, csrfToken);
         }
     });

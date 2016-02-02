@@ -4,7 +4,7 @@ select * from events;
 select * from images;
 select * from places;
 select * from waitconfirms;
-
+select * from favorites;
 
 
 
@@ -81,6 +81,16 @@ PRIMARY KEY (Ev_Id),
 FOREIGN KEY (U_Id) REFERENCES Users(U_Id) ON DELETE NO ACTION ON UPDATE NO ACTION,
 FOREIGN KEY (Cat_Id) REFERENCES Categories(Cat_Id) ON DELETE NO ACTION ON UPDATE NO ACTION,
 FOREIGN KEY (Plc_Id) REFERENCES Places(Plc_Id) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+CREATE TABLE Favorites
+(
+F_Id int NOT NULL AUTO_INCREMENT,
+U_Id int,
+Ev_Id int,
+PRIMARY KEY (F_Id),
+FOREIGN KEY (U_Id) REFERENCES Users(U_Id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (Ev_Id) REFERENCES Events(Ev_Id) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE Images

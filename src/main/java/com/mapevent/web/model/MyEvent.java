@@ -35,17 +35,17 @@ public class MyEvent {
     @Column(name = "Discription")
     private String discription;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "plcID", nullable = false)
-    public Place place;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "uID", nullable = false)
-    public User user;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "catID", nullable = false)
-    Category category;
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @JoinColumn(name = "plcID", nullable = false)
+//    public Place place;
+//
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @JoinColumn(name = "uID", nullable = false)
+//    public User user;
+//
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @JoinColumn(name = "catID", nullable = false)
+//    Category category;
 
     public boolean isHaveImgs() {
         return haveImgs;
@@ -55,13 +55,13 @@ public class MyEvent {
         this.haveImgs = haveImgs;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+//    public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
 
     public int getCatID() {
         return catID;
@@ -96,13 +96,13 @@ public class MyEvent {
         this.finish = finish;
     }
 
-    public Place getPlace() {
-        return place;
-    }
-
-    public void setPlace(Place place) {
-        this.place = place;
-    }
+//    public Place getPlace() {
+//        return place;
+//    }
+//
+//    public void setPlace(Place place) {
+//        this.place = place;
+//    }
 
     public int getPlcID() {
         return plcID;
@@ -138,11 +138,11 @@ public class MyEvent {
         this.uID = uID;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }
