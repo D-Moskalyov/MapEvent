@@ -1,9 +1,14 @@
 package com.mapevent.web.controller;
 
 
+import com.mapevent.web.exceptions.UserWithoutEvents;
+import com.mapevent.web.model.Favorite;
+import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.model.User;
 import com.mapevent.web.model.WaitConfirm;
 import com.mapevent.web.DTO.*;
+import com.mapevent.web.service.EventService;
+import com.mapevent.web.service.FavoriteService;
 import com.mapevent.web.utils.*;
 import com.mapevent.web.service.UserService;
 import com.mapevent.web.service.WaitConfirmsService;
@@ -19,12 +24,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -34,6 +38,10 @@ public class UserController {
     UserService userService;
     @Autowired
     WaitConfirmsService waitConfirmsService;
+    @Autowired
+    EventService eventService;
+    @Autowired
+    FavoriteService favoriteService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(ModelMap model) {
@@ -234,6 +242,41 @@ public class UserController {
 
 
 
+    @RequestMapping(value = "/events", method = RequestMethod.GET)
+    public ModelAndView events(ModelMap model) {
+        Map map = new HashMap();
+        List<MyEvent> myEventList = new ArrayList<MyEvent>();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null) {
+            Object user = (Object) authentication.getPrincipal();
+            if (user.getClass() == User.class) {
+                try {
+                    myEventList = eventService.getEventByUserID(((User) user).getuID());
+                    map.put("events", myEventList);
+                } catch (UserWithoutEvents e) {
+                    e.printStackTrace();
+                    map.put("events", myEventList);
+                }
+            }
+        }
+
+        return new ModelAndView("events", map);
+    }
+
+
+
+
+    @RequestMapping(value = "/favorite", method = RequestMethod.GET)
+    public ModelAndView favorite(ModelMap model) {
+        Map map = new HashMap();
+        List<MyEvent> myEventList = new ArrayList<MyEvent>();
+
+
+
+
+        return new ModelAndView("events", map);
+    }
+
     @RequestMapping(value="/favorite.json", method=RequestMethod.POST)
     public @ResponseBody
     ValidationResponse processFavoritetAjaxJson(HttpServletRequest request){
@@ -241,6 +284,23 @@ public class UserController {
         ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
         Map<String, String[]> map = request.getParameterMap();
 
+        if(map.get("fav")[0].equals("off")){
+            Favorite favorite = null;
+            try {
+                favorite = favoriteService.getPair(Integer.parseInt(map.get("userID")[0]),
+                        Integer.parseInt(map.get("eventID")[0]));
+            } catch (UserWithoutEvents userWithoutEvents) {
+                userWithoutEvents.printStackTrace();
+            }
+            favoriteService.delete(favorite);
+        }
+        else{
+            Favorite favorite = new Favorite();
+            favorite.setEvID(Integer.parseInt(map.get("eventID")[0]));
+            favorite.setuID(Integer.parseInt(map.get("userID")[0]));
+
+            favoriteService.save(favorite);
+        }
 
 
         res.setErrorMessageList(errorMessages);

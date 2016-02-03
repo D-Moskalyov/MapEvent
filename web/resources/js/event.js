@@ -8,11 +8,15 @@ $(function($) {
         }
     });
 
+    if(userFromELtoJS == 0){
+        //console.log(userFromELtoJS);
+        $(".favorite").css('display', 'none');
+    }
 
     $(".favorite").click(function() {
         var data = {};
         if(event.target.id == 'favYes') {
-            console.log(userFromELtoJS);
+            //console.log(userFromELtoJS);
             data['fav'] = 'off';
         }
         else{
@@ -21,7 +25,7 @@ $(function($) {
         data['userID'] = userFromELtoJS;
         data['eventID'] = eventFromELtoJS;
 
-        console.log(data);
+        //console.log(data);
         $.post(favURLFromELtoJS, data, function (response) {
 
         }, 'json');

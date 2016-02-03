@@ -62,11 +62,26 @@
     </definition>
 
     <definition name="eventPageTemplate" extends="defaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/jsp/myEvent.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/event.jsp" />
         <put-attribute name="footer" value="" />
 
         <put-list-attribute name="stylesheets">
-            <add-attribute value="/resources/css/myEvent.css" />
+            <add-attribute value="/resources/css/event.css" />
+        </put-list-attribute>
+        <put-list-attribute name="javascripts">
+            <add-attribute value="/resources/js/event.js" />
+        </put-list-attribute>
+    </definition>
+
+    <definition name="eventsPageTemplate" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/events.jsp" />
+        <put-attribute name="footer" value="" />
+
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/resources/css/events.css" />
+        </put-list-attribute>
+        <put-list-attribute name="javascripts">
+            <add-attribute value="/resources/js/events.js" />
         </put-list-attribute>
     </definition>
 

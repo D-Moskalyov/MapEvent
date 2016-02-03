@@ -9,7 +9,7 @@ import com.mapevent.web.service.EventService;
 import com.mapevent.web.service.PlaceService;
 import com.mapevent.web.utils.ErrorMessage;
 import com.mapevent.web.DTO.NewEventForm;
-import com.mapevent.web.utils.EventNotExistException;
+import com.mapevent.web.exceptions.EventNotExistException;
 import com.mapevent.web.utils.ValidationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -149,8 +149,19 @@ public class EventController {
         } catch (EventNotExistException e) {
             return new ModelAndView("./map");
         }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null) {
+            Object user = (Object) authentication.getPrincipal();
+            if(user.getClass() == User.class)
+                map.put("user", ((User)user).getuID());
+            else
+                map.put("user", 0);
+        }
+        else{
+            map.put("user", 0);
+        }
         map.put("event", myEvent);
-        map.put("user", 1);
         return new ModelAndView("event", map);
     }
 }

@@ -1,9 +1,9 @@
 package com.mapevent.web.DAO;
 
+import com.mapevent.web.exceptions.UserWithoutEvents;
 import com.mapevent.web.model.MyEvent;
-import com.mapevent.web.model.User;
 import com.mapevent.web.service.EventService;
-import com.mapevent.web.utils.EventNotExistException;
+import com.mapevent.web.exceptions.EventNotExistException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +36,30 @@ public class EventDAO implements EventService {
         }
         else {
             throw new EventNotExistException();
+        }
+    }
+
+    public List<MyEvent> getEventByUserID(int id) throws UserWithoutEvents {
+        Query q = sf.getCurrentSession().createQuery("from MyEvent e where e.uID = :id");
+        q.setInteger("id", id);
+        List<MyEvent> myEvents = q.list();
+        if (!myEvents.isEmpty()) {
+            return myEvents;
+        }
+        else {
+            throw new UserWithoutEvents();
+        }
+    }
+
+    public List<MyEvent> getFavEventByUserID(int id) throws UserWithoutEvents {
+        Query q = sf.getCurrentSession().createQuery("from MyEvent e where e.uID = :id");
+        q.setInteger("id", id);
+        List<MyEvent> myEvents = q.list();
+        if (!myEvents.isEmpty()) {
+            return myEvents;
+        }
+        else {
+            throw new UserWithoutEvents();
         }
     }
 }

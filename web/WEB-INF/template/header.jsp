@@ -27,6 +27,8 @@
             <button type="button" id="reg"class="btn btn-default">Регистрация</button>
         </securiry:authorize>
         <securiry:authorize access="hasRole('ROLE_USER')">
+            <button type="button" id="myEv"class="btn btn-default">Мои события</button>
+            <button type="button" id="fav"class="btn btn-default">Избранное</button>
             <button type="button" id="nev"class="btn btn-default">Новое событие</button>
             <button type="button" id="usPage"class="btn btn-default">Профиль</button>
             <button type="button" id="logout"class="btn btn-default">Выход</button>
@@ -55,6 +57,12 @@
         });
         $('#nev').click(function(){
             window.location.href='/event/newevent';
+        });
+        $('#fav').click(function(){
+            window.location.href='/user/favorite';
+        });
+        $('#myEv').click(function(){
+            window.location.href='/user/events';
         });
         $('#usPage').click(function(){
             <securiry:authorize access="hasRole('ROLE_USER')">

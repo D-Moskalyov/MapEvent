@@ -11,10 +11,35 @@ public class Favorite {
     private Integer fID;
 
     @Column(name = "U_Id")
-    private String uID;
+    private int uID;
 
     @Column(name = "Ev_Id")
-    private String evID;
+    private int evID;
 
     //OneToOne
+
+
+    public int getEvID() {
+        return evID;
+    }
+
+    public void setEvID(int evID) {
+        this.evID = evID;
+    }
+
+    public Integer getfID() {
+        return fID;
+    }
+
+    public void setfID(Integer fID) {
+        this.fID = fID;
+    }
+
+    public int getuID() {
+        return uID;
+    }
+
+    public void setuID(int uID) {
+        this.uID = uID;
+    }
 }
