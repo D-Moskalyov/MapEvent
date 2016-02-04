@@ -271,7 +271,19 @@ public class UserController {
         Map map = new HashMap();
         List<MyEvent> myEventList = new ArrayList<MyEvent>();
 
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null) {
+            Object user = (Object) authentication.getPrincipal();
+            if (user.getClass() == User.class) {
+                try {
+                    myEventList = eventService.getFavEventByUserID(((User) user).getuID());
+                    map.put("events", myEventList);
+                } catch (UserWithoutEvents e) {
+                    e.printStackTrace();
+                    map.put("events", myEventList);
+                }
+            }
+        }
 
 
         return new ModelAndView("events", map);

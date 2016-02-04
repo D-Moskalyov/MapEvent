@@ -16,7 +16,7 @@ public class Favorite {
     @Column(name = "Ev_Id")
     private int evID;
 
-    //OneToOne
+    //ManyToOne
 
 
     public int getEvID() {

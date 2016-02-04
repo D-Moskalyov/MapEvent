@@ -7,6 +7,11 @@ select * from waitconfirms;
 select * from favorites;
 
 
+select * from events
+join
+favorites
+on events.Ev_Id=favorites.Ev_Id
+where favorites.U_Id=1;
 
 
 use pizzeriadb;
@@ -117,6 +122,10 @@ PRIMARY KEY (WC_Id)
 
 insert into users (Username, FullName, Email, Password, Gender, Enable) values("dima", "D M", "viva-barca@i.ua", "b59c67bf196a4758191e42f76670ceba", "male", false);
 insert into places (Plc_Id_Google, Address_Line_1, Address_Line_2, City, State, Country, Lat, Lng) values("asca", "casv" ,"vdsv", "vds", "csac", "casc", 4.535642, 7.536743);
+insert into favorites (Ev_Id, U_Id) value (2, 1);
+insert into favorites (Ev_Id, U_Id) value (1, 1);
+
+delete from favorites where Ev_Id=1;
 
 use mapevent;
 
