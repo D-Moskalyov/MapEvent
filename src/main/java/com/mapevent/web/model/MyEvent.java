@@ -2,6 +2,7 @@ package com.mapevent.web.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "events")
@@ -35,17 +36,20 @@ public class MyEvent {
     @Column(name = "Discription")
     private String discription;
 
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 //    @JoinColumn(name = "plcID", nullable = false)
 //    public Place place;
-//
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 //    @JoinColumn(name = "uID", nullable = false)
 //    public User user;
-//
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 //    @JoinColumn(name = "catID", nullable = false)
 //    Category category;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "event")
+    List<Favorite> favorites;
 
     public boolean isHaveImgs() {
         return haveImgs;
@@ -95,7 +99,7 @@ public class MyEvent {
     public void setFinish(Date finish) {
         this.finish = finish;
     }
-
+//
 //    public Place getPlace() {
 //        return place;
 //    }
@@ -145,4 +149,13 @@ public class MyEvent {
 //    public void setUser(User user) {
 //        this.user = user;
 //    }
+
+
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
+    }
 }

@@ -16,8 +16,12 @@ public class Favorite {
     @Column(name = "Ev_Id")
     private int evID;
 
-    //ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "evID", nullable = false)
+    public MyEvent event;
 
+
+    public User user;
 
     public int getEvID() {
         return evID;
@@ -41,5 +45,24 @@ public class Favorite {
 
     public void setuID(int uID) {
         this.uID = uID;
+    }
+
+
+    public MyEvent getEvent() {
+        return event;
+    }
+
+    public void setEvent(MyEvent event) {
+        this.event = event;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "uID", nullable = false)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
