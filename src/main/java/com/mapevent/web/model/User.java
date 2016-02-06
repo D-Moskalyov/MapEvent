@@ -44,8 +44,8 @@ public class User implements Serializable, UserDetails {
     private boolean enable;
 
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    List<MyEvent> myEvents;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    List<MyEvent> myEvents;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     List<Favorite> favorites;
@@ -145,13 +145,13 @@ public class User implements Serializable, UserDetails {
         return true;
     }
 
-//    public List<MyEvent> getMyEvents() {
-//        return myEvents;
-//    }
-//
-//    public void setMyEvents(List<MyEvent> myEvents) {
-//        this.myEvents = myEvents;
-//    }
+    public List<MyEvent> getMyEvents() {
+        return myEvents;
+    }
+
+    public void setMyEvents(List<MyEvent> myEvents) {
+        this.myEvents = myEvents;
+    }
 
 
     public List<Favorite> getFavorites() {

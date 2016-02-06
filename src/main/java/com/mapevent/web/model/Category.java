@@ -18,8 +18,8 @@ public class Category {
     private String title;
 
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-//    List<MyEvent> myEvents;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    List<MyEvent> myEvents;
 
 //    @ManyToMany
 //    @JoinTable(name="parentChldCat",
@@ -45,13 +45,13 @@ public class Category {
         this.catPrntID = catPrntID;
     }
 
-//    public List<MyEvent> getMyEvents() {
-//        return myEvents;
-//    }
-//
-//    public void setMyEvents(List<MyEvent> myEvents) {
-//        this.myEvents = myEvents;
-//    }
+    public List<MyEvent> getMyEvents() {
+        return myEvents;
+    }
+
+    public void setMyEvents(List<MyEvent> myEvents) {
+        this.myEvents = myEvents;
+    }
 
     public String getTitle() {
         return title;

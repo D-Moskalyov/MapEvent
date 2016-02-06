@@ -36,8 +36,8 @@ public class Place {
     private double lng;
 
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "place")
-//    List<MyEvent> myEvents;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "place")
+    List<MyEvent> myEvents;
 
     public double getLat() {
         return lat;
@@ -79,13 +79,13 @@ public class Place {
         this.country = country;
     }
 
-//    public List<MyEvent> getMyEvents() {
-//        return myEvents;
-//    }
-//
-//    public void setMyEvents(List<MyEvent> myEvents) {
-//        this.myEvents = myEvents;
-//    }
+    public List<MyEvent> getMyEvents() {
+        return myEvents;
+    }
+
+    public void setMyEvents(List<MyEvent> myEvents) {
+        this.myEvents = myEvents;
+    }
 
     public double getLng() {
         return lng;

@@ -17,10 +17,12 @@ public class Favorite {
     private int evID;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "evID", nullable = false)
+    @JoinColumn(name = "Ev_Id", insertable = false, updatable = false)
+    //@JoinColumn(name = "evID", nullable = false)
     public MyEvent event;
 
-
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "U_Id", insertable = false, updatable = false)
     public User user;
 
     public int getEvID() {
@@ -56,8 +58,7 @@ public class Favorite {
         this.event = event;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "uID", nullable = false)
+
     public User getUser() {
         return user;
     }
