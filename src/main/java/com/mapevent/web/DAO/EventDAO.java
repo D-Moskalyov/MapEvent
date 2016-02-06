@@ -52,7 +52,7 @@ public class EventDAO implements EventService {
     }
 
     public List<MyEvent> getFavEventByUserID(int id) throws UserWithoutEvents {
-        Query q = sf.getCurrentSession().createQuery("from MyEvent e join e.favorites f where f.uID = :id");
+        Query q = sf.getCurrentSession().createQuery("select e from MyEvent e join e.favorites f where f.uID = :id");
         q.setInteger("id", id);
         //List<User> users = q.list();
         List<MyEvent> myEvents = q.list();
