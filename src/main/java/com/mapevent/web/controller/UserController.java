@@ -2,6 +2,7 @@ package com.mapevent.web.controller;
 
 
 import com.mapevent.web.exceptions.UserWithoutEvents;
+import com.mapevent.web.exceptions.UserWithoutFavEvent;
 import com.mapevent.web.model.Favorite;
 import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.model.User;
@@ -245,17 +246,32 @@ public class UserController {
     @RequestMapping(value = "/events", method = RequestMethod.GET)
     public ModelAndView events(ModelMap model) {
         Map map = new HashMap();
-        List<MyEvent> myEventList = new ArrayList<MyEvent>();
+        LinkedList<MyEvent> myEventList = new LinkedList<MyEvent>();
+        LinkedList<MyEvent> myEventListFav = new LinkedList<MyEvent>();
+        List<EventWithTags> myEventWithTagsList = new ArrayList<EventWithTags>();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication != null) {
             Object user = (Object) authentication.getPrincipal();
             if (user.getClass() == User.class) {
                 try {
                     myEventList = eventService.getEventByUserID(((User) user).getuID());
-                    map.put("events", myEventList);
+
+                    try {
+                        myEventListFav = eventService.getFavEventByUserID(((User) user).getuID());
+                    } catch (UserWithoutFavEvent e) {
+                        e.printStackTrace();
+                    }
+
+                    for (MyEvent myEvent : myEventList) {
+                        if(myEventListFav.contains(myEvent))
+                            myEventWithTagsList.add(new EventWithTags(myEvent, true, true));
+                        else
+                            myEventWithTagsList.add(new EventWithTags(myEvent, false, true));
+                    }
+                    map.put("eventsWithTags", myEventWithTagsList);
                 } catch (UserWithoutEvents e) {
                     e.printStackTrace();
-                    map.put("events", myEventList);
+                    map.put("eventsWithTags", myEventWithTagsList);
                 }
             }
         }
@@ -269,7 +285,9 @@ public class UserController {
     @RequestMapping(value = "/favorite", method = RequestMethod.GET)
     public ModelAndView favorite(ModelMap model) {
         Map map = new HashMap();
-        List<MyEvent> myEventList = new ArrayList<MyEvent>();
+        LinkedList<MyEvent> myEventList = new LinkedList<MyEvent>();
+        LinkedList<MyEvent> myEventListMyEv = new LinkedList<MyEvent>();
+        List<EventWithTags> myEventWithTagsList = new ArrayList<EventWithTags>();
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication != null) {
@@ -277,10 +295,24 @@ public class UserController {
             if (user.getClass() == User.class) {
                 try {
                     myEventList = eventService.getFavEventByUserID(((User) user).getuID());
-                    map.put("events", myEventList);
-                } catch (UserWithoutEvents e) {
+
+                    try {
+                        myEventList = eventService.getEventByUserID(((User) user).getuID());
+                    } catch (UserWithoutEvents e) {
+                        e.printStackTrace();
+                    }
+
+                    for (MyEvent myEvent : myEventList) {
+                        if(myEventListMyEv.contains(myEvent))
+                            myEventWithTagsList.add(new EventWithTags(myEvent, true, true));
+                        else
+                            myEventWithTagsList.add(new EventWithTags(myEvent, true, false));
+                    }
+
+                    map.put("eventsWithTags", myEventWithTagsList);
+                } catch (UserWithoutFavEvent e) {
                     e.printStackTrace();
-                    map.put("events", myEventList);
+                    map.put("eventsWithTags", myEventWithTagsList);
                 }
             }
         }

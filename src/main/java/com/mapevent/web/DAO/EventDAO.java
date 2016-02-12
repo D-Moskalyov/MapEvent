@@ -1,6 +1,7 @@
 package com.mapevent.web.DAO;
 
 import com.mapevent.web.exceptions.UserWithoutEvents;
+import com.mapevent.web.exceptions.UserWithoutFavEvent;
 import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.service.EventService;
 import com.mapevent.web.exceptions.EventNotExistException;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Repository(value = "eventDAO")
@@ -39,28 +41,30 @@ public class EventDAO implements EventService {
         }
     }
 
-    public List<MyEvent> getEventByUserID(int id) throws UserWithoutEvents {
+    public LinkedList<MyEvent> getEventByUserID(int id) throws UserWithoutEvents {
         Query q = sf.getCurrentSession().createQuery("from MyEvent e where e.uID = :id");
         q.setInteger("id", id);
         List<MyEvent> myEvents = q.list();
+        LinkedList<MyEvent> myEventLinkedList = new LinkedList<MyEvent>(myEvents);
         if (!myEvents.isEmpty()) {
-            return myEvents;
+            return myEventLinkedList;
         }
         else {
             throw new UserWithoutEvents();
         }
     }
 
-    public List<MyEvent> getFavEventByUserID(int id) throws UserWithoutEvents {
+    public LinkedList<MyEvent> getFavEventByUserID(int id) throws UserWithoutFavEvent {
         Query q = sf.getCurrentSession().createQuery("select e from MyEvent e join e.favorites f where f.uID = :id");
         q.setInteger("id", id);
         //List<User> users = q.list();
         List<MyEvent> myEvents = q.list();
+        LinkedList<MyEvent> myEventLinkedList = new LinkedList<MyEvent>(myEvents);
         if (!myEvents.isEmpty()) {
-            return myEvents;
+            return myEventLinkedList;
         }
         else {
-            throw new UserWithoutEvents();
+            throw new UserWithoutFavEvent();
         }
     }
 }

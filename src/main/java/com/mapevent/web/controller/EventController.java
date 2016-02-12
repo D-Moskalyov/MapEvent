@@ -1,6 +1,7 @@
 package com.mapevent.web.controller;
 
 
+import com.mapevent.web.DTO.EventWithTags;
 import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.model.Place;
 import com.mapevent.web.model.User;

@@ -158,4 +158,12 @@ public class MyEvent {
     public void setFavorites(List<Favorite> favorites) {
         this.favorites = favorites;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this.evID == ((MyEvent)obj).evID)
+            return true;
+        else
+            return false;
+    }
 }
