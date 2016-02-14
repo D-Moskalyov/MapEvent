@@ -269,9 +269,11 @@ public class UserController {
                             myEventWithTagsList.add(new EventWithTags(myEvent, false, true));
                     }
                     map.put("eventsWithTags", myEventWithTagsList);
+                    map.put("user", ((User) user).getuID());
                 } catch (UserWithoutEvents e) {
                     e.printStackTrace();
                     map.put("eventsWithTags", myEventWithTagsList);
+                    map.put("user", ((User) user).getuID());
                 }
             }
         }
@@ -297,7 +299,7 @@ public class UserController {
                     myEventList = eventService.getFavEventByUserID(((User) user).getuID());
 
                     try {
-                        myEventList = eventService.getEventByUserID(((User) user).getuID());
+                        myEventListMyEv = eventService.getEventByUserID(((User) user).getuID());
                     } catch (UserWithoutEvents e) {
                         e.printStackTrace();
                     }
@@ -310,9 +312,11 @@ public class UserController {
                     }
 
                     map.put("eventsWithTags", myEventWithTagsList);
+                    map.put("user", ((User) user).getuID());
                 } catch (UserWithoutFavEvent e) {
                     e.printStackTrace();
                     map.put("eventsWithTags", myEventWithTagsList);
+                    map.put("user", ((User) user).getuID());
                 }
             }
         }

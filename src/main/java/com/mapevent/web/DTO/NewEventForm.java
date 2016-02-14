@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NewEventForm {
+
+    private int id;
     //@NotEmpty(message = "Введите заголовок")
     //@Size(min = 5, message = "Заголовок должен состаять не менее чем из 5 символов")
     private String what;
@@ -42,6 +44,16 @@ public class NewEventForm {
     //@NotEmpty(message = "Введите краткое описание")
     //@Size(min = 5, message = "Не менее пяти символов")
     private String description;
+
+    private boolean edit;
+
+    public boolean isEdit() {
+        return edit;
+    }
+
+    public void setEdit(boolean edit) {
+        this.edit = edit;
+    }
 
     public NewEventForm() {
         this.administrative_area_level_1 = "";
@@ -213,4 +225,11 @@ public class NewEventForm {
         this.whenStart = whenStart;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

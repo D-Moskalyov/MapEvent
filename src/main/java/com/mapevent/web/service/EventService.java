@@ -10,8 +10,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public interface EventService {
-    int save(MyEvent myEvent);
+    int saveOrUpdate(MyEvent myEvent);
     MyEvent getEventByID(int id) throws EventNotExistException;
     LinkedList<MyEvent> getEventByUserID(int id) throws UserWithoutEvents;
     LinkedList<MyEvent> getFavEventByUserID(int id) throws UserWithoutFavEvent;
+    void delete(MyEvent event);
 }

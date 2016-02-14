@@ -7,12 +7,12 @@ public class EventWithTags {
 
     public EventWithTags(MyEvent mE, boolean isF, boolean isMyE){
         event = mE;
-        isFavorite = isF;
-        isMyEvent = isMyE;
+        favorite = isF;
+        myEvent = isMyE;
     }
 
-    boolean isFavorite;
-    boolean isMyEvent;
+    boolean favorite;
+    boolean myEvent;
 
     MyEvent event;
 
@@ -25,18 +25,18 @@ public class EventWithTags {
     }
 
     public boolean isFavorite() {
-        return isFavorite;
+        return favorite;
     }
 
-    public void setIsFavorite(boolean isFavorite) {
-        this.isFavorite = isFavorite;
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 
     public boolean isMyEvent() {
-        return isMyEvent;
+        return myEvent;
     }
 
-    public void setIsMyEvent(boolean isMyEvent) {
-        this.isMyEvent = isMyEvent;
+    public void setMyEvent(boolean myEvent) {
+        this.myEvent = myEvent;
     }
 }

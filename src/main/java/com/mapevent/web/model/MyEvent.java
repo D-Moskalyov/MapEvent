@@ -36,7 +36,7 @@ public class MyEvent {
     @Column(name = "Discription")
     private String discription;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "Plc_Id", insertable = false, updatable = false)
     public Place place;
 
@@ -44,7 +44,7 @@ public class MyEvent {
     @JoinColumn(name = "U_Id", insertable = false, updatable = false)
     public User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "Cat_Id", insertable = false, updatable = false)
     Category category;
 

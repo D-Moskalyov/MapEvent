@@ -1,5 +1,14 @@
 @import "/resources/css/main-style.css";
 
+
+html, body {
+    overflow: auto;
+}
+
+.ev-list-elem {
+    margin: 5px 10px;
+}
+
 .ev-list-elem {
     margin: 5px 10px;
 }

@@ -1,16 +1,11 @@
 $(function () {
 
-    //if("${newEventForm.placeID}" != ""){
-    //    var address_route = "${newEventForm.route}";
-    //    var address_street_number = "${newEventForm.street_number}";
-    //    var address_locality = "${newEventForm.locality}";
-    //    var address_administrative_area_level_1 = "${newEventForm.administrative_area_level_1}";
-    //    var address_country = "${newEventForm.country}";
-    //    var address_string = address_route + ', ' + address_street_number + ', ' +
-    //        address_locality + ', ' + address_administrative_area_level_1 + ', ' + address_country;
-    //    console.log(address_string);
-    //    $("p.address").text(address_string);
-    //}
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            //console.log(csrfToken);
+            xhr.setRequestHeader(csrfHeader, csrfToken);
+        }
+    });
 
     $('#datetimepicker6').datetimepicker({
         locale: 'ru'
@@ -31,9 +26,55 @@ $(function () {
         alert(e.data)
     });
 
+    console.log(isEditFromELtoJS);
+    if(isEditFromELtoJS == 'true') {
+        $("input[name='what']").prop('readonly', true);
+        $("#deleteBtn").prop('visibility', true);
+        $("#deleteBtn").click(function(){
+            console.log('deleteBtn cick');
+            var data = {};
+            data['idDelEv'] = evIDFromELtoJS;
+            console.log(data);
+            $.post("../delete.json", data, function (response) {
+                console.log('ok ajax');
+            }, 'json');
+        });
+    }
+    //if(!isEditFromELtoJS) {
+    //    $("input[name='what']").prop('readonly', false);
+    //}
+
     var nowDate = new Date();
     var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(),
         nowDate.getHours(), nowDate.getMinutes(), 0, 0);
+
+    //console.log(whenStartFromELtoJS);
+    //console.log(whenFinishFromELtoJS);
+    //console.log(Date.parse(whenStartFromELtoJS));
+    //console.log(Date.parse(whenFinishFromELtoJS));
+
+    if(whenStartFromELtoJS != '' & whenFinishFromELtoJS != '') {
+        var dateStart = convertInputtoDate(whenStartFromELtoJS);
+        var dateFinish = convertInputtoDate(whenFinishFromELtoJS);
+
+        $('#datetimepicker6').data("DateTimePicker").date(dateStart);
+        $('#datetimepicker7').data("DateTimePicker").date(dateFinish);
+    }
+
+    //console.log(dateStart);
+    //console.log(dateFinish);
+
+    //var dateStart = Date.parse(whenStartFromELtoJS);
+    //var startDt = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate(),
+    //    dateStart.getHours(), dateStart.getMinutes(), 0, 0);
+    //
+    //var dateFinish = Date.parse(whenFinishFromELtoJS);
+    //var finDt = new Date(dateFinish.getFullYear(), dateFinish.getMonth(), dateFinish.getDate(),
+    //    dateFinish.getHours(), dateFinish.getMinutes(), 0, 0);
+
+
+    //$('#datetimepicker6').data("DateTimePicker").setDate(Date.parse(whenStartFromELtoJS));
+    //$('#datetimepicker7').data("DateTimePicker").setDate(Date.parse(whenFinishFromELtoJS));
 
     $('#datetimepicker6').data("DateTimePicker").minDate(today);
     //console.log($('#categoryID')[0].value);
@@ -56,6 +97,14 @@ $(function () {
         // Ajax validation
         var $inputs = $form.find('input,textarea');
         var data = collectFormData($inputs);
+
+        if(isEditFromELtoJS) {
+            data['edit'] = true;
+            data['id'] = evIDFromELtoJS;
+        }
+        else
+            data['edit'] = false;
+
         $.post(formJsonUrlFromELtoJS, data, function (response) {
             $form.find('.check-group').removeClass('error');
             $('#buttonTogle').removeClass('error');
@@ -108,6 +157,28 @@ $(function () {
         e.preventDefault();
         return false;
     });
+
+    function convertInputtoDate(dateTimeStr){
+        var dateTime = dateTimeStr.split(' ');
+        var dateStr = dateTime[0];
+        var timeStr = dateTime[1];
+
+        //console.log(dateStr);
+        //console.log(timeStr);
+
+        var date = dateStr.split('-');
+        var year = date[0];
+        var month = date[1];
+        var day = date[2];
+
+        var time = timeStr.split(':');
+        var hour = time[0];
+        var minute = time[1];
+
+        //console.log(year + ' ' + month + ' ' + day + ' ' + hour + ' ' + minute);
+
+        return new Date(year, month - 1, day, hour, minute ,0 ,0);
+    }
 });
 
 var map;

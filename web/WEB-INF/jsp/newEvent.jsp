@@ -183,6 +183,7 @@
                         </div>
                         <div class="contentForm">
                             <button type="submit" class="btn btn-primary">Готово</button>
+                            <button id="deleteBtn" type="button" class="btn btn-primary">Удалить</button>
                         </div>
                     </div>
                 </fieldset>
@@ -190,7 +191,12 @@
         </div>
 
         <script>
+            var whenStartFromELtoJS = '${newEventForm.whenStart}';
+            var evIDFromELtoJS = '${newEventForm.id}';
+            var whenFinishFromELtoJS = '${newEventForm.whenFinish}';
+            var isEditFromELtoJS = '${newEventForm.edit}';
             var formJsonUrlFromELtoJS = '${formJsonUrl}';
+            //var deleteJsonUrl = '${formJsonUrl}';
             var placeIDFromELtoJS = '${newEventForm.placeID}';
         </script>
         <script async defer

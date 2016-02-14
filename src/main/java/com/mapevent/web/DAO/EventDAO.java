@@ -25,8 +25,9 @@ public class EventDAO implements EventService {
 //    @Autowired
 //    PlaceService placeService;
 
-    public int save(MyEvent myEvent) {
-        return (Integer) sf.getCurrentSession().save(myEvent);
+    public int saveOrUpdate(MyEvent myEvent) {
+        sf.getCurrentSession().saveOrUpdate(myEvent);
+        return myEvent.getEvID();
     }
 
     public MyEvent getEventByID(int id) throws EventNotExistException {
@@ -66,5 +67,9 @@ public class EventDAO implements EventService {
         else {
             throw new UserWithoutFavEvent();
         }
+    }
+
+    public void delete(MyEvent event) {
+        sf.getCurrentSession().delete(event);
     }
 }

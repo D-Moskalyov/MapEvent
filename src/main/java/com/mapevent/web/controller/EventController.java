@@ -1,7 +1,6 @@
 package com.mapevent.web.controller;
 
 
-import com.mapevent.web.DTO.EventWithTags;
 import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.model.Place;
 import com.mapevent.web.model.User;
@@ -43,7 +42,10 @@ public class EventController {
 
     @RequestMapping(value = "/newevent", method = RequestMethod.GET)
     public String showNewEvent(ModelMap model) {
-        model.addAttribute("newEventForm", new NewEventForm());
+        NewEventForm newEventForm = new NewEventForm();
+        newEventForm.setEdit(false);
+        model.addAttribute("newEventForm", newEventForm);
+        //model.addAttribute("isEdit", false);
         return "newEvent";
     }
 
@@ -54,89 +56,97 @@ public class EventController {
         }
         else {
             //writeDB
-            return "eventPage";
+            return "eventEditPage";
         }
     }
 
     @RequestMapping(value="/newevent.json",method=RequestMethod.POST)
     public @ResponseBody
-    ValidationResponse processFormAjaxJson(Model model, @ModelAttribute(value="newEventForm") @Valid NewEventForm newEventForm, BindingResult result ){
+    ValidationResponse processFormAjaxJson(Model model, @ModelAttribute(value="newEventForm") @Valid NewEventForm newEventForm,
+                                            BindingResult result ){
         ValidationResponse res = new ValidationResponse();
-        if(!result.hasErrors()){
-            String plcIDGoogle = newEventForm.getPlaceID();
-            String addressLine1 = newEventForm.getRoute();
-            String addressLine2 = newEventForm.getStreet_number();
-            String city = newEventForm.getLocality();
-            String state = newEventForm.getAdministrative_area_level_1();
-            String country = newEventForm.getCountry();
-            Double lat = Double.parseDouble(newEventForm.getLat());
-            Double lng = Double.parseDouble(newEventForm.getLng());
+        //if(!newEventForm.isEdit()) {
+            if (!result.hasErrors()) {
+                String plcIDGoogle = newEventForm.getPlaceID();
+                String addressLine1 = newEventForm.getRoute();
+                String addressLine2 = newEventForm.getStreet_number();
+                String city = newEventForm.getLocality();
+                String state = newEventForm.getAdministrative_area_level_1();
+                String country = newEventForm.getCountry();
+                Double lat = Double.parseDouble(newEventForm.getLat());
+                Double lng = Double.parseDouble(newEventForm.getLng());
 
-            int idPlace = placeService.placeAlreadyExist(plcIDGoogle, addressLine1, addressLine2,
-                                                        city, state, country, lat, lng);
+                int idPlace = placeService.placeAlreadyExist(plcIDGoogle, addressLine1, addressLine2,
+                        city, state, country, lat, lng);
 
-            if(idPlace == 0) {
-                Place place = new Place();
+                if (idPlace == 0) {
+                    Place place = new Place();
 
-                place.setPlcIDGoogle(newEventForm.getPlaceID());
-                place.setAddressLine1(newEventForm.getRoute());
-                place.setAddressLine2(newEventForm.getStreet_number());
-                place.setCity(newEventForm.getLocality());
-                place.setState(newEventForm.getAdministrative_area_level_1());
-                place.setCountry(newEventForm.getCountry());
-                //(double)(Math.round(Double.parseDouble(newEventForm.getLng()) * 1000000d) / 1000000d);
-                double dblat = (double)(Math.round(Double.parseDouble(newEventForm.getLat()) * 1000000d) / 1000000d);
-                double dblng = (double)(Math.round(Double.parseDouble(newEventForm.getLng()) * 1000000d) / 1000000d);
-                place.setLat(dblat);
-                place.setLng(dblng);
+                    place.setPlcIDGoogle(newEventForm.getPlaceID());
+                    place.setAddressLine1(newEventForm.getRoute());
+                    place.setAddressLine2(newEventForm.getStreet_number());
+                    place.setCity(newEventForm.getLocality());
+                    place.setState(newEventForm.getAdministrative_area_level_1());
+                    place.setCountry(newEventForm.getCountry());
+                    //(double)(Math.round(Double.parseDouble(newEventForm.getLng()) * 1000000d) / 1000000d);
+                    double dblat = (double) (Math.round(Double.parseDouble(newEventForm.getLat()) * 1000000d) / 1000000d);
+                    double dblng = (double) (Math.round(Double.parseDouble(newEventForm.getLng()) * 1000000d) / 1000000d);
+                    place.setLat(dblat);
+                    place.setLng(dblng);
 
-                idPlace = placeService.saveOrUpdate(place);
-            }
-
-            MyEvent myEvent = new MyEvent();
-
-            myEvent.setPlcID(idPlace);
-            myEvent.setTitle(newEventForm.getWhat());
-            myEvent.setDiscription(newEventForm.getDescription());
-            myEvent.setHaveImgs(false);
-
-            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-            try {
-                myEvent.setStart(formatter.parse(newEventForm.getWhenStart()));
-                myEvent.setFinish(formatter.parse(newEventForm.getWhenFinish()));
-
-                int catID = categoryService.getCatID(newEventForm.getCategory());
-                if(catID != 0) {
-                    myEvent.setCatID(catID);
+                    idPlace = placeService.saveOrUpdate(place);
                 }
 
-                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-                if(authentication != null) {
-                    User user = (User) authentication.getPrincipal();
-                    myEvent.setuID(user.getuID());
+                MyEvent myEvent = new MyEvent();
 
-                    eventService.save(myEvent);
+                myEvent.setPlcID(idPlace);
+                myEvent.setTitle(newEventForm.getWhat());
+                myEvent.setDiscription(newEventForm.getDescription());
+                myEvent.setHaveImgs(false);
 
-                    res.setStatus("SUCCESS");
-                }
-                else{
+                SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                try {
+                    myEvent.setStart(formatter.parse(newEventForm.getWhenStart()));
+                    myEvent.setFinish(formatter.parse(newEventForm.getWhenFinish()));
+
+                    int catID = categoryService.getCatID(newEventForm.getCategory());
+                    if (catID != 0) {
+                        myEvent.setCatID(catID);
+                    }
+
+                    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+                    if (authentication != null) {
+                        User user = (User) authentication.getPrincipal();
+                        myEvent.setuID(user.getuID());
+                        if(newEventForm.isEdit()) {
+                            try {
+                                eventService.delete(eventService.getEventByID(newEventForm.getId()));
+                            } catch (EventNotExistException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        eventService.saveOrUpdate(myEvent);
+
+                        res.setStatus("SUCCESS");
+                    } else {
+                        res.setStatus("FAIL");
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
                     res.setStatus("FAIL");
                 }
-            } catch (ParseException e) {
-                e.printStackTrace();
+
+            } else {
                 res.setStatus("FAIL");
-            }
+                List<FieldError> allErrors = result.getFieldErrors();
+                List<ErrorMessage> errorMesages = new ArrayList<ErrorMessage>();
+                for (FieldError objectError : allErrors) {
+                    errorMesages.add(new ErrorMessage(objectError.getField(), objectError.getDefaultMessage()));
+                }
+                res.setErrorMessageList(errorMesages);
 
-        }else{
-            res.setStatus("FAIL");
-            List<FieldError> allErrors = result.getFieldErrors();
-            List<ErrorMessage> errorMesages = new ArrayList<ErrorMessage>();
-            for (FieldError objectError : allErrors) {
-                errorMesages.add(new ErrorMessage(objectError.getField(), objectError.getDefaultMessage()));
             }
-            res.setErrorMessageList(errorMesages);
-
-        }
+        //}
 
         return res;
     }
@@ -165,4 +175,60 @@ public class EventController {
         map.put("event", myEvent);
         return new ModelAndView("event", map);
     }
+
+    @RequestMapping(path = "edit/{eventID}", method = RequestMethod.GET)
+    public String editEventPage(@PathVariable String eventID, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            Object user = (Object) authentication.getPrincipal();
+            if (user.getClass() == User.class){
+                try {
+                    MyEvent event = eventService.getEventByID(Integer.parseInt(eventID));
+                    if(event.getuID() == ((User)user).getuID()) {
+                        NewEventForm newEventForm = new NewEventForm();
+
+                        newEventForm.setId(event.getEvID());
+                        newEventForm.setWhat(event.getTitle());
+                        newEventForm.setCategory(event.getCategory().getTitle());
+                        newEventForm.setCountry(event.getPlace().getCountry());
+                        newEventForm.setAdministrative_area_level_1(event.getPlace().getState());
+                        newEventForm.setLocality(event.getPlace().getCity());
+                        newEventForm.setRoute(event.getPlace().getAddressLine1());
+                        newEventForm.setStreet_number(event.getPlace().getAddressLine2());
+                        newEventForm.setLng(String.valueOf(event.getPlace().getLng()));
+                        newEventForm.setLat(String.valueOf(event.getPlace().getLat()));
+                        newEventForm.setPlaceID(event.getPlace().getPlcIDGoogle());
+                        newEventForm.setDescription(event.getDiscription());
+                        newEventForm.setWhenStart(event.getStart().toString());
+                        newEventForm.setWhenFinish(event.getFinish().toString());
+                        newEventForm.setEdit(true);
+
+//                        newEventForm.setWhenStart("2016-03-07 23:09");
+//                        newEventForm.setWhenFinish("2016-03-13 23:10");
+
+                        model.addAttribute("newEventForm", newEventForm);
+                        return "newEvent";
+
+                        //return "eventEditPage";
+                    }
+                } catch (EventNotExistException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return "redirect:" + "../../map";
+    }
+
+    @RequestMapping(value = "/delete.json", method = RequestMethod.POST)
+    public @ResponseBody
+    String deleteEvent(@RequestParam("idDelEv") int id) {
+        try {
+            eventService.delete(eventService.getEventByID(id));
+        } catch (EventNotExistException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:" + "../../map";
+    }
 }
+

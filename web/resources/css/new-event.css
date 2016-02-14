@@ -75,6 +75,12 @@ h2 {
     height: 300px;
 }
 
+#deleteBtn {
+    background-color: red;
+    border-color: red;
+    /*visibility: hidden;*/
+}
+
 /*.col-md-3{*/
     /*display: block;*/
     /*padding-left: 0;*/
