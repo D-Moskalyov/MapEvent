@@ -120,12 +120,47 @@ Send_Email datetime,
 PRIMARY KEY (WC_Id)
 );
 
+
+ALTER TABLE events DROP FOREIGN KEY `events_ibfk_1`;
+ALTER TABLE events DROP FOREIGN KEY `events_ibfk_2`;
+ALTER TABLE events DROP FOREIGN KEY `events_ibfk_3`;
+ALTER TABLE categories DROP FOREIGN KEY `categories_ibfk_1`;
+ALTER TABLE images DROP FOREIGN KEY `images_ibfk_1`;
+ALTER TABLE favorites DROP FOREIGN KEY `favorites_ibfk_1`;
+ALTER TABLE favorites DROP FOREIGN KEY `favorites_ibfk_2`;
+
+
+ALTER TABLE places DROP FOREIGN KEY `places_ibfk_1`;
+ALTER TABLE categories DROP FOREIGN KEY `categories_ibfk_2`;
+ALTER TABLE categories DROP FOREIGN KEY `categories_ibfk_1`;
+ALTER TABLE users DROP FOREIGN KEY `users_ibfk_1`;
+ALTER TABLE events DROP FOREIGN KEY `events_ibfk_1`;
+ALTER TABLE users DROP FOREIGN KEY `users_ibfk_1`;
+ALTER TABLE events DROP FOREIGN KEY `events_ibfk_2`;
+
+
+ALTER TABLE events ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (Plc_Id) REFERENCES places(Plc_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE events ADD CONSTRAINT `events_ibfk_2` FOREIGN KEY (Cat_Id) REFERENCES categories(Cat_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE events ADD CONSTRAINT `events_ibfk_3` FOREIGN KEY (U_Id) REFERENCES users(U_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE categories ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (Cat_Prnt_Id) REFERENCES categories(Cat_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Images ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (Ev_Id) REFERENCES events(Ev_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE favorites ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (U_Id) REFERENCES Users(U_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE favorites ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (Ev_Id) REFERENCES Events(Ev_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+ALTER TABLE places ADD CONSTRAINT `places_ibfk_1` FOREIGN KEY (Plc_Id) REFERENCES events(Plc_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE categories ADD CONSTRAINT `categories_ibfk_2` FOREIGN KEY (Cat_Id) REFERENCES events(Cat_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE categories ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (Cat_Id) REFERENCES categories(Cat_Prnt_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE users ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (U_Id) REFERENCES events(U_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE events ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (Ev_Id) REFERENCES images(Ev_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE users ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (U_Id) REFERENCES favorites(U_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE events ADD CONSTRAINT `events_ibfk_2` FOREIGN KEY (Ev_Id) REFERENCES favorites(Ev_Id) ON DELETE CASCADE ON UPDATE CASCADE;
+
 insert into users (Username, FullName, Email, Password, Gender, Enable) values("dima", "D M", "viva-barca@i.ua", "b59c67bf196a4758191e42f76670ceba", "male", false);
 insert into places (Plc_Id_Google, Address_Line_1, Address_Line_2, City, State, Country, Lat, Lng) values("asca", "casv" ,"vdsv", "vds", "csac", "casc", 4.535642, 7.536743);
 insert into favorites (Ev_Id, U_Id) value (2, 1);
 insert into favorites (Ev_Id, U_Id) value (1, 1);
 
-delete from favorites where Ev_Id=1;
 
 use mapevent;
 
@@ -141,6 +176,8 @@ select * from places where Plc_Id_Google="ChIJBVXQG_CgJ0ERON-jp0YRZE0" and
                            Country="Украина" and 
                            Lat="49.993351" and 
                            Lng="36.232372";
+
+delete from favorites where Ev_Id=1;
 
 delete from users;
 drop table categories;
