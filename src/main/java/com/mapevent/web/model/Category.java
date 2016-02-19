@@ -18,7 +18,7 @@ public class Category {
     private String title;
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
     List<MyEvent> myEvents;
 
 //    @ManyToMany

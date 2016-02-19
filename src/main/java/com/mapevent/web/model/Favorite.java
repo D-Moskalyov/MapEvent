@@ -16,12 +16,12 @@ public class Favorite {
     @Column(name = "Ev_Id")
     private int evID;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Ev_Id", insertable = false, updatable = false)
     //@JoinColumn(name = "evID", nullable = false)
     public MyEvent event;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "U_Id", insertable = false, updatable = false)
     public User user;
 

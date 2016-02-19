@@ -36,7 +36,7 @@ public class Place {
     private double lng;
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "place")
+    @OneToMany(fetch = FetchType.LAZY)
     List<MyEvent> myEvents;
 
     public double getLat() {

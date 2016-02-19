@@ -36,19 +36,19 @@ public class MyEvent {
     @Column(name = "Discription")
     private String discription;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Plc_Id", insertable = false, updatable = false)
     public Place place;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "U_Id", insertable = false, updatable = false)
     public User user;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Cat_Id", insertable = false, updatable = false)
     Category category;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "event")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "event", cascade = CascadeType.ALL)
     List<Favorite> favorites;
 
     public boolean isHaveImgs() {

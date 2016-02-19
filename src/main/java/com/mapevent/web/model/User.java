@@ -44,10 +44,10 @@ public class User implements Serializable, UserDetails {
     private boolean enable;
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY)
     List<MyEvent> myEvents;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     List<Favorite> favorites;
 
     public User() {
