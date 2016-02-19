@@ -29,14 +29,14 @@
                         <c:if test="${!eventWithTags.event.haveImgs}">
                             <img src="${pageContext.request.contextPath}/resources/images/def_evnt_img.png" id="img-title">
                         </c:if>
-                        <c:if test="${!eventWithTags.event.haveImgs}">
+                        <c:if test="${eventWithTags.event.haveImgs}">
                             <img id="img-title">
                         </c:if>
                     </div>
                     <div class="col-md-9">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>${eventWithTags.event.title}</h3>
+                                <h3><a href="/event/${eventWithTags.event.evID}">${eventWithTags.event.title}</a></h3>
                                 <div id="cat">${eventWithTags.event.category.title}</div>
                             </div>
                             <div class="col-md-12">

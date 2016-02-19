@@ -1,11 +1,14 @@
 package com.mapevent.web.controller;
 
 
+import com.mapevent.web.DTO.EventWithTags;
+import com.mapevent.web.exceptions.UserWithoutEvents;
 import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.model.Place;
 import com.mapevent.web.model.User;
 import com.mapevent.web.service.CategoryService;
 import com.mapevent.web.service.EventService;
+import com.mapevent.web.service.FavoriteService;
 import com.mapevent.web.service.PlaceService;
 import com.mapevent.web.utils.ErrorMessage;
 import com.mapevent.web.DTO.NewEventForm;
@@ -39,6 +42,8 @@ public class EventController {
     EventService eventService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    FavoriteService favoriteService;
 
     @RequestMapping(value = "/newevent", method = RequestMethod.GET)
     public String showNewEvent(ModelMap model) {
@@ -154,9 +159,11 @@ public class EventController {
     @RequestMapping(path = "/{eventID}", method = RequestMethod.GET)
     public ModelAndView showEventPage(@PathVariable String eventID, Model model) {
         MyEvent myEvent = new MyEvent();
+        EventWithTags eventWithTags = new EventWithTags();
         Map map = new HashMap<String, Object>();
         try {
             myEvent = eventService.getEventByID(Integer.parseInt(eventID));
+            eventWithTags.setEvent(myEvent);
         } catch (EventNotExistException e) {
             return new ModelAndView("./map");
         }
@@ -164,15 +171,27 @@ public class EventController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication != null) {
             Object user = (Object) authentication.getPrincipal();
-            if(user.getClass() == User.class)
-                map.put("user", ((User)user).getuID());
+            if(user.getClass() == User.class) {
+                map.put("user", ((User) user).getuID());
+                if(myEvent.getuID() == ((User) user).getuID())
+                    eventWithTags.setMyEvent(true);
+                else
+                    eventWithTags.setMyEvent(false);
+                try {
+                    favoriteService.getPair(((User) user).getuID(),myEvent.getEvID() );
+                    eventWithTags.setFavorite(true);
+                } catch (UserWithoutEvents e) {
+                    e.printStackTrace();
+                    eventWithTags.setFavorite(false);
+                }
+            }
             else
                 map.put("user", 0);
         }
         else{
             map.put("user", 0);
         }
-        map.put("event", myEvent);
+        map.put("eventWithTags", eventWithTags);
         return new ModelAndView("event", map);
     }
 
@@ -221,14 +240,18 @@ public class EventController {
 
     @RequestMapping(value = "/delete.json", method = RequestMethod.POST)
     public @ResponseBody
-    String deleteEvent(@RequestParam("idDelEv") int id) {
+    ValidationResponse deleteEvent(@RequestParam("idDelEv") int id) {
+        ValidationResponse res = new ValidationResponse();
+        ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
+
         try {
             eventService.delete(eventService.getEventByID(id));
         } catch (EventNotExistException e) {
             e.printStackTrace();
         }
 
-        return "redirect:" + "../../map";
+        res.setErrorMessageList(errorMessages);
+        return res;
     }
 }
 

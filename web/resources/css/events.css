@@ -9,17 +9,16 @@ html, body {
     margin: 5px 10px;
 }
 
-.ev-list-elem {
-    margin: 5px 10px;
-}
+.favorite {
+     max-width: 100%;
+ }
 
 #ev-list-elem {
     margin: 5px 10px;
 }
 
 #img-title {
-    height: 100%;
-    width: 100%;
+    max-width: 100%;
     border: 2px;
 }
 

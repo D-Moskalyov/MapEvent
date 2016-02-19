@@ -183,7 +183,9 @@
                         </div>
                         <div class="contentForm">
                             <button type="submit" class="btn btn-primary">Готово</button>
-                            <button id="deleteBtn" type="button" class="btn btn-primary">Удалить</button>
+                            <c:if test="${newEventForm.edit}">
+                                <button id="deleteBtn" type="button" class="btn btn-primary">Удалить</button>
+                            </c:if>
                         </div>
                     </div>
                 </fieldset>

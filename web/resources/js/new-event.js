@@ -31,12 +31,13 @@ $(function () {
         $("input[name='what']").prop('readonly', true);
         $("#deleteBtn").prop('visibility', true);
         $("#deleteBtn").click(function(){
-            console.log('deleteBtn cick');
+            console.log('deleteBtn click');
             var data = {};
             data['idDelEv'] = evIDFromELtoJS;
             console.log(data);
             $.post("../delete.json", data, function (response) {
-                console.log('ok ajax');
+                console.log("ajax delete ok");
+                window.location.replace("http://localhost:8080/");
             }, 'json');
         });
     }
@@ -98,12 +99,15 @@ $(function () {
         var $inputs = $form.find('input,textarea');
         var data = collectFormData($inputs);
 
-        if(isEditFromELtoJS) {
+        if(isEditFromELtoJS == 'true') {
+            console.log("isEditFromELtoJS=true");
             data['edit'] = true;
             data['id'] = evIDFromELtoJS;
         }
-        else
+        else {
+            console.log("isEditFromELtoJS=false");
             data['edit'] = false;
+        }
 
         $.post(formJsonUrlFromELtoJS, data, function (response) {
             $form.find('.check-group').removeClass('error');
@@ -151,6 +155,7 @@ $(function () {
             } else {
                 $form.unbind('submit');
                 $form.submit();
+                window.location.replace("http://localhost:8080/");
             }
         }, 'json');
 

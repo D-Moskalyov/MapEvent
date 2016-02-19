@@ -5,6 +5,10 @@ import com.mapevent.web.model.MyEvent;
 
 public class EventWithTags {
 
+    public EventWithTags(){
+
+    }
+
     public EventWithTags(MyEvent mE, boolean isF, boolean isMyE){
         event = mE;
         favorite = isF;

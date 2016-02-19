@@ -23,11 +23,11 @@ $(function($) {
         data['eventID'] = evID;
 
         $.post(favURLFromELtoJS, data, function (response) {
-
+            $( "#" + evID ).children( ".favorite").toggle();
         }, 'json');
 
 
         //$( ".favorite" ).toggle();
-        $( "#" + evID ).children( ".favorite").toggle();
+
     });
 });
