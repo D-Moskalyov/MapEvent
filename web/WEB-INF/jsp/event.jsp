@@ -26,7 +26,7 @@
       </c:if>
       <c:if test="${!eventWithTags.favorite}">
         <img src="${pageContext.request.contextPath}/resources/images/favoriteOn.ico" style="display: none" visible = true class="favorite" id="img-fav-on">
-        <img src="${pageContext.request.contextPath}/resources/images/favoriteOff.png" class="favorite" id="img-fav-off">
+        <img src="${pageContextrequest.contextPath}/resources/images/favoriteOff.png" class="favorite" id="img-fav-off">
       </c:if>
       <c:if test="${eventWithTags.myEvent}">
         <a href="/event/edit/${eventWithTags.event.evID}">Редактировать</a>

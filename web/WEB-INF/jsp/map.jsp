@@ -35,7 +35,7 @@
 
             <div id="sidebar">
 
-                <form>
+                <form name="formWithCheck">
                     <div class="check">
                         <input type="checkbox" class="checkbox" id="allChk"/>
                         <label for="allChk">Всё</label>
@@ -141,13 +141,50 @@
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: -34.397, lng: 150.644},
-                    zoom: 10,
+                    zoom: 11,
                     disableDefaultUI: true
                 });
+
+                //var infoWindow = new google.maps.InfoWindow({map: map});
+
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        //infoWindow.setPosition(pos);
+                        //infoWindow.setContent('Location found.');
+                        map.setCenter(pos);
+                    }, function() {
+                        //handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    //handleLocationError(false, infoWindow, map.getCenter());
+                }
+
+//                var rectangle = new google.maps.Rectangle();
+//                console.log(rectangle.getMap(map));
             }
-        </script>
+
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                //infoWindow.setPosition(pos);
+                //infoWindow.setContent(browserHasGeolocation ?
+                //        'Error: The Geolocation service failed.' :
+                //        'Error: Your browser doesn\'t support geolocation.');
+            }
+        </script><!--map-->
 
         <script type="text/javascript">
+            var summBefore = 0;
+            var summAfter = 0;
+            var dateStartBefore = 0;
+            var dateStartAfter = 0;
+            var dateFinishBefore = 0;
+            var dateFinishAfter = 0;
             $(document).ready(function () {
                 $("[data-toggle]").click(function () {
                     var toggle_el = $(this).data("toggle");
@@ -165,12 +202,56 @@
 //              }
 //              alert(txt);
 
-
                     $(toggle_el).toggleClass("open-sidebar");
+
+                    if($(toggle_el).hasClass("open-sidebar")) {
+                        var checked = document.forms.namedItem('formWithCheck');
+                        for (var i = 1; i < checked.length; i++) {
+                            if (checked[i].checked)
+                                summBefore += Math.pow(2, i);
+                        }
+
+                        dateStartBefore = $('#datetimepicker6').data("DateTimePicker").date().toString();
+                        dateFinishBefore = $('#datetimepicker7').data("DateTimePicker").date().toString();
+                    }
+                    else {
+                        var checked = document.forms.namedItem('formWithCheck');
+                        for (var i = 1; i < checked.length; i++) {
+                            if (checked[i].checked)
+                                summAfter += Math.pow(2, i);
+                        }
+
+                        dateStartAfter = $('#datetimepicker6').data("DateTimePicker").date().toString();
+                        dateFinishAfter = $('#datetimepicker7').data("DateTimePicker").date().toString();
+
+                        if(summAfter != summBefore | dateStartBefore != dateStartAfter | dateFinishBefore != dateFinishAfter){
+                            summBefore = 0;
+                            summAfter = 0;
+                            console.log('changes detected');
+
+                            var data = {};
+                            data["startDate"] = $('#datetimepicker6').data("DateTimePicker").date().toString();
+                            data["finishDate"] = $('#datetimepicker7').data("DateTimePicker").date().toString();
+
+                            data["cats"] = [];
+                            var checked = document.forms.namedItem('formWithCheck');
+                            for (var i = 1; i < checked.length; i++) {
+                                if (checked[i].checked)
+                                    data["cats"][data["cats"].length] = checked[i].id;
+                            }
+
+                            console.log(data);
+
+                            $.post('map.json', data, function (response) {
+                                console.log('ajaxOk');
+                            }, 'json');
+                        }
+
+                    }
                 });
 
                 $('#allChk').change(function(){
-                    var checked = document.forms[0];
+                    var checked = document.forms.namedItem('formWithCheck');
                     if(this.checked){
                         for (var i = 0; i < checked.length; i++)
                             checked[i].checked = true;
@@ -185,6 +266,14 @@
 
         <script type="text/javascript">
             $(function () {
+                $.ajaxSetup({
+                    beforeSend: function(xhr, settings) {
+                        //console.log(csrfHeader);
+                        xhr.setRequestHeader(csrfHeader, csrfToken);
+                    }
+                });
+
+
                 $('#datetimepicker6').datetimepicker({
                     locale: 'ru'
                 });
@@ -198,8 +287,21 @@
                 $("#datetimepicker7").on("dp.change", function (e) {
                     $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
                 });
+
+                var nowDate = new Date();
+                var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(),
+                        nowDate.getHours(), nowDate.getMinutes(), 0, 0);
+                $('#datetimepicker6').data("DateTimePicker").minDate(today);
+
+                var datePlus = new Date(nowDate.getFullYear() + 1, nowDate.getMonth(),
+                        nowDate.getDay(), nowDate.getHours(), nowDate.getMinutes(), 0 , 0);
+                $('#datetimepicker7').data("DateTimePicker").date(datePlus);
+
+                var checked = document.forms.namedItem('formWithCheck');
+                for (var i = 0; i < checked.length; i++)
+                    checked[i].checked = true;
             });
-        </script>
+        </script><!--datetime-->
 
 
         <script async defer

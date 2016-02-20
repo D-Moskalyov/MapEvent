@@ -1,17 +1,18 @@
 package com.mapevent.web.controller;
 
 
-import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.service.CategoryService;
 import com.mapevent.web.service.EventService;
+import com.mapevent.web.utils.ErrorMessage;
+import com.mapevent.web.utils.ValidationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -49,6 +50,19 @@ public class IndexController {
 //        }
 
         return "map";
+    }
+
+    @RequestMapping(value = "/map.json", method = RequestMethod.POST)
+    public @ResponseBody
+    ValidationResponse updateEvent(HttpServletRequest request) {
+        ValidationResponse res = new ValidationResponse();
+        ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
+
+        Map<String, String[]> map = request.getParameterMap();
+        map.get("startDate");
+
+        res.setErrorMessageList(errorMessages);
+        return res;
     }
 }
 
