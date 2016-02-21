@@ -57,4 +57,21 @@ public class PlaceDAO implements PlaceService{
         }
         return places.get(0).getPlcID();
     }
+
+//    public List<Place> getPlacesByCoord(double NElat, double NElng, double SWlat, double SWlng) {
+//        Query q = sf.getCurrentSession().createQuery("from Place p where p.lat >= :SWlat and p.lat <= :NElat and " +
+//                                                                        "p.lng >= :SWlng and p.lng <= :NElng");
+//
+//        q.setDouble("SWlat", SWlat);
+//        q.setDouble("NElat", NElat);
+//        q.setDouble("SWlng", SWlng);
+//        q.setDouble("NElng", NElng);
+//
+//        List<Place> places = q.list();
+//        if (!places.isEmpty()) {
+//            return places;
+//        }
+//
+//        return null;
+//    }
 }

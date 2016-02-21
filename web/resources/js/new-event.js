@@ -268,8 +268,10 @@ function collectFormData(fields) {
     var data = {};
     for (var i = 0; i < fields.length; i++) {
         var $item = $(fields[i]);
-        if (typeof $item.attr('name') !== 'undefined')
+        if (typeof $item.attr('name') !== 'undefined') {
+            //console.log($item.val());
             data[$item.attr('name')] = $item.val();
+        }
     }
     return data;
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -71,5 +72,9 @@ public class EventDAO implements EventService {
 
     public void delete(MyEvent event) {
         sf.getCurrentSession().delete(event);
+    }
+
+    public List<MyEvent> getEventForMap(Date start, Date finish, List<Integer> cats, double NElat, double NElng, double SWlat, double SWlng) {
+        return null;
     }
 }

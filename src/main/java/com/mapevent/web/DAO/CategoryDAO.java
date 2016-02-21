@@ -1,7 +1,6 @@
 package com.mapevent.web.DAO;
 
 import com.mapevent.web.model.Category;
-import com.mapevent.web.model.User;
 import com.mapevent.web.service.CategoryService;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -28,5 +27,11 @@ public class CategoryDAO implements CategoryService{
             return categories.get(0).getCatID();
         }
         return 0;
+    }
+
+    public List<Category> getCategoryList() {
+        Query q = sf.getCurrentSession().createQuery("from Category");
+        List<Category> categories = q.list();
+        return categories;
     }
 }

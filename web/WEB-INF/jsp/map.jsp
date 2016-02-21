@@ -40,58 +40,64 @@
                         <input type="checkbox" class="checkbox" id="allChk"/>
                         <label for="allChk">Всё</label>
                     </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="businessChk"/>
-                        <label for="businessChk">Бизнес</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="cinemaChk"/>
-                        <label for="cinemaChk">Кино</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="concertChk"/>
-                        <label for="concertChk">Концерт</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="dancingChk"/>
-                        <label for="dancingChk">Танцы</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="exhibitionsChk"/>
-                        <label for="exhibitionsChk">Выставки</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="gamesChk"/>
-                        <label for="gamesChk">Игры</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="festivalsChk"/>
-                        <label for="festivalsChk">Фестивали</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="meetingChk"/>
-                        <label for="meetingChk">Встречи</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="theatreChk"/>
-                        <label for="theatreChk">Театр</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="sportChk"/>
-                        <label for="sportChk">Спорт</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="questChk"/>
-                        <label for="questChk">Квесты</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="charityChk"/>
-                        <label for="charityChk">Благотворительность</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" class="checkbox" id="comedyChk"/>
-                        <label for="comedyChk">Comedy</label>
-                    </div>
+                    <c:forEach var="category" items="${categories}">
+                        <div class="check">
+                            <input type="checkbox" class="checkbox" id="${category.catID}"/>
+                            <label for="${category.catID}">${category.title}</label>
+                        </div>
+                    </c:forEach>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="businessChk"/>--%>
+                        <%--<label for="businessChk">Бизнес</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="cinemaChk"/>--%>
+                        <%--<label for="cinemaChk">Кино</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="concertChk"/>--%>
+                        <%--<label for="concertChk">Концерт</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="dancingChk"/>--%>
+                        <%--<label for="dancingChk">Танцы</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="exhibitionsChk"/>--%>
+                        <%--<label for="exhibitionsChk">Выставки</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="gamesChk"/>--%>
+                        <%--<label for="gamesChk">Игры</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="festivalsChk"/>--%>
+                        <%--<label for="festivalsChk">Фестивали</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="meetingChk"/>--%>
+                        <%--<label for="meetingChk">Встречи</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="theatreChk"/>--%>
+                        <%--<label for="theatreChk">Театр</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="sportChk"/>--%>
+                        <%--<label for="sportChk">Спорт</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="questChk"/>--%>
+                        <%--<label for="questChk">Квесты</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="charityChk"/>--%>
+                        <%--<label for="charityChk">Благотворительность</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="check">--%>
+                        <%--<input type="checkbox" class="checkbox" id="comedyChk"/>--%>
+                        <%--<label for="comedyChk">Comedy</label>--%>
+                    <%--</div>--%>
 
 
                     <div class='col-md-12'>
@@ -138,6 +144,7 @@
 
         <script type="text/javascript">
             var map;
+            var timeOutToFetchMarker;
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: -34.397, lng: 150.644},
@@ -145,29 +152,22 @@
                     disableDefaultUI: true
                 });
 
-                //var infoWindow = new google.maps.InfoWindow({map: map});
+                google.maps.event.addListener(map, 'idle', function() {
+                    //console.log(map.getBounds());
+                    clearTimeout(timeOutToFetchMarker);
+                    if(map.zoom >= 11)
+                        timeOutToFetchMarker = setTimeout(fetchMarkersSRV, 1000);
+                });
 
-                // Try HTML5 geolocation.
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         var pos = {
                             lat: position.coords.latitude,
                             lng: position.coords.longitude
                         };
-
-                        //infoWindow.setPosition(pos);
-                        //infoWindow.setContent('Location found.');
                         map.setCenter(pos);
-                    }, function() {
-                        //handleLocationError(true, infoWindow, map.getCenter());
                     });
-                } else {
-                    // Browser doesn't support Geolocation
-                    //handleLocationError(false, infoWindow, map.getCenter());
                 }
-
-//                var rectangle = new google.maps.Rectangle();
-//                console.log(rectangle.getMap(map));
             }
 
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -186,27 +186,29 @@
             var dateFinishBefore = 0;
             var dateFinishAfter = 0;
             $(document).ready(function () {
+
+                $.ajaxSetup({
+                    beforeSend: function(xhr, settings) {
+                        //console.log(csrfHeader);
+                        xhr.setRequestHeader(csrfHeader, csrfToken);
+                    }
+                });
+
+//                $(document).ajaxSend(function(e, xhr, options) {
+//                    console.log(csrfHeader);
+//                    xhr.setRequestHeader(csrfHeader, csrfToken);
+//                    console.log(csrfToken);
+//                });
+
                 $("[data-toggle]").click(function () {
                     var toggle_el = $(this).data("toggle");
-
-              //var myClass = $(toggle_el).attr("class");
-              //alert(myClass);
-
-//              var checked = document.forms[0];
-//              var txt = "";
-//              var i;
-//              for (i = 0; i < checked.length; i++) {
-//                if (checked[i].checked) {
-//                  txt = txt + checked[i].id + " ";
-//                }
-//              }
-//              alert(txt);
 
                     $(toggle_el).toggleClass("open-sidebar");
 
                     if($(toggle_el).hasClass("open-sidebar")) {
-                        var checked = document.forms.namedItem('formWithCheck');
-                        for (var i = 1; i < checked.length; i++) {
+                        var checked = $('.checkbox').not( '#allChk' );
+                        //var checked = document.forms.namedItem('formWithCheck');
+                        for (var i = 0; i < checked.length; i++) {
                             if (checked[i].checked)
                                 summBefore += Math.pow(2, i);
                         }
@@ -215,8 +217,9 @@
                         dateFinishBefore = $('#datetimepicker7').data("DateTimePicker").date().toString();
                     }
                     else {
-                        var checked = document.forms.namedItem('formWithCheck');
-                        for (var i = 1; i < checked.length; i++) {
+                        var checked = $('.checkbox').not( '#allChk' );
+                        //var checked = document.forms.namedItem('formWithCheck');
+                        for (var i = 0; i < checked.length; i++) {
                             if (checked[i].checked)
                                 summAfter += Math.pow(2, i);
                         }
@@ -227,31 +230,22 @@
                         if(summAfter != summBefore | dateStartBefore != dateStartAfter | dateFinishBefore != dateFinishAfter){
                             summBefore = 0;
                             summAfter = 0;
-                            console.log('changes detected');
-
-                            var data = {};
-                            data["startDate"] = $('#datetimepicker6').data("DateTimePicker").date().toString();
-                            data["finishDate"] = $('#datetimepicker7').data("DateTimePicker").date().toString();
-
-                            data["cats"] = [];
-                            var checked = document.forms.namedItem('formWithCheck');
-                            for (var i = 1; i < checked.length; i++) {
-                                if (checked[i].checked)
-                                    data["cats"][data["cats"].length] = checked[i].id;
-                            }
-
-                            console.log(data);
-
-                            $.post('map.json', data, function (response) {
-                                console.log('ajaxOk');
-                            }, 'json');
+                            //console.log('changes detected');
+                            if(map.zoom >= 11)
+                                fetchMarkersSRV();
                         }
 
                     }
                 });
 
+                var checked = $('.checkbox');
+                //var checked = document.forms.namedItem('formWithCheck');
+                for (var i = 0; i < checked.length; i++)
+                    checked[i].checked = true;
+
                 $('#allChk').change(function(){
-                    var checked = document.forms.namedItem('formWithCheck');
+                    var checked = $('.checkbox').not( '#allChk' );
+                    //var checked = document.forms.namedItem('formWithCheck');
                     if(this.checked){
                         for (var i = 0; i < checked.length; i++)
                             checked[i].checked = true;
@@ -262,18 +256,40 @@
                     }
                 });
             });
+
+            function fetchMarkersSRV(){
+                var data = {};
+                data["startDate"] = $('#datetimepicker6').data("DateTimePicker").date().toString();
+                data["finishDate"] = $('#datetimepicker7').data("DateTimePicker").date().toString();
+
+//                data["startDate"] = $('#datetimepicker6').val();
+//                data["finishDate"] = $('#datetimepicker7').val();
+
+                data["NElat"] = map.getBounds().getNorthEast().lat();
+                data["NElng"] = map.getBounds().getNorthEast().lng();
+                data["SWlat"] = map.getBounds().getSouthWest().lat();
+                data["SWlng"] = map.getBounds().getSouthWest().lng();
+
+                data["cats"] = [];
+
+                var checked = $('.checkbox').not( '#allChk' );
+                //var checked = document.forms.namedItem('formWithCheck');
+                //console.log(checked);
+                for (var i = 0; i < checked.length; i++) {
+                    if (checked[i].checked)
+                        data["cats"][data["cats"].length] = checked[i].id;
+                }
+
+                //console.log(data);
+
+                $.post('map.json', data, function (response) {
+                    console.log('ajaxOk');
+                }, 'json');
+            }
         </script>
 
         <script type="text/javascript">
             $(function () {
-                $.ajaxSetup({
-                    beforeSend: function(xhr, settings) {
-                        //console.log(csrfHeader);
-                        xhr.setRequestHeader(csrfHeader, csrfToken);
-                    }
-                });
-
-
                 $('#datetimepicker6').datetimepicker({
                     locale: 'ru'
                 });
@@ -297,9 +313,6 @@
                         nowDate.getDay(), nowDate.getHours(), nowDate.getMinutes(), 0 , 0);
                 $('#datetimepicker7').data("DateTimePicker").date(datePlus);
 
-                var checked = document.forms.namedItem('formWithCheck');
-                for (var i = 0; i < checked.length; i++)
-                    checked[i].checked = true;
             });
         </script><!--datetime-->
 

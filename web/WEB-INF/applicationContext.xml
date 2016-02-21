@@ -29,7 +29,7 @@
               <security:intercept-url pattern="/user/registration*" access="permitAll" />
               <security:intercept-url pattern="/user/forgot*" access="permitAll" />
               <security:intercept-url pattern="/resources/**" access="permitAll" />
-              <security:intercept-url pattern="/map" access="permitAll" />
+              <security:intercept-url pattern="/map*" access="permitAll" />
               <!--<security:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />-->
               <security:intercept-url pattern="/event/newEvent" access="hasRole('ROLE_USER')" />
               <security:intercept-url pattern="/event/*" access="permitAll" />
