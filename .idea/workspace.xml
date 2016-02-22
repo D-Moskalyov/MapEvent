@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72403c14-ff3a-45d7-b3c8-c51b7e31d27c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/CategoryDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/CategoryDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/service/CategoryService.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/service/CategoryService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/resources/images/markerDeff.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/DateTimeFormatter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/MarkerEventInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/EventDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/EventDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/service/EventService.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/service/EventService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/PlaceDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/PlaceDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/service/PlaceService.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/service/PlaceService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/NewEventForm.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/NewEventForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/createDB.sql" afterPath="$PROJECT_DIR$/createDB.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resources/js/new-event.js" afterPath="$PROJECT_DIR$/web/resources/js/new-event.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -56,19 +56,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="map.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="map.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.3454547">
-              <caret line="261" column="87" selection-start-line="261" selection-start-column="87" selection-end-line="261" selection-end-column="87" />
+            <state vertical-scroll-proportion="0.20190024">
+              <caret line="284" column="62" selection-start-line="284" selection-start-column="62" selection-end-line="284" selection-end-column="62" />
               <folding>
+                <element signature="n#c:forEach#0;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#!!top" expanded="false" />
                 <element signature="n#c:forEach#2;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
-                <element signature="e#8518#8793#0#HTML" expanded="false" />
-                <element signature="e#9370#9436#0#HTML" expanded="false" />
-                <element signature="n#script#8;n#!!top" expanded="false" />
-                <element signature="n#script#9;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarkerEventInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/MarkerEventInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="14" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -76,36 +83,15 @@
       <file leaf-file-name="new-event.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/resources/js/new-event.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.310345">
-              <caret line="272" column="44" selection-start-line="272" selection-start-column="39" selection-end-line="272" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="119" column="24" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="24" />
               <folding>
                 <element signature="e#1620#1655#0" expanded="false" />
                 <element signature="e#2153#2178#0" expanded="false" />
                 <element signature="e#2215#2265#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="newEvent.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/newEvent.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="20.818182">
-              <caret line="78" column="47" selection-start-line="78" selection-start-column="42" selection-end-line="78" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IndexController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.86577183">
-              <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
-              <folding>
-                <element signature="e#1175#1217#0" expanded="false" />
-                <element signature="e#2254#2268#0" expanded="true" />
-                <element signature="e#3314#3323#0" expanded="true" />
+                <element signature="e#6703#7266#0" expanded="false" />
+                <element signature="n#!!block;n#collectFormData#0" expanded="false" />
+                <element signature="n#!!block;n#searchPlace#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -115,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="111" column="84" selection-start-line="111" selection-start-column="66" selection-end-line="111" selection-end-column="84" />
+              <caret line="129" column="33" selection-start-line="129" selection-start-column="33" selection-end-line="129" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#processFormDefault#0;class#EventController#0" expanded="false" />
@@ -126,12 +112,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InvocableHandlerMethod.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.3.RELEASE/spring-web-4.2.3.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <file leaf-file-name="IndexController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.185185">
-              <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="66" column="67" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="67" />
+              <folding>
+                <element signature="e#1269#1311#0" expanded="false" />
+                <element signature="e#2295#2437#0" expanded="false" />
+                <element signature="e#3221#3251#0" expanded="false" />
+                <element signature="e#3348#3357#0" expanded="true" />
+                <element signature="e#3808#3825#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,9 +136,9 @@
         <option value="spring-beans.schema" />
         <option value="Interface" />
         <option value="Jsp File" />
-        <option value="Class" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -161,8 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/login.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/registration.jsp" />
         <option value="$PROJECT_DIR$/web/resources/css/profile.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/ErrorMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/ChangePassForm.java" />
@@ -185,7 +175,6 @@
         <option value="$PROJECT_DIR$/web/resources/css/eventEditPage.css" />
         <option value="$PROJECT_DIR$/web/resources/js/eventEditPage.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/tiles.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/NewEventForm.java" />
         <option value="$PROJECT_DIR$/web/resources/css/new-event.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Favorite.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Category.java" />
@@ -199,19 +188,22 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/EventWithTags.java" />
         <option value="$PROJECT_DIR$/web/resources/js/event.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/jsp/event.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/UserController.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/applicationContext.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/service/CategoryService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/CategoryDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/service/EventService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/EventDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/service/PlaceService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/PlaceDAO.java" />
         <option value="$PROJECT_DIR$/web/resources/js/new-event.js" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/NewEventForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/DateTimeFormatter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/EventDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/MarkerEventInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp" />
       </list>
     </option>
   </component>
@@ -284,7 +276,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -440,6 +431,10 @@
               <option name="myItemId" value="web" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -464,10 +459,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -595,6 +586,7 @@
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1072,13 +1064,8 @@
       <workItem from="1455820018345" duration="3962000" />
       <workItem from="1455865760186" duration="27793000" />
       <workItem from="1455965910026" duration="20565000" />
-      <workItem from="1456042974041" duration="25135000" />
-    </task>
-    <task id="LOCAL-00002" summary="add dependencies">
-      <created>1448313711454</created>
-      <option name="number" value="00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1448313711454</updated>
+      <workItem from="1456042974041" duration="25212000" />
+      <workItem from="1456138920385" duration="23271000" />
     </task>
     <task id="LOCAL-00003" summary="add google map; tiles; controller">
       <created>1448574677091</created>
@@ -1368,11 +1355,17 @@
       <option name="project" value="LOCAL" />
       <updated>1456002290958</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="main page event send data  to server">
+      <created>1456086087843</created>
+      <option name="number" value="00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1456086087848</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="714181000" />
+    <option name="totallyTimeSpent" value="737529000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1471,7 +1464,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="WaitConfirms" />
     <MESSAGE value="complete registration; add confirm; add forgot" />
     <MESSAGE value="Spring security work; Ajax - POST - .json don't work" />
     <MESSAGE value="? CSRF !" />
@@ -1496,7 +1488,8 @@
     <MESSAGE value="delete CascadeType.ALL from @ManyToOne !!!&#10;add somewhere CascadeType.ALL to @OneToMany;&#10;attempt add exception to git" />
     <MESSAGE value="event pages edit; favorite add delete; event update, delete" />
     <MESSAGE value="main page event concept" />
-    <option name="LAST_COMMIT_MESSAGE" value="main page event concept" />
+    <MESSAGE value="main page event send data  to server" />
+    <option name="LAST_COMMIT_MESSAGE" value="main page event send data  to server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1521,7 +1514,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java</url>
-          <line>53</line>
+          <line>55</line>
           <properties />
           <option name="timeStamp" value="228" />
         </line-breakpoint>
@@ -1544,12 +1537,6 @@
           <option name="timeStamp" value="266" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.3.RELEASE/spring-web-4.2.3.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class</url>
-          <line>141</line>
-          <properties />
-          <option name="timeStamp" value="299" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/MyEvent.java</url>
           <line>154</line>
           <properties />
@@ -1563,19 +1550,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java</url>
-          <line>249</line>
+          <line>252</line>
           <properties />
           <option name="timeStamp" value="316" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java</url>
-          <line>125</line>
-          <properties />
-          <option name="timeStamp" value="330" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java</url>
-          <line>129</line>
+          <line>132</line>
           <properties />
           <option name="timeStamp" value="331" />
         </line-breakpoint>
@@ -1586,13 +1567,13 @@
           <option name="timeStamp" value="341" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java</url>
-          <line>86</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/DateTimeFormatter.java</url>
+          <line>9</line>
           <properties />
-          <option name="timeStamp" value="368" />
+          <option name="timeStamp" value="372" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="369" />
+      <option name="time" value="397" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1601,55 +1582,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/tiles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32159624">
-          <caret line="88" column="68" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/redirect.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_45/jre/lib/rt.jar!/sun/nio/ch/WindowsSelectorImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5">
-          <caret line="470" column="0" selection-start-line="470" selection-start-column="0" selection-end-line="470" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.2.3.RELEASE/spring-aop-4.2.3.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.5925927">
-          <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.2.3.RELEASE/spring-aop-4.2.3.RELEASE.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.259259">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.1.6.RELEASE/spring-tx-4.1.6.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.1.6.RELEASE/spring-tx-4.1.6.RELEASE-sources.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="290" column="0" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.2.3.RELEASE/spring-aop-4.2.3.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.259259">
@@ -1762,31 +1694,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/MyEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="21" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/FavoriteDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1486698">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
             <element signature="e#824#825#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/NewEventForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1901566">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="25" />
-          <folding>
-            <element signature="e#1562#1563#0" expanded="false" />
-            <element signature="e#1589#1590#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1906,24 +1819,8 @@
         <state vertical-scroll-proportion="0.34228188">
           <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Category.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45637584">
-          <caret line="17" column="24" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Place.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.950783">
-          <caret line="38" column="37" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1937,10 +1834,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/PlaceDAO.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.2.3.RELEASE/spring-beans-4.2.3.RELEASE.jar!/org/springframework/beans/AbstractNestablePropertyAccessor.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18120806">
-          <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.3547619">
+          <caret line="534" column="0" selection-start-line="534" selection-start-column="0" selection-end-line="534" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/NewEventForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/newEvent.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462">
+          <caret line="152" column="72" selection-start-line="152" selection-start-column="62" selection-end-line="152" selection-end-column="72" />
           <folding />
         </state>
       </provider>
@@ -1953,63 +1866,92 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.3.RELEASE/spring-web-4.2.3.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3547619">
+          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Place.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7225951">
+          <caret line="32" column="22" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/PlaceDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4474273">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="67" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Category.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22818792">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/MyEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60850114">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DAO/EventDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6196868">
-          <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+        <state vertical-scroll-proportion="1.3422819">
+          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
           <folding>
             <element signature="e#2306#2315#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/newEvent.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/DateTimeFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="20.818182">
-          <caret line="78" column="47" selection-start-line="78" selection-start-column="42" selection-end-line="78" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/resources/js/new-event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.310345">
-          <caret line="272" column="44" selection-start-line="272" selection-start-column="39" selection-end-line="272" selection-end-column="44" />
+        <state vertical-scroll-proportion="1.0">
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
           <folding>
-            <element signature="e#1620#1655#0" expanded="false" />
-            <element signature="e#2153#2178#0" expanded="false" />
-            <element signature="e#2215#2265#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#831#854#0" expanded="false" />
+            <element signature="e#2324#2347#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.3454547">
-          <caret line="261" column="87" selection-start-line="261" selection-start-column="87" selection-end-line="261" selection-end-column="87" />
-          <folding>
-            <element signature="n#div#0;n#!!top" expanded="false" />
-            <element signature="n#c:forEach#2;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
-            <element signature="e#8518#8793#0#HTML" expanded="false" />
-            <element signature="e#9370#9436#0#HTML" expanded="false" />
-            <element signature="n#script#8;n#!!top" expanded="false" />
-            <element signature="n#script#9;n#!!top" expanded="false" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/web/resources/images/logo.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.3.RELEASE/spring-web-4.2.3.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.185185">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/web/resources/images/logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/resources/images/logo1.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/resources/images/no-photo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="111" column="84" selection-start-line="111" selection-start-column="66" selection-end-line="111" selection-end-column="84" />
+          <caret line="129" column="33" selection-start-line="129" selection-start-column="33" selection-end-line="129" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#processFormDefault#0;class#EventController#0" expanded="false" />
@@ -2021,12 +1963,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86577183">
-          <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="67" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="67" />
           <folding>
-            <element signature="e#1175#1217#0" expanded="false" />
-            <element signature="e#2254#2268#0" expanded="true" />
-            <element signature="e#3314#3323#0" expanded="true" />
+            <element signature="e#1269#1311#0" expanded="false" />
+            <element signature="e#2295#2437#0" expanded="false" />
+            <element signature="e#3221#3251#0" expanded="false" />
+            <element signature="e#3348#3357#0" expanded="true" />
+            <element signature="e#3808#3825#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/MarkerEventInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/resources/js/new-event.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="119" column="24" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="24" />
+          <folding>
+            <element signature="e#1620#1655#0" expanded="false" />
+            <element signature="e#2153#2178#0" expanded="false" />
+            <element signature="e#2215#2265#0" expanded="false" />
+            <element signature="e#6703#7266#0" expanded="false" />
+            <element signature="n#!!block;n#collectFormData#0" expanded="false" />
+            <element signature="n#!!block;n#searchPlace#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20190024">
+          <caret line="284" column="62" selection-start-line="284" selection-start-column="62" selection-end-line="284" selection-end-column="62" />
+          <folding>
+            <element signature="n#c:forEach#0;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#!!top" expanded="false" />
+            <element signature="n#c:forEach#2;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

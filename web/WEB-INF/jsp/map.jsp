@@ -283,7 +283,15 @@
                 //console.log(data);
 
                 $.post('map.json', data, function (response) {
-                    console.log('ajaxOk');
+                    var markers = [];
+
+                    for(var i = 0; i < response.length; i++){
+                        var myLatLng = new google.maps.LatLng(response[i].lat, response[i].lng);
+                        markers.push(new google.maps.Marker({
+                            map: map,
+                            position: myLatLng
+                        }));
+                    }
                 }, 'json');
             }
         </script>

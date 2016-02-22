@@ -143,6 +143,19 @@ select * from places where Plc_Id_Google="ChIJBVXQG_CgJ0ERON-jp0YRZE0" and
                            Country="Украина" and 
                            Lat="49.993351" and 
                            Lng="36.232372";
+          
+select * from places;
+          
+select * from events e 
+join Places p
+on e.Plc_Id = p.Plc_Id
+join Categories c
+on c.Cat_Id = e.Cat_Id 
+where
+(c.Cat_Id = 45 or c.Cat_Id = 47)
+and
+(p.lat <= 50.019707644389825 and p.lat >= 49.9762311405667 and p.lng <= 36.343116796777394 and p.lng >= 36.1318016417481);
+
 
 delete from favorites where F_Id=15;
 

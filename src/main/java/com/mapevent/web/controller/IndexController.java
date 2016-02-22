@@ -1,12 +1,14 @@
 package com.mapevent.web.controller;
 
 
+import com.mapevent.web.DTO.MarkerEventInfo;
 import com.mapevent.web.model.Category;
 import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.model.Place;
 import com.mapevent.web.service.CategoryService;
 import com.mapevent.web.service.EventService;
 import com.mapevent.web.service.PlaceService;
+import com.mapevent.web.utils.DateTimeFormatter;
 import com.mapevent.web.utils.ErrorMessage;
 import com.mapevent.web.utils.ValidationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,10 +64,7 @@ public class IndexController {
 
     @RequestMapping(value = "/map.json", method = RequestMethod.POST)
     public @ResponseBody
-    ValidationResponse updateEvent(HttpServletRequest request) {
-        ValidationResponse res = new ValidationResponse();
-        ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
-
+    List<MarkerEventInfo> updateEvent(HttpServletRequest request) {
         Map<String, String[]> map = request.getParameterMap();
 
 //        List<Place> places = placeService.getPlacesByCoord(Double.parseDouble(map.get("NElat")[0]), Double.parseDouble(map.get("NElng")[0]),
@@ -76,24 +75,24 @@ public class IndexController {
 //            placeIDs.add(place.getPlcID());
 //        }
 
-        SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss Z");
+        //SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss Z");
         //formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
 
-        Date dateSt = null;
-        Date dateFin = null;
-        String stDate = map.get("startDate")[0];
-        String finDate = map.get("finishDate")[0];
-        try {
-            dateSt = formatter.parse("Sun Feb 21 2016 18:07:00 +0300");
-            dateFin = formatter.parse(finDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        //Date dateSt = null;
+        //Date dateFin = null;
+//        String stDate = map.get("startDate")[0];
+//        String finDate = map.get("finishDate")[0];
+        //try {
+        Date dateSt = DateTimeFormatter.FormatTimeZoneCorrect(map.get("startDate")[0]);
+        Date dateFin = DateTimeFormatter.FormatTimeZoneCorrect(map.get("finishDate")[0]);
+        //} catch (ParseException e) {
+        //    e.printStackTrace();
+        //}
 
 
         ArrayList<Integer> cats = new ArrayList<Integer>();
 
-        for(String cat: map.get("cats")){
+        for(String cat: map.get("cats[]")){
             cats.add(Integer.parseInt(cat));
         }
 
@@ -101,8 +100,11 @@ public class IndexController {
                 Double.parseDouble(map.get("NElat")[0]), Double.parseDouble(map.get("NElng")[0]),
                 Double.parseDouble(map.get("SWlat")[0]), Double.parseDouble(map.get("SWlng")[0]));
 
-        res.setErrorMessageList(errorMessages);
-        return res;
+        ArrayList<MarkerEventInfo> markerEventInfo = new ArrayList<MarkerEventInfo>();
+        for(MyEvent event: events){
+            markerEventInfo.add(new MarkerEventInfo(event.getEvID(), event.getPlace().getLat(), event.getPlace().getLng(), "markerDeff"));
+        }
+        return markerEventInfo;
     }
 }
 

@@ -10,6 +10,7 @@ import com.mapevent.web.service.CategoryService;
 import com.mapevent.web.service.EventService;
 import com.mapevent.web.service.FavoriteService;
 import com.mapevent.web.service.PlaceService;
+import com.mapevent.web.utils.DateTimeFormatter;
 import com.mapevent.web.utils.ErrorMessage;
 import com.mapevent.web.DTO.NewEventForm;
 import com.mapevent.web.exceptions.EventNotExistException;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,6 +72,7 @@ public class EventController {
     ValidationResponse processFormAjaxJson(Model model, @ModelAttribute(value="newEventForm") @Valid NewEventForm newEventForm,
                                             BindingResult result ){
         ValidationResponse res = new ValidationResponse();
+        //DateTimeFormatter.FormatTimeZoneCorrect(newEventForm.getWhenStart());
         //if(!newEventForm.isEdit()) {
             if (!result.hasErrors()) {
                 String plcIDGoogle = newEventForm.getPlaceID();
@@ -109,10 +112,10 @@ public class EventController {
                 myEvent.setDiscription(newEventForm.getDescription());
                 myEvent.setHaveImgs(false);
 
-                SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-                try {
-                    myEvent.setStart(formatter.parse(newEventForm.getWhenStart()));
-                    myEvent.setFinish(formatter.parse(newEventForm.getWhenFinish()));
+                //SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                //try {
+                    myEvent.setStart(DateTimeFormatter.FormatTimeZoneCorrect(newEventForm.getWhenStart()));
+                    myEvent.setFinish(DateTimeFormatter.FormatTimeZoneCorrect(newEventForm.getWhenFinish()));
 
                     int catID = categoryService.getCatID(newEventForm.getCategory());
                     if (catID != 0) {
@@ -136,10 +139,10 @@ public class EventController {
                     } else {
                         res.setStatus("FAIL");
                     }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    res.setStatus("FAIL");
-                }
+                //} catch (ParseException e) {
+                //    e.printStackTrace();
+                //    res.setStatus("FAIL");
+                //}
 
             } else {
                 res.setStatus("FAIL");

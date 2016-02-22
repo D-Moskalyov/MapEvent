@@ -1,6 +1,7 @@
 package com.mapevent.web.DTO;
 
 
+import com.mapevent.web.utils.DateTimeFormatter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.AssertTrue;
@@ -80,6 +81,10 @@ public class NewEventForm {
 
     @AssertTrue(message="Проверьте даты")
     public boolean isValidDate() {
+//        if(whenStart != "")
+//            whenStart = DateTimeFormatter.Format(whenStart);
+//        if(whenFinish != "")
+//            whenFinish = DateTimeFormatter.Format(whenFinish);
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         Date nowDate = new Date();
         formatter.format(nowDate);
@@ -89,11 +94,17 @@ public class NewEventForm {
         try {
             Date st = new Date();
             formatter.format(st);
-            st = formatter.parse(whenStart);
+            if(whenStart != "")
+                st = formatter.parse(DateTimeFormatter.Format(whenStart));
+            else
+                return false;
 
             Date fin = new Date();
             formatter.format(fin);
-            fin = formatter.parse(whenFinish);
+            if(whenFinish != "")
+                fin = formatter.parse(DateTimeFormatter.Format(whenFinish));
+            else
+                return false;
 
             if(fin.after(st)){
                 return st.after(today);

@@ -75,6 +75,26 @@ public class EventDAO implements EventService {
     }
 
     public List<MyEvent> getEventForMap(Date start, Date finish, List<Integer> cats, double NElat, double NElng, double SWlat, double SWlng) {
-        return null;
+        Query q = sf.getCurrentSession().createQuery(
+                "select e from MyEvent e " +
+                "join e.place p join e.category c " +
+                "where " +
+                "(e.start >= :start and e.start <= :finish) " +
+                "and " +
+                "(p.lat <= :NElat and p.lat >= :SWlat and p.lng <= :NElng and p.lng >= :SWlng) " +
+                "and " +
+                "(c.catID in (:cats))");
+
+        q.setDouble("SWlat", SWlat);
+        q.setDouble("NElat", NElat);
+        q.setDouble("SWlng", SWlng);
+        q.setDouble("NElng", NElng);
+        q.setTimestamp("start", start);
+        q.setTimestamp("finish", finish);
+        q.setParameterList("cats", cats);
+
+        List<MyEvent> myEvents = q.list();
+
+        return myEvents;
     }
 }

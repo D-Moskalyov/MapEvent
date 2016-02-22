@@ -96,7 +96,8 @@ $(function () {
     var $form = $('#new-event-form');
     $form.bind('submit', function (e) {
         // Ajax validation
-        var $inputs = $form.find('input,textarea');
+        var $inputs = $form.find('input,textarea').not( "[name='whenStart']" ).not( "[name='whenFinish']" );
+        //console.log($inputs);
         var data = collectFormData($inputs);
 
         if(isEditFromELtoJS == 'true') {
@@ -273,6 +274,18 @@ function collectFormData(fields) {
             data[$item.attr('name')] = $item.val();
         }
     }
+
+    if($('#datetimepicker6').data("DateTimePicker").date() != null){
+        data["whenStart"] = $('#datetimepicker6').data("DateTimePicker").date().toString();
+    }
+    else
+        data["whenStart"] = "";
+    if($('#datetimepicker7').data("DateTimePicker").date() != null){
+        data["whenFinish"] = $('#datetimepicker7').data("DateTimePicker").date().toString();
+    }
+    else
+        data["whenFinish"] = "";
+    console.log(data);
     return data;
 }
 function searchPlace(place, status) {
