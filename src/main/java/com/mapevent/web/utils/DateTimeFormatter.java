@@ -6,22 +6,29 @@ import java.util.Date;
 
 public class DateTimeFormatter {
     public static String Format(String inputStr){
+        String dd;
+        String MM;
+        String yyyy;
+        String HH;
+        String mm;
 
         //String EEE = inputStr.split(" ")[0];
-        String MMM = inputStr.split(" ")[1];
-        String MM = "01";
-        if (MMM.equals("Jan")) MM = "01";
-        if (MMM.equals("Feb")) MM = "02";
-        if (MMM.equals("Mar")) MM = "03";
-        if (MMM.equals("Apr")) MM = "04";
-        if (MMM.equals("May")) MM = "05";
-        if (MMM.equals("Jun")) MM = "06";
-        if (MMM.equals("Jul")) MM = "07";
-        if (MMM.equals("Aug")) MM = "08";
-        if (MMM.equals("Sep")) MM = "09";
-        if (MMM.equals("Oct")) MM = "10";
-        if (MMM.equals("Nov")) MM = "11";
-        if (MMM.equals("Dec")) MM = "12";
+        String start = inputStr.split(" ")[1];
+        if(start.length() == 3) {
+            String MMM = inputStr.split(" ")[1];
+            MM = "01";
+            if (MMM.equals("Jan")) MM = "01";
+            if (MMM.equals("Feb")) MM = "02";
+            if (MMM.equals("Mar")) MM = "03";
+            if (MMM.equals("Apr")) MM = "04";
+            if (MMM.equals("May")) MM = "05";
+            if (MMM.equals("Jun")) MM = "06";
+            if (MMM.equals("Jul")) MM = "07";
+            if (MMM.equals("Aug")) MM = "08";
+            if (MMM.equals("Sep")) MM = "09";
+            if (MMM.equals("Oct")) MM = "10";
+            if (MMM.equals("Nov")) MM = "11";
+            if (MMM.equals("Dec")) MM = "12";
 //        switch (MMM){
 //            case "Jan": MM = "01";
 //            case "Feb": MM = "02";
@@ -37,15 +44,36 @@ public class DateTimeFormatter {
 //            case "Dec": MM = "12";
 //            default: MM = "01";
 //        }
-        String dd = inputStr.split(" ")[2];
-        String yyyy = inputStr.split(" ")[3];
-        String HHmmss = inputStr.split(" ")[4];
-        //String Z = inputStr.split(" ")[5];
+            dd = inputStr.split(" ")[2];
+            yyyy = inputStr.split(" ")[3];
+            String HHmmss = inputStr.split(" ")[4];
+            //String Z = inputStr.split(" ")[5];
 
-        String HH = HHmmss.split(":")[0];
-        String mm = HHmmss.split(":")[1];
+            HH = HHmmss.split(":")[0];
+            mm = HHmmss.split(":")[1];
+        }
+
+        else {//from DB
+            String date = inputStr.split(" ")[0];
+            String time = inputStr.split(" ")[1];
+
+            if(date.contains("-")) {
+                dd = date.split("-")[2];
+                MM = date.split("-")[1];
+                yyyy = date.split("-")[0];
+            }
+            else {
+                dd = date.split("\\.")[0];
+                MM = date.split("\\.")[1];
+                yyyy = date.split("\\.")[2];
+            }
+
+            HH = time.split(":")[0];
+            mm = time.split(":")[1];
+        }
 
         return dd + "." + MM + "." + yyyy + " " + HH + ":" + mm;
+
     }
 
     public static Date FormatTimeZoneCorrect(String inputStr){

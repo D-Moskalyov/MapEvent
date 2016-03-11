@@ -16,27 +16,31 @@ $(function () {
         useCurrent: false //Important! See issue #1075
     });
     $("#datetimepicker6").on("dp.change", function (e) {
+        //console.log("6 ch");
         $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        //console.log("7 min");
     });
     $("#datetimepicker7").on("dp.change", function (e) {
+        //console.log("7 ch");
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        //console.log("6 max");
     });
 
     $("#datetimepicker6").on("dp.error", function (e) {
-        alert(e.data)
+        //alert(e.data)
     });
 
-    console.log(isEditFromELtoJS);
+    //console.log(isEditFromELtoJS);
     if(isEditFromELtoJS == 'true') {
         $("input[name='what']").prop('readonly', true);
         $("#deleteBtn").prop('visibility', true);
         $("#deleteBtn").click(function(){
-            console.log('deleteBtn click');
+            //console.log('deleteBtn click');
             var data = {};
             data['idDelEv'] = evIDFromELtoJS;
-            console.log(data);
+            //console.log(data);
             $.post("../delete.json", data, function (response) {
-                console.log("ajax delete ok");
+                //console.log("ajax delete ok");
                 window.location.replace("http://localhost:8080/");
             }, 'json');
         });
@@ -54,10 +58,16 @@ $(function () {
     //console.log(Date.parse(whenStartFromELtoJS));
     //console.log(Date.parse(whenFinishFromELtoJS));
 
+    //console.log("6 min before");
+    $('#datetimepicker6').data("DateTimePicker").minDate(today);
+    //console.log("6 min after");
+
     if(whenStartFromELtoJS != '' & whenFinishFromELtoJS != '') {
         var dateStart = convertInputtoDate(whenStartFromELtoJS);
         var dateFinish = convertInputtoDate(whenFinishFromELtoJS);
 
+        //console.log(dateStart);
+        //console.log(dateFinish);
         $('#datetimepicker6').data("DateTimePicker").date(dateStart);
         $('#datetimepicker7').data("DateTimePicker").date(dateFinish);
     }
@@ -77,7 +87,6 @@ $(function () {
     //$('#datetimepicker6').data("DateTimePicker").setDate(Date.parse(whenStartFromELtoJS));
     //$('#datetimepicker7').data("DateTimePicker").setDate(Date.parse(whenFinishFromELtoJS));
 
-    $('#datetimepicker6').data("DateTimePicker").minDate(today);
     //console.log($('#categoryID')[0].value);
     if ($('#categoryID')[0].value != "")
         $('.dropdown-toggle').html($('#categoryID')[0].value + ' <span class="caret"></span>');
@@ -101,12 +110,12 @@ $(function () {
         var data = collectFormData($inputs);
 
         if(isEditFromELtoJS == 'true') {
-            console.log("isEditFromELtoJS=true");
+            //console.log("isEditFromELtoJS=true");
             data['edit'] = true;
             data['id'] = evIDFromELtoJS;
         }
         else {
-            console.log("isEditFromELtoJS=false");
+            //console.log("isEditFromELtoJS=false");
             data['edit'] = false;
         }
 
@@ -285,7 +294,7 @@ function collectFormData(fields) {
     }
     else
         data["whenFinish"] = "";
-    console.log(data);
+    //console.log(data);
     return data;
 }
 function searchPlace(place, status) {
