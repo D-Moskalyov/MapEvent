@@ -2,6 +2,7 @@ package com.mapevent.web.controller;
 
 
 import com.mapevent.web.DTO.EventWithTags;
+import com.mapevent.web.DTO.MarkerEventInfo;
 import com.mapevent.web.exceptions.UserWithoutEvents;
 import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.model.Place;
@@ -26,6 +27,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -159,6 +161,8 @@ public class EventController {
         return res;
     }
 
+
+
     @RequestMapping(path = "/{eventID}", method = RequestMethod.GET)
     public ModelAndView showEventPage(@PathVariable String eventID, Model model) {
         MyEvent myEvent = new MyEvent();
@@ -197,6 +201,48 @@ public class EventController {
         map.put("eventWithTags", eventWithTags);
         return new ModelAndView("event", map);
     }
+
+    @RequestMapping(value = "/{eventID}.json", method = RequestMethod.POST)
+    public @ResponseBody
+    EventWithTags fetchEvent(@PathVariable String eventID, HttpServletRequest request) {
+        MyEvent myEvent = new MyEvent();
+        EventWithTags eventWithTags = new EventWithTags();
+        Map map = new HashMap<String, Object>();
+        try {
+            myEvent = eventService.getEventByID(Integer.parseInt(eventID));
+            eventWithTags.setEvent(myEvent);
+        } catch (EventNotExistException e) {
+            return eventWithTags;
+        }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null) {
+            Object user = (Object) authentication.getPrincipal();
+            if(user.getClass() == User.class) {
+                map.put("user", ((User) user).getuID());
+                if(myEvent.getuID() == ((User) user).getuID())
+                    eventWithTags.setMyEvent(true);
+                else
+                    eventWithTags.setMyEvent(false);
+                try {
+                    favoriteService.getPair(((User) user).getuID(),myEvent.getEvID() );
+                    eventWithTags.setFavorite(true);
+                } catch (UserWithoutEvents e) {
+                    e.printStackTrace();
+                    eventWithTags.setFavorite(false);
+                }
+            }
+            else
+                map.put("user", 0);
+        }
+        else{
+            map.put("user", 0);
+        }
+        map.put("eventWithTags", eventWithTags);
+        return eventWithTags;
+    }
+
+
 
     @RequestMapping(path = "edit/{eventID}", method = RequestMethod.GET)
     public String editEventPage(@PathVariable String eventID, Model model) {

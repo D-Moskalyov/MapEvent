@@ -40,7 +40,7 @@ public class MyEvent {
     @JoinColumn(name = "Plc_Id", insertable = false, updatable = false)
     public Place place;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "U_Id", insertable = false, updatable = false)
     public User user;
 

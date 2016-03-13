@@ -54,6 +54,12 @@
       <div>
           ${eventWithTags.event.start} - ${eventWithTags.event.finish}
       </div>
+      <div>
+          ${eventWithTags.event.user.fullName}
+      </div>
+      <div>
+          ${eventWithTags.event.place.city} : ${eventWithTags.event.place.addressLine1}
+      </div>
     </div>
 
     <c:forEach var="script" items="${javascripts}">

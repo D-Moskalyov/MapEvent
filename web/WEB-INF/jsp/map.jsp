@@ -284,13 +284,20 @@
 
                 $.post('map.json', data, function (response) {
                     var markers = [];
-
+                    console.log(response);
                     for(var i = 0; i < response.length; i++){
                         var myLatLng = new google.maps.LatLng(response[i].lat, response[i].lng);
+                        var id = response[i].id;
                         markers.push(new google.maps.Marker({
                             map: map,
                             position: myLatLng
                         }));
+
+                        markers[i].addListener('click', function() {
+                            $.post('event/50.json', data, function (response) {
+                                console.log(response);
+                            });
+                        });
                     }
                 }, 'json');
             }
