@@ -1,6 +1,7 @@
 package com.mapevent.web.controller;
 
 
+import com.mapevent.web.DTO.EventForMarkerPopup;
 import com.mapevent.web.DTO.EventWithTags;
 import com.mapevent.web.DTO.MarkerEventInfo;
 import com.mapevent.web.exceptions.UserWithoutEvents;
@@ -204,42 +205,39 @@ public class EventController {
 
     @RequestMapping(value = "/{eventID}.json", method = RequestMethod.POST)
     public @ResponseBody
-    EventWithTags fetchEvent(@PathVariable String eventID, HttpServletRequest request) {
+    EventForMarkerPopup fetchEvent(@PathVariable String eventID, HttpServletRequest request) {
         MyEvent myEvent = new MyEvent();
-        EventWithTags eventWithTags = new EventWithTags();
-        Map map = new HashMap<String, Object>();
+        EventForMarkerPopup eventInfo = new EventForMarkerPopup();
+        //Map map = new HashMap<String, Object>();
         try {
             myEvent = eventService.getEventByID(Integer.parseInt(eventID));
-            eventWithTags.setEvent(myEvent);
+            eventInfo.setEvID(myEvent.getEvID());
+            eventInfo.setCategory(myEvent.getCategory().getTitle());
+            eventInfo.setOwner(myEvent.getUser().getUserName());
+            eventInfo.setStartDate(myEvent.getStart().toString());
+            eventInfo.setFinishDate(myEvent.getFinish().toString());
+            eventInfo.setImg("");
         } catch (EventNotExistException e) {
-            return eventWithTags;
+            return eventInfo;
         }
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication != null) {
             Object user = (Object) authentication.getPrincipal();
             if(user.getClass() == User.class) {
-                map.put("user", ((User) user).getuID());
-                if(myEvent.getuID() == ((User) user).getuID())
-                    eventWithTags.setMyEvent(true);
-                else
-                    eventWithTags.setMyEvent(false);
                 try {
-                    favoriteService.getPair(((User) user).getuID(),myEvent.getEvID() );
-                    eventWithTags.setFavorite(true);
+                    favoriteService.getPair(((User) user).getuID() ,myEvent.getEvID() );
+                    eventInfo.setIsMyFavorite(true);
                 } catch (UserWithoutEvents e) {
                     e.printStackTrace();
-                    eventWithTags.setFavorite(false);
+                    eventInfo.setIsMyFavorite(false);
                 }
             }
-            else
-                map.put("user", 0);
         }
         else{
-            map.put("user", 0);
+            eventInfo.setIsMyFavorite(false);
         }
-        map.put("eventWithTags", eventWithTags);
-        return eventWithTags;
+        return eventInfo;
     }
 
 

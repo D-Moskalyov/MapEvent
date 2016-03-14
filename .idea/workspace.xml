@@ -8,9 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72403c14-ff3a-45d7-b3c8-c51b7e31d27c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/EventForMarkerPopup.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/MyEvent.java" afterPath="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/MyEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/event.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/event.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -56,11 +55,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EventController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EventController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24637681">
-              <caret line="206" column="17" selection-start-line="206" selection-start-column="4" selection-end-line="206" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
               <folding>
                 <element signature="method#showNewEvent#0;class#EventController#0" expanded="false" />
                 <element signature="method#processFormDefault#0;class#EventController#0" expanded="false" />
@@ -74,7 +73,7 @@
       <file leaf-file-name="event.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/event.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5384617">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
               <folding />
             </state>
@@ -85,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="85" column="12" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
+              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding>
                 <element signature="e#1269#1311#0" expanded="false" />
                 <element signature="e#2295#2437#0" expanded="false" />
@@ -95,20 +94,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="map.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.3846154">
-              <caret line="286" column="40" selection-start-line="286" selection-start-column="32" selection-end-line="286" selection-end-column="40" />
+            <state vertical-scroll-proportion="1.1449704">
+              <caret line="301" column="21" selection-start-line="301" selection-start-column="21" selection-end-line="301" selection-end-column="21" />
               <folding>
                 <element signature="n#c:forEach#0;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#!!top" expanded="false" />
                 <element signature="n#c:forEach#2;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
-                <element signature="n#script#6;n#!!top" expanded="false" />
-                <element signature="e#8518#8793#0#HTML" expanded="false" />
-                <element signature="e#9147#9366#0#HTML" expanded="false" />
-                <element signature="e#9370#9436#0#HTML" expanded="false" />
-                <element signature="e#9673#11501#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -139,8 +132,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/resources/css/profile.css" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/utils/ErrorMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/ChangePassForm.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/jsp/profile.jsp" />
         <option value="$PROJECT_DIR$/web/resources/js/profile.js" />
@@ -165,7 +156,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Favorite.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Category.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Place.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/jsp/newEvent.jsp" />
         <option value="$PROJECT_DIR$/web/resources/js/events.js" />
         <option value="$PROJECT_DIR$/web/resources/css/events.css" />
@@ -188,8 +178,11 @@
         <option value="$PROJECT_DIR$/web/resources/js/new-event.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/jsp/event.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/MyEvent.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Place.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/EventForMarker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/EventForMarkerPopup.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp" />
       </list>
     </option>
   </component>
@@ -290,6 +283,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -569,7 +563,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -1077,13 +1070,8 @@
       <workItem from="1457644377905" duration="1229000" />
       <workItem from="1457720273061" duration="9623000" />
       <workItem from="1457773681039" duration="4441000" />
-      <workItem from="1457858148819" duration="12253000" />
-    </task>
-    <task id="LOCAL-00005" summary="Bootstrap; datetimepicker add">
-      <created>1449092773309</created>
-      <option name="number" value="00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1449092773309</updated>
+      <workItem from="1457858148819" duration="12411000" />
+      <workItem from="1457977674608" duration="6578000" />
     </task>
     <task id="LOCAL-00006" summary="Bootstrap; mvc:resources mapping add">
       <created>1449178051751</created>
@@ -1373,11 +1361,17 @@
       <option name="project" value="LOCAL" />
       <updated>1457731745503</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="JSON Marshalling/Unmarshalling">
+      <created>1457910042337</created>
+      <option name="number" value="00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1457910042359</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="781739000" />
+    <option name="totallyTimeSpent" value="788475000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1413,7 +1407,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928804" sideWeight="0.55042017" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23388305" sideWeight="0.37890625" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41229385" sideWeight="0.37890625" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1476,7 +1470,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="? CSRF !" />
     <MESSAGE value="CSRF Ok (pattern=&quot;/user/login*&quot; access=&quot;permitAll&quot;); profile template add;" />
     <MESSAGE value="Profile page; Change password" />
     <MESSAGE value="Profile page; Change password; package restrict" />
@@ -1501,7 +1494,8 @@
     <MESSAGE value="main page event send data  to server" />
     <MESSAGE value="send markers to client side ok" />
     <MESSAGE value="war add; work with dae corrected" />
-    <option name="LAST_COMMIT_MESSAGE" value="war add; work with dae corrected" />
+    <MESSAGE value="JSON Marshalling/Unmarshalling" />
+    <option name="LAST_COMMIT_MESSAGE" value="JSON Marshalling/Unmarshalling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1562,13 +1556,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java</url>
-          <line>298</line>
+          <line>296</line>
           <properties />
           <option name="timeStamp" value="316" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java</url>
-          <line>134</line>
+          <line>135</line>
           <properties />
           <option name="timeStamp" value="331" />
         </line-breakpoint>
@@ -1580,12 +1574,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java</url>
-          <line>241</line>
+          <line>239</line>
           <properties />
           <option name="timeStamp" value="416" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="417" />
+      <option name="time" value="418" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1594,27 +1588,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/resources/css/events.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1901566">
-          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/createDB2_foreign_key.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8299775">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/createDB.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0760627">
-          <caret line="151" column="20" selection-start-line="151" selection-start-column="20" selection-end-line="151" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/resources/css/event.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1851,27 +1824,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="27" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Place.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3512195">
-          <caret line="17" column="31" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/resources/js/event.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="18" column="40" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1887,22 +1843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.74634147">
           <caret line="21" column="39" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.3.RELEASE/spring-web-4.2.3.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3550914">
-          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/MarkerEventInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08292683">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1925,51 +1865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/EventWithTags.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37317073">
-          <caret line="18" column="19" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3846154">
-          <caret line="286" column="40" selection-start-line="286" selection-start-column="32" selection-end-line="286" selection-end-column="40" />
-          <folding>
-            <element signature="n#c:forEach#0;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#!!top" expanded="false" />
-            <element signature="n#c:forEach#2;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
-            <element signature="n#script#6;n#!!top" expanded="false" />
-            <element signature="e#8518#8793#0#HTML" expanded="false" />
-            <element signature="e#9147#9366#0#HTML" expanded="false" />
-            <element signature="e#9370#9436#0#HTML" expanded="false" />
-            <element signature="e#9673#11501#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/event.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="85" column="12" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
-          <folding>
-            <element signature="e#1269#1311#0" expanded="false" />
-            <element signature="e#2295#2437#0" expanded="false" />
-            <element signature="e#3221#3251#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/MyEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.2024391">
@@ -1986,15 +1881,124 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.3.RELEASE/spring-webmvc-4.2.3.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.148148">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.3.RELEASE/spring-webmvc-4.2.3.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63501483">
+          <caret line="453" column="0" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.3.RELEASE/spring-web-4.2.3.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76261127">
+          <caret line="144" column="34" selection-start-line="144" selection-start-column="34" selection-end-line="144" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/Place.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5879121">
+          <caret line="85" column="27" selection-start-line="85" selection-start-column="16" selection-end-line="85" selection-end-column="27" />
+          <folding>
+            <element signature="e#835#836#0" expanded="false" />
+            <element signature="e#861#862#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3313433">
+          <caret line="127" column="21" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="21" />
+          <folding>
+            <element signature="e#2019#2020#0" expanded="false" />
+            <element signature="e#2050#2051#0" expanded="false" />
+            <element signature="e#2748#2749#0" expanded="false" />
+            <element signature="e#2779#2780#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/EventForMarkerPopup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7197802">
+          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+          <folding>
+            <element signature="e#263#264#0" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#1164#1165#0" expanded="true" />
+            <element signature="e#1221#1222#0" expanded="true" />
+            <element signature="e#1269#1270#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <folding>
+            <element signature="e#1269#1311#0" expanded="false" />
+            <element signature="e#2295#2437#0" expanded="false" />
+            <element signature="e#3221#3251#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/EventWithTags.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7005494">
+          <caret line="18" column="19" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/DTO/MarkerEventInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1401099">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mapevent/web/controller/EventController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24637681">
-          <caret line="206" column="17" selection-start-line="206" selection-start-column="4" selection-end-line="206" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
           <folding>
             <element signature="method#showNewEvent#0;class#EventController#0" expanded="false" />
             <element signature="method#processFormDefault#0;class#EventController#0" expanded="false" />
             <element signature="method#processFormAjaxJson#0;class#EventController#0" expanded="false" />
             <element signature="method#editEventPage#0;class#EventController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/event.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/map.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1449704">
+          <caret line="301" column="21" selection-start-line="301" selection-start-column="21" selection-end-line="301" selection-end-column="21" />
+          <folding>
+            <element signature="n#c:forEach#0;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
+            <element signature="n#c:forEach#2;n#tiles:putAttribute#0;n#tiles:insertDefinition#0;n#jsp:root#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

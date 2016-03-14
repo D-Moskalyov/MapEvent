@@ -287,14 +287,15 @@
                     console.log(response);
                     for(var i = 0; i < response.length; i++){
                         var myLatLng = new google.maps.LatLng(response[i].lat, response[i].lng);
-                        var id = response[i].id;
                         markers.push(new google.maps.Marker({
                             map: map,
                             position: myLatLng
                         }));
 
-                        markers[i].addListener('click', function() {
-                            $.post('event/50.json', data, function (response) {
+                        markers[i].set('eventID', response[i].evID);
+                        google.maps.event.addListener(markers[i], 'click', function() {
+                            var path = 'event/' + this.get('eventID') + '.json';
+                            $.post(path, data, function (response) {
                                 console.log(response);
                             });
                         });
