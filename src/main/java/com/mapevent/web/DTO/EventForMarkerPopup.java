@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class EventForMarkerPopup {
     int evID;
+    String title;
     String category;
     String startDate;
     String finishDate;
@@ -65,5 +66,13 @@ public class EventForMarkerPopup {
 
     public void setIsMyFavorite(boolean isMyFavorite) {
         this.isMyFavorite = isMyFavorite;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

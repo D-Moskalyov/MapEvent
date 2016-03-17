@@ -20,6 +20,7 @@
 
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main-style.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/checkbox.css"/>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/InfoBox.css"/>
 
         <%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>--%>
         <%--<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>--%>
@@ -30,6 +31,8 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
 
+        <%--<script type="text/javascript" --%>
+                <%--src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>--%>
 
         <div class="container">
 
@@ -137,19 +140,43 @@
 
         </div>
 
+        <div class="infobox-wrapper">
+            <div id="infobox">
+                <img id="img-infobox" src=""/>
+                <a href="" id="title-infobox"></a>
+                <img id="fav-infobox" src=""/>
+                <div id="category-infobox"></div>
+                <div id="date-start-infobox"></div>
+                <div id="date-finish-infobox"></div>
+                <div id="owner-infobox"></div>
+            </div>
+        </div>
+
 
         <c:forEach var="script" items="${javascripts}">
             <script src="<c:url value="${script}"/>"></script>
         </c:forEach>
 
+        <script>
+            var pageContext = '${pageContext.request.contextPath}';
+        </script>
+
         <script type="text/javascript">
             var map;
+            //var markers = [];
             var timeOutToFetchMarker;
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: -34.397, lng: 150.644},
                     zoom: 11,
                     disableDefaultUI: true
+                });
+
+                $.getScript("http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js");
+
+                google.maps.event.addListener(map, 'click', function (event) {
+                    if(infoBox != null)
+                        infoBox.setVisible(false);
                 });
 
                 google.maps.event.addListener(map, 'idle', function() {
@@ -185,6 +212,8 @@
             var dateStartAfter = 0;
             var dateFinishBefore = 0;
             var dateFinishAfter = 0;
+            var infoBox;
+
             $(document).ready(function () {
 
                 $.ajaxSetup({
@@ -283,21 +312,75 @@
                 //console.log(data);
 
                 $.post('map.json', data, function (response) {
+
                     var markers = [];
-                    console.log(response);
+                    var currentMark;
+                    //console.log(response);
                     for(var i = 0; i < response.length; i++){
                         var myLatLng = new google.maps.LatLng(response[i].lat, response[i].lng);
                         markers.push(new google.maps.Marker({
                             map: map,
                             position: myLatLng
                         }));
-
                         markers[i].set('eventID', response[i].evID);
+                        markers[i].set('markID', i);
+
                         google.maps.event.addListener(markers[i], 'click', function() {
+
                             var path = 'event/' + this.get('eventID') + '.json';
+                            currentMark = this.get('markID');
+
                             $.post(path, data, function (response) {
-                                console.log(response);
-                            });
+
+                                var $inf_box = $('#infobox');
+                                if(response.img != "")
+                                    $inf_box.find($('#img-infobox')).attr("src", response.img);
+                                else
+                                    $inf_box.find($('#img-infobox')).attr("src", pageContext + "/resources/images/def_evnt_img.png");
+
+
+                                $inf_box.find($('#title-infobox')).text(response.title);
+                                $inf_box.find($('#title-infobox')).attr("href", "event/" + response.evID);
+
+                                if(response.myFavorite)
+                                    $inf_box.find($('#fav-infobox')).attr("src", pageContext + "/resources/images/favoriteOn.ico");
+                                else
+                                    $inf_box.find($('#fav-infobox')).attr("src", pageContext + "/resources/images/favoriteOff.png");
+
+                                $inf_box.find($('#category-infobox')).html(response.category);
+                                $inf_box.find($('#date-start-infobox')).html(response.startDate);
+                                $inf_box.find($('#date-finish-infobox')).html(response.finishDate);
+                                $inf_box.find($('#owner-infobox')).html(response.owner);
+                                console.log(document.getElementById("infobox"));
+                                var myOptions = {
+                                    content: document.getElementById("infobox")
+                                    ,maxWidth: 0
+                                    ,boxStyle: {
+                                        background: "url('tipbox.gif') no-repeat"
+                                        ,opacity: 0.75
+                                        ,width: "280px"
+                                    }
+                                    ,pixelOffset: new google.maps.Size(-140, 0)
+                                    ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+                                    ,infoBoxClearance: new google.maps.Size(1, 1)
+                                    ,pane: "floatPane"
+                                    ,enableEventPropagation: false
+                                };
+
+                                if(infoBox != null) {
+                                    infoBox.setPosition(markers[currentMark].getPosition());
+                                    infoBox.setVisible(true);
+                                }
+                                else {
+                                    infoBox = new InfoBox();
+                                    infoBox.setOptions(myOptions);
+                                    google.maps.event.addListener(infoBox, "closeclick", function(e){
+                                        infoBox.setVisible(false);
+                                        e.preventDefault();
+                                    });
+                                    infoBox.open(map, markers[currentMark]);
+                                }
+                            }, 'json');
                         });
                     }
                 }, 'json');

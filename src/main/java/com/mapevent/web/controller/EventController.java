@@ -212,6 +212,7 @@ public class EventController {
         try {
             myEvent = eventService.getEventByID(Integer.parseInt(eventID));
             eventInfo.setEvID(myEvent.getEvID());
+            eventInfo.setTitle(myEvent.getTitle());
             eventInfo.setCategory(myEvent.getCategory().getTitle());
             eventInfo.setOwner(myEvent.getUser().getUserName());
             eventInfo.setStartDate(myEvent.getStart().toString());
