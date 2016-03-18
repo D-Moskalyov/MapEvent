@@ -50,10 +50,10 @@
                     <div class="col-md-1" id="${eventWithTags.event.evID}">
                         <c:if test="${eventWithTags.favorite}">
                             <img src="${pageContext.request.contextPath}/resources/images/favoriteOn.ico" class="favorite" id="img-fav-on">
-                            <img src="${pageContext.request.contextPath}/resources/images/favoriteOff.png" style="display: none" visible = true class="favorite" id="img-fav-off">
+                            <img src="${pageContext.request.contextPath}/resources/images/favoriteOff.png" style="display: none" class="favorite" id="img-fav-off">
                         </c:if>
                         <c:if test="${!eventWithTags.favorite}">
-                            <img src="${pageContext.request.contextPath}/resources/images/favoriteOn.ico" style="display: none" visible = true class="favorite" id="img-fav-on">
+                            <img src="${pageContext.request.contextPath}/resources/images/favoriteOn.ico" style="display: none" class="favorite" id="img-fav-on">
                             <img src="${pageContext.request.contextPath}/resources/images/favoriteOff.png" class="favorite" id="img-fav-off">
                         </c:if>
                         <c:if test="${eventWithTags.myEvent}">

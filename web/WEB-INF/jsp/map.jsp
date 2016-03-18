@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <tiles:insertDefinition name="mainTemplate">
     <tiles:putAttribute name="body">
@@ -16,23 +17,23 @@
 
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datetimepicker.min.css" />
-        <%--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">--%>
 
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main-style.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/checkbox.css"/>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/InfoBox.css"/>
 
-        <%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>--%>
-        <%--<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>--%>
         <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/map.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/map_datetime-picker.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/map_infoBox-def.js"></script>
 
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/transition.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/collapse.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
 
-        <%--<script type="text/javascript" --%>
-                <%--src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>--%>
+        <spring:url value="/user/favorite.json" var="favURL"/>
 
         <div class="container">
 
@@ -49,59 +50,6 @@
                             <label for="${category.catID}">${category.title}</label>
                         </div>
                     </c:forEach>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="businessChk"/>--%>
-                        <%--<label for="businessChk">Бизнес</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="cinemaChk"/>--%>
-                        <%--<label for="cinemaChk">Кино</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="concertChk"/>--%>
-                        <%--<label for="concertChk">Концерт</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="dancingChk"/>--%>
-                        <%--<label for="dancingChk">Танцы</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="exhibitionsChk"/>--%>
-                        <%--<label for="exhibitionsChk">Выставки</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="gamesChk"/>--%>
-                        <%--<label for="gamesChk">Игры</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="festivalsChk"/>--%>
-                        <%--<label for="festivalsChk">Фестивали</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="meetingChk"/>--%>
-                        <%--<label for="meetingChk">Встречи</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="theatreChk"/>--%>
-                        <%--<label for="theatreChk">Театр</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="sportChk"/>--%>
-                        <%--<label for="sportChk">Спорт</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="questChk"/>--%>
-                        <%--<label for="questChk">Квесты</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="charityChk"/>--%>
-                        <%--<label for="charityChk">Благотворительность</label>--%>
-                    <%--</div>--%>
-                    <%--<div class="check">--%>
-                        <%--<input type="checkbox" class="checkbox" id="comedyChk"/>--%>
-                        <%--<label for="comedyChk">Comedy</label>--%>
-                    <%--</div>--%>
-
 
                     <div class='col-md-12'>
                         <div class="form-group">
@@ -142,13 +90,34 @@
 
         <div class="infobox-wrapper">
             <div id="infobox">
-                <img id="img-infobox" src=""/>
-                <a href="" id="title-infobox"></a>
-                <img id="fav-infobox" src=""/>
-                <div id="category-infobox"></div>
-                <div id="date-start-infobox"></div>
-                <div id="date-finish-infobox"></div>
-                <div id="owner-infobox"></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img width="60" height="60" id="img-infobox" src=""/>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <a href="" id="title-infobox"></a>
+                            </div>
+                            <div class="col-md-2">
+                                <img width="30" height="30" id="fav-infobox-on" class="favorite" src=""/>
+                                <img width="30" height="30" id="fav-infobox-off" class="favorite" src=""/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="category-infobox"></div>
+                        </div>
+                        <div class="row">
+                            <div id="date-start-infobox"></div>
+                        </div>
+                        <div class="row">
+                            <div id="date-finish-infobox"></div>
+                        </div>
+                        <div class="row">
+                            <div id="owner-infobox"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -159,11 +128,11 @@
 
         <script>
             var pageContext = '${pageContext.request.contextPath}';
+            var favURLFromELtoJS = '${favURL}';
         </script>
 
         <script type="text/javascript">
             var map;
-            //var markers = [];
             var timeOutToFetchMarker;
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
@@ -180,7 +149,6 @@
                 });
 
                 google.maps.event.addListener(map, 'idle', function() {
-                    //console.log(map.getBounds());
                     clearTimeout(timeOutToFetchMarker);
                     if(map.zoom >= 11)
                         timeOutToFetchMarker = setTimeout(fetchMarkersSRV, 1000);
@@ -195,6 +163,20 @@
                         map.setCenter(pos);
                     });
                 }
+
+                myInfoBoxOptions = {
+                    content: document.getElementById("infobox")
+                    ,maxWidth: 0
+                    ,boxStyle: {
+                        opacity: 0.8
+                        ,width: "280px"
+                    }
+                    ,pixelOffset: new google.maps.Size(-140, 0)
+                    ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+                    ,infoBoxClearance: new google.maps.Size(1, 1)
+                    ,pane: "floatPane"
+                    ,enableEventPropagation: false
+                };
             }
 
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -205,215 +187,6 @@
             }
         </script><!--map-->
 
-        <script type="text/javascript">
-            var summBefore = 0;
-            var summAfter = 0;
-            var dateStartBefore = 0;
-            var dateStartAfter = 0;
-            var dateFinishBefore = 0;
-            var dateFinishAfter = 0;
-            var infoBox;
-
-            $(document).ready(function () {
-
-                $.ajaxSetup({
-                    beforeSend: function(xhr, settings) {
-                        //console.log(csrfHeader);
-                        xhr.setRequestHeader(csrfHeader, csrfToken);
-                    }
-                });
-
-//                $(document).ajaxSend(function(e, xhr, options) {
-//                    console.log(csrfHeader);
-//                    xhr.setRequestHeader(csrfHeader, csrfToken);
-//                    console.log(csrfToken);
-//                });
-
-                $("[data-toggle]").click(function () {
-                    var toggle_el = $(this).data("toggle");
-
-                    $(toggle_el).toggleClass("open-sidebar");
-
-                    if($(toggle_el).hasClass("open-sidebar")) {
-                        var checked = $('.checkbox').not( '#allChk' );
-                        //var checked = document.forms.namedItem('formWithCheck');
-                        for (var i = 0; i < checked.length; i++) {
-                            if (checked[i].checked)
-                                summBefore += Math.pow(2, i);
-                        }
-
-                        dateStartBefore = $('#datetimepicker6').data("DateTimePicker").date().toString();
-                        dateFinishBefore = $('#datetimepicker7').data("DateTimePicker").date().toString();
-                    }
-                    else {
-                        var checked = $('.checkbox').not( '#allChk' );
-                        //var checked = document.forms.namedItem('formWithCheck');
-                        for (var i = 0; i < checked.length; i++) {
-                            if (checked[i].checked)
-                                summAfter += Math.pow(2, i);
-                        }
-
-                        dateStartAfter = $('#datetimepicker6').data("DateTimePicker").date().toString();
-                        dateFinishAfter = $('#datetimepicker7').data("DateTimePicker").date().toString();
-
-                        if(summAfter != summBefore | dateStartBefore != dateStartAfter | dateFinishBefore != dateFinishAfter){
-                            summBefore = 0;
-                            summAfter = 0;
-                            //console.log('changes detected');
-                            if(map.zoom >= 11)
-                                fetchMarkersSRV();
-                        }
-
-                    }
-                });
-
-                var checked = $('.checkbox');
-                //var checked = document.forms.namedItem('formWithCheck');
-                for (var i = 0; i < checked.length; i++)
-                    checked[i].checked = true;
-
-                $('#allChk').change(function(){
-                    var checked = $('.checkbox').not( '#allChk' );
-                    //var checked = document.forms.namedItem('formWithCheck');
-                    if(this.checked){
-                        for (var i = 0; i < checked.length; i++)
-                            checked[i].checked = true;
-                    }
-                    else{
-                        for (var i = 0; i < checked.length; i++)
-                            checked[i].checked = false;
-                    }
-                });
-            });
-
-            function fetchMarkersSRV(){
-                var data = {};
-                data["startDate"] = $('#datetimepicker6').data("DateTimePicker").date().toString();
-                data["finishDate"] = $('#datetimepicker7').data("DateTimePicker").date().toString();
-
-//                data["startDate"] = $('#datetimepicker6').val();
-//                data["finishDate"] = $('#datetimepicker7').val();
-
-                data["NElat"] = map.getBounds().getNorthEast().lat();
-                data["NElng"] = map.getBounds().getNorthEast().lng();
-                data["SWlat"] = map.getBounds().getSouthWest().lat();
-                data["SWlng"] = map.getBounds().getSouthWest().lng();
-
-                data["cats"] = [];
-
-                var checked = $('.checkbox').not( '#allChk' );
-                //var checked = document.forms.namedItem('formWithCheck');
-                //console.log(checked);
-                for (var i = 0; i < checked.length; i++) {
-                    if (checked[i].checked)
-                        data["cats"][data["cats"].length] = checked[i].id;
-                }
-
-                //console.log(data);
-
-                $.post('map.json', data, function (response) {
-
-                    var markers = [];
-                    var currentMark;
-                    //console.log(response);
-                    for(var i = 0; i < response.length; i++){
-                        var myLatLng = new google.maps.LatLng(response[i].lat, response[i].lng);
-                        markers.push(new google.maps.Marker({
-                            map: map,
-                            position: myLatLng
-                        }));
-                        markers[i].set('eventID', response[i].evID);
-                        markers[i].set('markID', i);
-
-                        google.maps.event.addListener(markers[i], 'click', function() {
-
-                            var path = 'event/' + this.get('eventID') + '.json';
-                            currentMark = this.get('markID');
-
-                            $.post(path, data, function (response) {
-
-                                var $inf_box = $('#infobox');
-                                if(response.img != "")
-                                    $inf_box.find($('#img-infobox')).attr("src", response.img);
-                                else
-                                    $inf_box.find($('#img-infobox')).attr("src", pageContext + "/resources/images/def_evnt_img.png");
-
-
-                                $inf_box.find($('#title-infobox')).text(response.title);
-                                $inf_box.find($('#title-infobox')).attr("href", "event/" + response.evID);
-
-                                if(response.myFavorite)
-                                    $inf_box.find($('#fav-infobox')).attr("src", pageContext + "/resources/images/favoriteOn.ico");
-                                else
-                                    $inf_box.find($('#fav-infobox')).attr("src", pageContext + "/resources/images/favoriteOff.png");
-
-                                $inf_box.find($('#category-infobox')).html(response.category);
-                                $inf_box.find($('#date-start-infobox')).html(response.startDate);
-                                $inf_box.find($('#date-finish-infobox')).html(response.finishDate);
-                                $inf_box.find($('#owner-infobox')).html(response.owner);
-                                console.log(document.getElementById("infobox"));
-                                var myOptions = {
-                                    content: document.getElementById("infobox")
-                                    ,maxWidth: 0
-                                    ,boxStyle: {
-                                        background: "url('tipbox.gif') no-repeat"
-                                        ,opacity: 0.75
-                                        ,width: "280px"
-                                    }
-                                    ,pixelOffset: new google.maps.Size(-140, 0)
-                                    ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
-                                    ,infoBoxClearance: new google.maps.Size(1, 1)
-                                    ,pane: "floatPane"
-                                    ,enableEventPropagation: false
-                                };
-
-                                if(infoBox != null) {
-                                    infoBox.setPosition(markers[currentMark].getPosition());
-                                    infoBox.setVisible(true);
-                                }
-                                else {
-                                    infoBox = new InfoBox();
-                                    infoBox.setOptions(myOptions);
-                                    google.maps.event.addListener(infoBox, "closeclick", function(e){
-                                        infoBox.setVisible(false);
-                                        e.preventDefault();
-                                    });
-                                    infoBox.open(map, markers[currentMark]);
-                                }
-                            }, 'json');
-                        });
-                    }
-                }, 'json');
-            }
-        </script>
-
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker6').datetimepicker({
-                    locale: 'ru'
-                });
-                $('#datetimepicker7').datetimepicker({
-                    locale: 'ru',
-                    useCurrent: false //Important! See issue #1075
-                });
-                $("#datetimepicker6").on("dp.change", function (e) {
-                    $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-                });
-                $("#datetimepicker7").on("dp.change", function (e) {
-                    $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-                });
-
-                var nowDate = new Date();
-                var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(),
-                        nowDate.getHours(), nowDate.getMinutes(), 0, 0);
-                $('#datetimepicker6').data("DateTimePicker").minDate(today);
-
-                var datePlus = new Date(nowDate.getFullYear() + 1, nowDate.getMonth(),
-                        nowDate.getDay(), nowDate.getHours(), nowDate.getMinutes(), 0 , 0);
-                $('#datetimepicker7').data("DateTimePicker").date(datePlus);
-
-            });
-        </script><!--datetime-->
 
 
         <script async defer

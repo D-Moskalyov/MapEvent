@@ -8,6 +8,7 @@ public class EventForMarkerPopup {
     String category;
     String startDate;
     String finishDate;
+    int ownerID;
     String owner;
     String img;
     boolean isMyFavorite;
@@ -74,5 +75,13 @@ public class EventForMarkerPopup {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
     }
 }

@@ -217,6 +217,7 @@ public class EventController {
             eventInfo.setOwner(myEvent.getUser().getUserName());
             eventInfo.setStartDate(myEvent.getStart().toString());
             eventInfo.setFinishDate(myEvent.getFinish().toString());
+            eventInfo.setOwnerID(myEvent.getuID());
             eventInfo.setImg("");
         } catch (EventNotExistException e) {
             return eventInfo;
