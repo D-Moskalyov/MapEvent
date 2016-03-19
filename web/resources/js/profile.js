@@ -1,13 +1,7 @@
 $(function($) {
     "use strict";
 
-    $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-            console.log(csrfToken);
-            xhr.setRequestHeader(csrfHeader, csrfToken);
-        }
-    });
-
+    $.getScript("/resources/js/ajaxSetup.js");
 
     $("#change-pass-form").validate({
         rules: {
@@ -34,19 +28,9 @@ $(function($) {
 
             $.post(formJsonUrlFromELtoJSProfile, data, function (response) {
                 if (response.status == 'FAIL') {
-                    //console.log('FAILlog_form');
                     $(".change-pass-form-main-message").text('FAIL');
                 } else {
-                    //console.log('SUCCESSlog_form');
                     $(".change-pass-form-main-message").text('SUCCESS');
-
-                    //form_success($form);
-                    //setTimeout(function() {
-                    //    console.log('redir');
-                    //    window.location.replace("/" + pathToRedirectLog);
-                    //}, 2000);
-                    //$form.unbind('submit');
-                    //$form.submit();
                 }
             }, 'json');
         }

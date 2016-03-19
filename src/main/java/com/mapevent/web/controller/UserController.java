@@ -329,7 +329,6 @@ public class UserController {
     public @ResponseBody
     ValidationResponse processFavoritetAjaxJson(HttpServletRequest request){
         ValidationResponse res = new ValidationResponse();
-        ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
         Map<String, String[]> map = request.getParameterMap();
 
         if(map.get("fav")[0].equals("off")){
@@ -337,21 +336,31 @@ public class UserController {
             try {
                 favorite = favoriteService.getPair(Integer.parseInt(map.get("userID")[0]),
                         Integer.parseInt(map.get("eventID")[0]));
+                res.setStatus("SUCCESS");
             } catch (UserWithoutEvents userWithoutEvents) {
                 userWithoutEvents.printStackTrace();
+                res.setStatus("FAIL");
             }
             favoriteService.delete(favorite);
         }
-        else{
-            Favorite favorite = new Favorite();
-            favorite.setEvID(Integer.parseInt(map.get("eventID")[0]));
-            favorite.setuID(Integer.parseInt(map.get("userID")[0]));
+        else {
+            try {
+                favoriteService.getPair(Integer.parseInt(map.get("userID")[0]),
+                        Integer.parseInt(map.get("eventID")[0]));
 
-            favoriteService.save(favorite);
+                res.setStatus("FAIL");
+            } catch (UserWithoutEvents userWithoutEvents) {
+                Favorite favorite = new Favorite();
+                favorite.setEvID(Integer.parseInt(map.get("eventID")[0]));
+                favorite.setuID(Integer.parseInt(map.get("userID")[0]));
+
+                favoriteService.save(favorite);
+
+                res.setStatus("SUCCESS");
+            }
         }
 
-
-        res.setErrorMessageList(errorMessages);
+        res.setErrorMessageList(null);
         return res;
     }
 }

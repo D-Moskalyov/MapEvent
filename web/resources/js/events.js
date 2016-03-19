@@ -1,15 +1,9 @@
 $(function($) {
     "use strict";
 
-    $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-            //console.log(csrfToken);
-            xhr.setRequestHeader(csrfHeader, csrfToken);
-        }
-    });
+    $.getScript("/resources/js/ajaxSetup.js");
 
     $('.favorite').click(function() {
-        //var evID = $(this).data('evID');
         var evID = $(this).parent().attr("id");
         var data = {};
 
@@ -26,8 +20,6 @@ $(function($) {
             $( "#" + evID ).children( ".favorite").toggle();
         }, 'json');
 
-
-        //$( ".favorite" ).toggle();
 
     });
 });

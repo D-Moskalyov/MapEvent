@@ -16,6 +16,7 @@ import com.mapevent.web.utils.DateTimeFormatter;
 import com.mapevent.web.utils.ErrorMessage;
 import com.mapevent.web.DTO.NewEventForm;
 import com.mapevent.web.exceptions.EventNotExistException;
+import com.mapevent.web.utils.StatusAuthenticationUser;
 import com.mapevent.web.utils.ValidationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -223,22 +224,19 @@ public class EventController {
             return eventInfo;
         }
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null) {
-            Object user = (Object) authentication.getPrincipal();
-            if(user.getClass() == User.class) {
-                try {
-                    favoriteService.getPair(((User) user).getuID() ,myEvent.getEvID() );
-                    eventInfo.setIsMyFavorite(true);
-                } catch (UserWithoutEvents e) {
-                    e.printStackTrace();
-                    eventInfo.setIsMyFavorite(false);
-                }
+        User user = StatusAuthenticationUser.getAuthenticationUser();
+        if (user != null) {
+            try {
+                favoriteService.getPair(user.getuID(), myEvent.getEvID());
+                eventInfo.setIsMyFavorite(true);
+            } catch (UserWithoutEvents e) {
+                e.printStackTrace();
+                eventInfo.setIsMyFavorite(false);
             }
         }
-        else{
+        else
             eventInfo.setIsMyFavorite(false);
-        }
+
         return eventInfo;
     }
 

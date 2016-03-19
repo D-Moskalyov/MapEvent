@@ -14,17 +14,8 @@ $(function($) {
         //'useAJAX': true,
     };
 
-    //$(document).ajaxSend(function(e, xhr, options) {
-    //    console.log(csrfHeader);
-    //    xhr.setRequestHeader(csrfHeader, csrfToken);
-    //});
 
-    $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-            //console.log(csrfToken);
-            xhr.setRequestHeader(csrfHeader, csrfToken);
-        }
-    });
+    $.getScript("/resources/js/ajaxSetup.js");
 
     //// Login Form
     ////----------------------------------------------
@@ -217,41 +208,6 @@ $(function($) {
                     //$form.submit();
                 }
             }, 'json');
-
-            //var headers = {};
-            //headers[csrfHeader] = csrfToken;
-            //headers['Accept'] = 'application/json';
-            ////headers['Content-Type'] = 'application/json; charset=utf-8';
-            //
-            //$.ajax({
-            //    url: formJsonUrlFromELtoJSLog,
-            //    type: "POST",
-            //    headers: headers,
-            //    //headers: {
-            //    //    'Accept': 'application/json',
-            //    //    'Content-Type': 'application/json; charset=utf-8'
-            //    //},
-            //    data: data,
-            //    dataType: "json",
-            //    success: function(response){
-            //        if (response.status == 'FAIL') {
-            //            //console.log('FAILlog_form');
-            //            form_failed($form, response);
-            //        } else {
-            //            //console.log('SUCCESSlog_form');
-            //            form_success($form);
-            //            setTimeout(function() {
-            //                console.log('redir');
-            //                window.location.replace("/" + pathToRedirectLog);
-            //            }, 2000);
-            //            //$form.unbind('submit');
-            //            //$form.submit();
-            //        }
-            //    },
-            //    error: function(response){
-            //        console.log(response);
-            //    }
-            //});
 
         }
     }

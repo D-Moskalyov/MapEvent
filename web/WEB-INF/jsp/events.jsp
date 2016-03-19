@@ -1,7 +1,9 @@
+<%@ page import="java.util.Date" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <tiles:insertDefinition name="eventsPageTemplate">
     <tiles:putAttribute name="body">
 
@@ -11,6 +13,8 @@
         <c:forEach var="css" items="${stylesheets}">
             <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
         </c:forEach>
+
+        <jsp:useBean id="date" class="java.util.Date" />
 
         <title>Events</title>
 
@@ -23,8 +27,19 @@
 
         <div class="container">
             <c:forEach var="eventWithTags" items="${eventsWithTags}">
-                <%--<p>${eventWithTags.event.evID}<p>--%>
-                <div class="row" class="ev-list-elem" id="ev-list-elem">
+
+                <c:if test="${date > eventWithTags.event.finish}">
+                <div class="row red" class="ev-list-elem" id="ev-list-elem">
+                </c:if>
+                <c:if test="${date < eventWithTags.event.finish}">
+                    <c:if test="${date < eventWithTags.event.start}">
+                <div class="row green" class="ev-list-elem" id="ev-list-elem">
+                    </c:if>
+                    <c:if test="${date > eventWithTags.event.start}">
+                <div class="row yellow" class="ev-list-elem" id="ev-list-elem">
+                    </c:if>
+                </c:if>
+
                     <div class="col-md-2">
                         <c:if test="${!eventWithTags.event.haveImgs}">
                             <img src="${pageContext.request.contextPath}/resources/images/def_evnt_img.png" id="img-title">

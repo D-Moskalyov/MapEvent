@@ -23,15 +23,17 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/InfoBox.css"/>
 
         <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.js"></script>
-
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/map.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/map_datetime-picker.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/map_infoBox-def.js"></script>
-
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/transition.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/collapse.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
+
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/map.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/google-map-def.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/map_google-map.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datetimepicker-def.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/map_datetimepicker.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/map_infoBox.js"></script>
 
         <spring:url value="/user/favorite.json" var="favURL"/>
 
@@ -82,6 +84,7 @@
                     <span class="bar"></span>
                 </a>
                 <div class="content">
+                    <input id="pac-input" class="controls" type="text"/>
                     <div id="map"></div>
                 </div>
             </div>
@@ -129,65 +132,8 @@
         <script>
             var pageContext = '${pageContext.request.contextPath}';
             var favURLFromELtoJS = '${favURL}';
+            var authUserID = '${userId}';
         </script>
-
-        <script type="text/javascript">
-            var map;
-            var timeOutToFetchMarker;
-            function initMap() {
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: -34.397, lng: 150.644},
-                    zoom: 11,
-                    disableDefaultUI: true
-                });
-
-                $.getScript("http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js");
-
-                google.maps.event.addListener(map, 'click', function (event) {
-                    if(infoBox != null)
-                        infoBox.setVisible(false);
-                });
-
-                google.maps.event.addListener(map, 'idle', function() {
-                    clearTimeout(timeOutToFetchMarker);
-                    if(map.zoom >= 11)
-                        timeOutToFetchMarker = setTimeout(fetchMarkersSRV, 1000);
-                });
-
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        var pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-                        map.setCenter(pos);
-                    });
-                }
-
-                myInfoBoxOptions = {
-                    content: document.getElementById("infobox")
-                    ,maxWidth: 0
-                    ,boxStyle: {
-                        opacity: 0.8
-                        ,width: "280px"
-                    }
-                    ,pixelOffset: new google.maps.Size(-140, 0)
-                    ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
-                    ,infoBoxClearance: new google.maps.Size(1, 1)
-                    ,pane: "floatPane"
-                    ,enableEventPropagation: false
-                };
-            }
-
-            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                //infoWindow.setPosition(pos);
-                //infoWindow.setContent(browserHasGeolocation ?
-                //        'Error: The Geolocation service failed.' :
-                //        'Error: Your browser doesn\'t support geolocation.');
-            }
-        </script><!--map-->
-
-
 
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Oq4jskDM9UEBBbDzWSioDqzY1R434mk&callback=initMap&libraries=places">

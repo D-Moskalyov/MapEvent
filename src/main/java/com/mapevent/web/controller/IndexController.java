@@ -2,16 +2,21 @@ package com.mapevent.web.controller;
 
 
 import com.mapevent.web.DTO.MarkerEventInfo;
+import com.mapevent.web.exceptions.UserWithoutEvents;
 import com.mapevent.web.model.Category;
 import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.model.Place;
+import com.mapevent.web.model.User;
 import com.mapevent.web.service.CategoryService;
 import com.mapevent.web.service.EventService;
 import com.mapevent.web.service.PlaceService;
 import com.mapevent.web.utils.DateTimeFormatter;
 import com.mapevent.web.utils.ErrorMessage;
+import com.mapevent.web.utils.StatusAuthenticationUser;
 import com.mapevent.web.utils.ValidationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -39,25 +44,16 @@ public class IndexController {
     @RequestMapping(value = "/map", method = RequestMethod.GET)
     public String index(ModelMap model) {
 
-//        MyEvent myEvent = new MyEvent();
-//
-//        myEvent.setPlcID(1);
-//        myEvent.setTitle("�������");
-//        myEvent.setDiscription("������ ����");
-//        myEvent.setHaveImgs(false);
-//
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-//        try {
-//            myEvent.setStart(formatter.parse("01.02.2016 21:05"));
-//            myEvent.setFinish(formatter.parse("02.03.2016 21:06"));
-//            myEvent.setCatID(4);
-//            myEvent.setuID(1);
-//
-//            eventService.save(myEvent);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        User user = StatusAuthenticationUser.getAuthenticationUser();
+        if(user != null)
+            model.addAttribute("userId", user.getuID());
+        else
+            model.addAttribute("userId", 0);
+
+
+
         List<Category> categoryList = categoryService.getCategoryList();
+        model.addAttribute("categories", categoryList);
         model.addAttribute("categories", categoryList);
         return "map";
     }

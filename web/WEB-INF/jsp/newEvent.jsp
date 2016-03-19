@@ -29,7 +29,12 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
         <script type="text/javascript"
                 src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
+
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/new-event.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/google-map-def.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/new-event_google-map.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datetimepicker-def.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/new-event_datetimepicker.js"></script>
 
 
         <div class="container">
@@ -198,14 +203,16 @@
             var whenFinishFromELtoJS = '${newEventForm.whenFinish}';
             var isEditFromELtoJS = '${newEventForm.edit}';
             var formJsonUrlFromELtoJS = '${formJsonUrl}';
-            //var deleteJsonUrl = '${formJsonUrl}';
             var placeIDFromELtoJS = '${newEventForm.placeID}';
         </script>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Oq4jskDM9UEBBbDzWSioDqzY1R434mk&callback=initMap&libraries=places">
-        </script>
+
         <c:forEach var="script" items="${javascripts}">
             <script src="<c:url value="${script}"/>"></script>
         </c:forEach>
+
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Oq4jskDM9UEBBbDzWSioDqzY1R434mk&callback=initMap&libraries=places">
+        </script>
+
     </tiles:putAttribute>
 </tiles:insertDefinition>
