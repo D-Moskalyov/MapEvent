@@ -3,6 +3,15 @@ $(function($) {
 
     $.getScript("/resources/js/ajaxSetup.js");
 
+    $('#staticMap').attr("src", "http://maps.googleapis.com/maps/api/staticmap?" +
+        "center=" + latFromELtoJS + "," + lngFromELtoJS + "&" +
+        "zoom=14&" +
+        "scale=false&" +
+        "size=600x300&" +
+        "maptype=roadmap&" +
+        "format=png&" +
+        "markers=" + latFromELtoJS + "," + lngFromELtoJS);
+
     $(".favorite").click(function() {
 
         var data = {};

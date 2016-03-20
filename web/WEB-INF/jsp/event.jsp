@@ -48,6 +48,7 @@
       <div>
           ${eventWithTags.event.category.title}
       </div>
+      <img width="600" id="staticMap"/>
       <div>
           ${eventWithTags.event.discription}
       </div>
@@ -71,6 +72,8 @@
       var eventFromELtoJS = '${eventWithTags.event.evID}';
       var favFromELtoJS = '${eventWithTags.favorite}';
       var myEvFromELtoJS = '${eventWithTags.myEvent}';
+      var latFromELtoJS = '${eventWithTags.event.place.lat}';
+      var lngFromELtoJS = '${eventWithTags.event.place.lng}';
       var favURLFromELtoJS = '${favURL}';
     </script>
   </tiles:putAttribute>
