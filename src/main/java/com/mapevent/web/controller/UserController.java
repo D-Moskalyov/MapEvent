@@ -1,6 +1,7 @@
 package com.mapevent.web.controller;
 
 
+import com.google.api.services.gmail.Gmail;
 import com.mapevent.web.exceptions.UserWithoutEvents;
 import com.mapevent.web.exceptions.UserWithoutFavEvent;
 import com.mapevent.web.model.Favorite;
@@ -27,8 +28,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -126,7 +130,12 @@ public class UserController {
 //                    "localhost:8080/user/confirm?confirmPath=" + hash + "</a>" + "</html>";
             String validPath = "Приветствуем. Для завершения процесса регистрации пройдите по следующему адресу : " +
                     "http://localhost:8080/user/confirm?confirmPath=" + hash;
-            if(GoogleMessenger.SendMessage(map.get("reg_email")[0], "Activate account on MapEvent", validPath)){
+
+            try {
+                MimeMessage mimeMessage = GmailSender.createEmail(map.get("reg_email")[0], "Activate account on MapEvent", validPath);
+                Gmail gmailService = GmailSender.getGmailService();
+                GmailSender.sendMessage(gmailService, "me", mimeMessage);
+
                 WaitConfirm waitConfirm = new WaitConfirm();
                 waitConfirm.setEmail(map.get("reg_email")[0]);
                 waitConfirm.setFullName(map.get("reg_fullname")[0]);
@@ -140,7 +149,27 @@ public class UserController {
                 waitConfirm.setUserName(map.get("reg_username")[0]);
 
                 waitConfirmsService.save(waitConfirm);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+
+//            if(GoogleMessenger.SendMessage(map.get("reg_email")[0], "Activate account on MapEvent", validPath)){
+//                WaitConfirm waitConfirm = new WaitConfirm();
+//                waitConfirm.setEmail(map.get("reg_email")[0]);
+//                waitConfirm.setFullName(map.get("reg_fullname")[0]);
+//                if(map.get("male")[0].equals("on"))
+//                    waitConfirm.setGender("male");
+//                else
+//                    waitConfirm.setGender("female");
+//                waitConfirm.setHashConfirm(hash);
+//                waitConfirm.setPassword(MD5.getHash(map.get("reg_password")[0]));
+//                waitConfirm.setSend_Email(new Date());
+//                waitConfirm.setUserName(map.get("reg_username")[0]);
+//
+//                waitConfirmsService.save(waitConfirm);
+//            }
 
         }
 
