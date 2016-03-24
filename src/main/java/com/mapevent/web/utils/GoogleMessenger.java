@@ -29,7 +29,7 @@ public class GoogleMessenger {
         final MimeMessage msg = new MimeMessage(session);
 
         try {
-            msg.setFrom(new InternetAddress(""));
+            msg.setFrom(new InternetAddress("email"));
 
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
 
@@ -43,7 +43,7 @@ public class GoogleMessenger {
 
             Transport t = (Transport) session.getTransport("smtps");
 
-            t.connect("smtp.gmail.com", "", "");
+            t.connect("smtp.gmail.com", "email", "password");
             t.sendMessage(msg, msg.getAllRecipients());
             t.close();
         } catch (Exception e) {

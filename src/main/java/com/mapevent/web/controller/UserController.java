@@ -14,9 +14,11 @@ import com.mapevent.web.service.FavoriteService;
 import com.mapevent.web.utils.*;
 import com.mapevent.web.service.UserService;
 import com.mapevent.web.service.WaitConfirmsService;
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -200,13 +202,28 @@ public class UserController {
         if (userService.userAlreadyExist(map.get("fp_email")[0])) {
             String newPass = RandomPassword.generateRandomPassword();
             String newPassMess = "Ваш новый пароль на http://localhost:8080 : " + newPass;
-            if(GoogleMessenger.SendMessage(map.get("fp_email")[0], "New password on MapEvent", newPassMess)){
+
+            MimeMessage mimeMessage = null;
+            try {
+                mimeMessage = GmailSender.createEmail(map.get("fp_email")[0], "New password on MapEvent", newPassMess);
+                Gmail gmailService = GmailSender.getGmailService();
+                GmailSender.sendMessage(gmailService, "me", mimeMessage);
+
                 userService.updateUserPassword(map.get("fp_email")[0], newPass);
-            }
-            else {
+            } catch (Exception e) {
+                e.printStackTrace();
                 res.setStatus("FAIL");
                 errorMessages.add(new ErrorMessage("", "Не удалось отправить сообщение"));
             }
+
+
+//            if(GoogleMessenger.SendMessage(map.get("fp_email")[0], "New password on MapEvent", newPassMess)){
+//                userService.updateUserPassword(map.get("fp_email")[0], newPass);
+//            }
+//            else {
+//                res.setStatus("FAIL");
+//                errorMessages.add(new ErrorMessage("", "Не удалось отправить сообщение"));
+//            }
         }
         else{
             res.setStatus("FAIL");
@@ -391,5 +408,11 @@ public class UserController {
 
         res.setErrorMessageList(null);
         return res;
+    }
+
+    @RequestMapping(value="/credentials", method=RequestMethod.POST)
+    public void Credentials(HttpServletRequest request){
+        int i = 5;
+        int j = i;
     }
 }

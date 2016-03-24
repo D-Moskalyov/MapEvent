@@ -4,8 +4,7 @@ package com.mapevent.web.utils;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.googleapis.auth.oauth2.*;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
@@ -32,13 +31,13 @@ public class GmailSender {
     private static final String APPLICATION_NAME =
             "MapEvent Project";
     private static final java.io.File DATA_STORE_DIR = new java.io.File(
-            System.getProperty("user.home"), ".credentials/gmail-java-quickstart.json");
+            System.getProperty("user.home"), ".credentials/map-event.json");
     private static FileDataStoreFactory DATA_STORE_FACTORY;
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static HttpTransport HTTP_TRANSPORT;
     private static final List<String> SCOPES =
             Arrays.asList(GmailScopes.GMAIL_SEND);
-    private static final String FROM = "moscalevd@gmail.com";
+    private static String FROM;
 
     static {
         try {
@@ -48,6 +47,18 @@ public class GmailSender {
             t.printStackTrace();
             System.exit(1);
         }
+    }
+
+    static {
+        Properties prop = new Properties();
+        String propAccount = "google_account.properties";
+        InputStream inputStream = GmailSender.class.getClassLoader().getResourceAsStream(propAccount);
+        try {
+            prop.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FROM = prop.getProperty("mail.address");
     }
 
 
@@ -61,7 +72,10 @@ public class GmailSender {
                         .setDataStoreFactory(DATA_STORE_FACTORY)
                         .setAccessType("offline")
                         .build();
-        Credential credential = new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
+
+
+        LocalServerReceiver localServerReceiver = new LocalServerReceiver.Builder().setHost("localhost").setPort(8089).build();
+        Credential credential = new AuthorizationCodeInstalledApp(flow, localServerReceiver).authorize("moscalevd@gmail.com");
         System.out.println("Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
         return credential;
     }

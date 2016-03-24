@@ -2,28 +2,20 @@ package com.mapevent.web.controller;
 
 
 import com.mapevent.web.DTO.MarkerEventInfo;
-import com.mapevent.web.exceptions.UserWithoutEvents;
 import com.mapevent.web.model.Category;
 import com.mapevent.web.model.MyEvent;
-import com.mapevent.web.model.Place;
 import com.mapevent.web.model.User;
 import com.mapevent.web.service.CategoryService;
 import com.mapevent.web.service.EventService;
 import com.mapevent.web.service.PlaceService;
 import com.mapevent.web.utils.DateTimeFormatter;
-import com.mapevent.web.utils.ErrorMessage;
 import com.mapevent.web.utils.StatusAuthenticationUser;
-import com.mapevent.web.utils.ValidationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -63,28 +55,8 @@ public class IndexController {
     List<MarkerEventInfo> updateEvent(HttpServletRequest request) {
         Map<String, String[]> map = request.getParameterMap();
 
-//        List<Place> places = placeService.getPlacesByCoord(Double.parseDouble(map.get("NElat")[0]), Double.parseDouble(map.get("NElng")[0]),
-//                Double.parseDouble(map.get("SWlat")[0]), Double.parseDouble(map.get("SWlng")[0]));
-//
-//        HashSet<Integer> placeIDs = new HashSet<Integer>();
-//        for (Place place: places){
-//            placeIDs.add(place.getPlcID());
-//        }
-
-        //SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss Z");
-        //formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
-
-        //Date dateSt = null;
-        //Date dateFin = null;
-//        String stDate = map.get("startDate")[0];
-//        String finDate = map.get("finishDate")[0];
-        //try {
         Date dateSt = DateTimeFormatter.FormatTimeZoneCorrect(map.get("startDate")[0]);
         Date dateFin = DateTimeFormatter.FormatTimeZoneCorrect(map.get("finishDate")[0]);
-        //} catch (ParseException e) {
-        //    e.printStackTrace();
-        //}
-
 
         ArrayList<Integer> cats = new ArrayList<Integer>();
 

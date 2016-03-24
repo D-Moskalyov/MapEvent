@@ -6,6 +6,7 @@ select * from places;
 select * from waitconfirms;
 select * from favorites;
 
+SET SQL_SAFE_UPDATES=0;
 
 select * from events
 join
@@ -158,8 +159,9 @@ and
 
 
 delete from favorites where F_Id=15;
+delete from users where F_Id=15;
 
-delete from categories;
+delete from waitconfirms;
 drop table categories;
 
 insert into Images (Address_Img, Ev_Id) values("sadd", 5);
