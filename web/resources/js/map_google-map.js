@@ -79,16 +79,62 @@ function fetchMarkersSRV() {
             data["cats"][data["cats"].length] = checked[i].id;
     }
 
-    $.post('map.json', data, successRequestWithMarkers, 'json');
+    $.post('map.json', data, successResponseWithMarkers, 'json');
 }
 
-function successRequestWithMarkers(response) {
+function successResponseWithMarkers(response) {
 
     for (var i = 0; i < response.length; i++) {
+        var icon;
+        switch (response[i].category){
+            case 'Business':
+                icon = "/../resources/images/event_icons/business.png"
+                break
+            case "Movie":
+                icon = "/../resources/images/event_icons/game.png"
+                break
+            case 'Concert':
+                icon = "/../resources/images/event_icons/concert.png"
+                break
+            case 'Dance':
+                icon = "/../resources/images/event_icons/dance.png"
+                break
+            case 'Exhibition':
+                icon = "/../resources/images/event_icons/Exhibition.png"
+                break
+            case 'Game':
+                icon = "/../resources/images/event_icons/game.png"
+                break
+            case 'Festival':
+                icon = "/../resources/images/event_icons/festival.png"
+                break
+            case 'Theatre':
+                icon = "/../resources/images/event_icons/theater.png"
+                break
+            case 'Sport':
+                icon = "/../resources/images/event_icons/sport.png"
+                break
+            case 'Quest':
+                icon = "/../resources/images/event_icons/quest.png"
+                break
+            case 'Charity':
+                icon = "/../resources/images/event_icons/charity.png"
+                break
+            case 'Meeting':
+                icon = "/../resources/images/event_icons/meeting.png"
+                break
+            case 'Comedy':
+                icon = "/../resources/images/event_icons/comedy.png"
+                break
+            default:
+                icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569"
+                break
+        }
         var myLatLng = new google.maps.LatLng(response[i].lat, response[i].lng);
         markers.push(new google.maps.Marker({
             map: map,
-            position: myLatLng
+            position: myLatLng,
+            icon: icon
         }));
         markers[i].set('eventID', response[i].evID);
         markers[i].set('markID', i);

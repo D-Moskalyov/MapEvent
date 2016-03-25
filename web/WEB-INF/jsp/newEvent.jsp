@@ -66,18 +66,18 @@
                                     категорию
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Бизнес</a></li>
-                                    <li><a href="#">Кино</a></li>
-                                    <li><a href="#">Концерты</a></li>
-                                    <li><a href="#">Танцы</a></li>
-                                    <li><a href="#">Выставки</a></li>
-                                    <li><a href="#">Игры</a></li>
-                                    <li><a href="#">Фестивали</a></li>
-                                    <li><a href="#">Театр</a></li>
-                                    <li><a href="#">Спорт</a></li>
-                                    <li><a href="#">Квесты</a></li>
-                                    <li><a href="#">Благотворительность</a></li>
-                                    <li><a href="#">Встречи</a></li>
+                                    <li><a href="#">Business</a></li>
+                                    <li><a href="#">Movie</a></li>
+                                    <li><a href="#">Concert</a></li>
+                                    <li><a href="#">Dance</a></li>
+                                    <li><a href="#">Exhibition</a></li>
+                                    <li><a href="#">Game</a></li>
+                                    <li><a href="#">Festival</a></li>
+                                    <li><a href="#">Theatre</a></li>
+                                    <li><a href="#">Sport</a></li>
+                                    <li><a href="#">Quest</a></li>
+                                    <li><a href="#">Charity</a></li>
+                                    <li><a href="#">Meeting</a></li>
                                     <li><a href="#">Comedy</a></li>
                                 </ul>
                                 <div class="check-group" id="category">

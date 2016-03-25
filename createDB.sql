@@ -109,18 +109,18 @@ ALTER TABLE favorites ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (U_Id) REFER
 ALTER TABLE favorites ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (Ev_Id) REFERENCES Events(Ev_Id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
-insert into categories (Title) values("Бизнес");
-insert into categories (Title) values("Кино");
-insert into categories (Title) values("Концерты");
-insert into categories (Title) values("Танцы");
-insert into categories (Title) values("Выставки");
-insert into categories (Title) values("Игры");
-insert into categories (Title) values("Фестивали");
-insert into categories (Title) values("Театр");
-insert into categories (Title) values("Спорт");
-insert into categories (Title) values("Квесты");
-insert into categories (Title) values("Благотворительность");
-insert into categories (Title) values("Встречи");
+insert into categories (Title) values("Business");
+insert into categories (Title) values("Movie");
+insert into categories (Title) values("Concert");
+insert into categories (Title) values("Dance");
+insert into categories (Title) values("Exhibition");
+insert into categories (Title) values("Game");
+insert into categories (Title) values("Festival");
+insert into categories (Title) values("Theatre");
+insert into categories (Title) values("Sport");
+insert into categories (Title) values("Quest");
+insert into categories (Title) values("Charity");
+insert into categories (Title) values("Meeting");
 insert into categories (Title) values("Comedy");
 
 
@@ -159,7 +159,7 @@ and
 
 
 delete from favorites where F_Id=15;
-delete from users where F_Id=15;
+delete from users where Username="toro-bravo@yandex.ru";
 
 delete from waitconfirms;
 drop table categories;
@@ -167,4 +167,4 @@ drop table categories;
 insert into Images (Address_Img, Ev_Id) values("sadd", 5);
 delete from Images where Address_Img="sadd";
 drop table events;
-delete from events;
+delete from categories;

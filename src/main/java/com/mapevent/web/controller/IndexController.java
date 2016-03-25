@@ -70,7 +70,11 @@ public class IndexController {
 
         ArrayList<MarkerEventInfo> markerEventInfo = new ArrayList<MarkerEventInfo>();
         for(MyEvent event: events){
-            markerEventInfo.add(new MarkerEventInfo(event.getEvID(), event.getPlace().getLat(), event.getPlace().getLng(), "markerDeff"));
+            markerEventInfo.add(new MarkerEventInfo(event.getEvID(),
+                                                    event.getPlace().getLat(),
+                                                    event.getPlace().getLng(),
+                                                    "markerDeff",
+                                                    event.getCategory().getTitle()));
         }
         return markerEventInfo;
     }

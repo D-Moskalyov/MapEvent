@@ -5,12 +5,14 @@ public class MarkerEventInfo {
     double lat;
     double lng;
     String img;
+    String category;
 
-    public  MarkerEventInfo(int evID, double lat, double lng, String img){
+    public  MarkerEventInfo(int evID, double lat, double lng, String img, String category){
         this.evID = evID;
         this.lat = lat;
         this.lng = lng;
         this.img = img;
+        this.category = category;
     }
 
     public int getEvID() {
@@ -43,5 +45,13 @@ public class MarkerEventInfo {
 
     public void setLng(double lng) {
         this.lng = lng;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
