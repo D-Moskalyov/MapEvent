@@ -3,7 +3,6 @@ package com.mapevent.web.controller;
 
 import com.mapevent.web.DTO.EventForMarkerPopup;
 import com.mapevent.web.DTO.EventWithTags;
-import com.mapevent.web.DTO.MarkerEventInfo;
 import com.mapevent.web.exceptions.UserWithoutEvents;
 import com.mapevent.web.model.MyEvent;
 import com.mapevent.web.model.Place;
@@ -31,9 +30,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -113,7 +109,7 @@ public class EventController {
 
                 myEvent.setPlcID(idPlace);
                 myEvent.setTitle(newEventForm.getWhat());
-                myEvent.setDiscription(newEventForm.getDescription());
+                myEvent.setDescription(newEventForm.getDescription());
                 myEvent.setHaveImgs(false);
 
                 //SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
@@ -264,7 +260,7 @@ public class EventController {
                         newEventForm.setLng(String.valueOf(event.getPlace().getLng()));
                         newEventForm.setLat(String.valueOf(event.getPlace().getLat()));
                         newEventForm.setPlaceID(event.getPlace().getPlcIDGoogle());
-                        newEventForm.setDescription(event.getDiscription());
+                        newEventForm.setDescription(event.getDescription());
                         newEventForm.setWhenStart(event.getStart().toString());
                         newEventForm.setWhenFinish(event.getFinish().toString());
                         newEventForm.setEdit(true);

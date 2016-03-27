@@ -41,28 +41,26 @@
                 </c:if>
 
                     <div class="col-md-2">
-                        <c:if test="${!eventWithTags.event.haveImgs}">
+                        <c:if test="${eventWithTags.event.cover == '' || eventWithTags.event.cover == null}">
                             <img src="${pageContext.request.contextPath}/resources/images/def_evnt_img.png" id="img-title">
                         </c:if>
-                        <c:if test="${eventWithTags.event.haveImgs}">
-                            <img id="img-title">
+                        <c:if test="${eventWithTags.event.cover != '' && eventWithTags.event.cover != null}}">
+                            <img id="img-title" src="${eventWithTags.event.cover}">
                         </c:if>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-12">
                                 <h3><a href="/event/${eventWithTags.event.evID}">${eventWithTags.event.title}</a></h3>
-                                <div id="cat">${eventWithTags.event.category.title}</div>
+                                <div id="category">${eventWithTags.event.category.title}</div>
+                                <div id="owner">${eventWithTags.event.user.userName}</div>
                             </div>
                             <div class="col-md-12">
-                                <p>${eventWithTags.event.discription}</p>
-                            </div>
-                            <div class="col-md-12">
-                                <div id="time">${eventWithTags.event.start} - ${eventWithTags.event.finish}</div>
+                                <div id="date">${eventWithTags.event.start} - ${eventWithTags.event.finish}</div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-1" id="${eventWithTags.event.evID}">
+                    <div class="col-md-2" id="${eventWithTags.event.evID}">
                         <c:if test="${eventWithTags.favorite}">
                             <img src="${pageContext.request.contextPath}/resources/images/favoriteOn.ico" class="favorite" id="img-fav-on">
                             <img src="${pageContext.request.contextPath}/resources/images/favoriteOff.png" style="display: none" class="favorite" id="img-fav-off">
@@ -72,7 +70,7 @@
                             <img src="${pageContext.request.contextPath}/resources/images/favoriteOff.png" class="favorite" id="img-fav-off">
                         </c:if>
                         <c:if test="${eventWithTags.myEvent}">
-                            <a href="/event/edit/${eventWithTags.event.evID}">Редактировать</a>
+                            <a href="/event/edit/${eventWithTags.event.evID}" id="edit">Редактировать</a>
                         </c:if>
                     </div>
                 </div>

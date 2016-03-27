@@ -33,8 +33,11 @@ public class MyEvent {
     @Column(name = "Finish")
     private Date finish;
 
-    @Column(name = "Discription")
-    private String discription;
+    @Column(name = "Description")
+    private String description;
+
+    @Column(name = "Cover")
+    private String cover;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Plc_Id", insertable = false, updatable = false)
@@ -76,12 +79,12 @@ public class MyEvent {
         this.catID = catID;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getEvID() {
@@ -150,6 +153,13 @@ public class MyEvent {
         this.user = user;
     }
 
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
     public List<Favorite> getFavorites() {
         return favorites;

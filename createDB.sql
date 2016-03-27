@@ -6,8 +6,6 @@ select * from places;
 select * from waitconfirms;
 select * from favorites;
 
-SET SQL_SAFE_UPDATES=0;
-
 select * from events
 join
 favorites
@@ -67,7 +65,8 @@ Title varchar(255),
 Have_Imgs boolean NOT NULL DEFAULT 0,
 Start datetime,
 Finish datetime,
-Discription text,
+Description text,
+Cover text,
 PRIMARY KEY (Ev_Id)
 );
 
@@ -126,7 +125,7 @@ insert into categories (Title) values("Comedy");
 
 insert into users (Username, FullName, Email, Password, Gender, Enable) values("dima", "D M", "viva-barca@i.ua", "b59c67bf196a4758191e42f76670ceba", "male", false);
 insert into places (Plc_Id_Google, Address_Line_1, Address_Line_2, City, State, Country, Lat, Lng) values("asca", "casv" ,"vdsv", "vds", "csac", "casc", 4.535642, 7.536743);
-insert into events (U_Id, Cat_Id, Plc_Id, Title, Have_Imgs, Start, Finish, Discription) values(10, 47, 7, "Title3", 0, "2016-12-20 20:00", "2016-12-21 20:00", "dist");
+insert into events (U_Id, Cat_Id, Plc_Id, Title, Have_Imgs, Start, Finish, Description, Cover) values(10, 47, 7, "Title3", 0, "2016-12-20 20:00", "2016-12-21 20:00", "dist", "");
 insert into favorites (Ev_Id, U_Id) value (35, 9);
 
 

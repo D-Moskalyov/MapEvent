@@ -19,48 +19,66 @@
 
     <spring:url value="/user/favorite.json" var="favURL"/>
 
-    <c:if test="${user != 0}">
-      <c:if test="${eventWithTags.favorite}">
-        <img src="${pageContext.request.contextPath}/resources/images/favoriteOn.ico" class="favorite" id="img-fav-on">
-        <img src="${pageContext.request.contextPath}/resources/images/favoriteOff.png" style="display: none" visible = true class="favorite" id="img-fav-off">
-      </c:if>
-      <c:if test="${!eventWithTags.favorite}">
-        <img src="${pageContext.request.contextPath}/resources/images/favoriteOn.ico" style="display: none" visible = true class="favorite" id="img-fav-on">
-        <img src="${pageContextrequest.contextPath}/resources/images/favoriteOff.png" class="favorite" id="img-fav-off">
-      </c:if>
-      <c:if test="${eventWithTags.myEvent}">
-        <a href="/event/edit/${eventWithTags.event.evID}">Редактировать</a>
-      </c:if>
-    </c:if>
-
     <div class="container">
-      <div>
-        <c:if test="${!eventWithTags.event.haveImgs}">
-          <img src="${pageContext.request.contextPath}/resources/images/def_evnt_img.png" id="img-title">
-        </c:if>
-        <c:if test="${eventWithTags.event.haveImgs}">
-          <img id="img-title">
-        </c:if>
+      <div class="row">
+        <div class="col-md-3">
+          <c:if test="${eventWithTags.event.cover == '' || eventWithTags.event.cover == null}">
+            <img src="${pageContext.request.contextPath}/resources/images/def_evnt_img.png" id="img-title">
+          </c:if>
+          <c:if test="${eventWithTags.event.cover != '' && eventWithTags.event.cover != null}}">
+            <img id="img-title" src="${eventWithTags.event.cover}">
+          </c:if>
+        </div>
+
+        <div class="col-md-8">
+          <h2 class="row">
+            ${eventWithTags.event.title}
+          </h2>
+          <div class="row" id="category">
+            ${eventWithTags.event.category.title}
+          </div>
+          <div class="row" id="description">
+            ${eventWithTags.event.description}
+          </div>
+          <div class="row" id="date">
+            ${eventWithTags.event.start} - ${eventWithTags.event.finish}
+          </div>
+          <div class="row" id="owner">
+            ${eventWithTags.event.user.fullName}
+          </div>
+        </div>
+
+        <div class="col-md-1" id="fav">
+          <c:if test="${user != 0}">
+            <c:if test="${eventWithTags.favorite}">
+              <img src="${pageContext.request.contextPath}/resources/images/favoriteOn.ico" class="favorite" id="img-fav-on">
+              <img src="${pageContext.request.contextPath}/resources/images/favoriteOff.png" style="display: none" visible = true class="favorite" id="img-fav-off">
+            </c:if>
+            <c:if test="${!eventWithTags.favorite}">
+              <img src="${pageContext.request.contextPath}/resources/images/favoriteOn.ico" style="display: none" visible = true class="favorite" id="img-fav-on">
+              <img src="${pageContextrequest.contextPath}/resources/images/favoriteOff.png" class="favorite" id="img-fav-off">
+            </c:if>
+            <c:if test="${eventWithTags.myEvent}">
+              <a href="/event/edit/${eventWithTags.event.evID}">Редактировать</a>
+            </c:if>
+          </c:if>
+        </div>
       </div>
-      <h2>
-          ${eventWithTags.event.title}
-      </h2>
-      <div>
-          ${eventWithTags.event.category.title}
+
+      <div class="row center-block" id="address">
+          ${eventWithTags.event.place.addressLine1}, ${eventWithTags.event.place.addressLine2},
+          ${eventWithTags.event.place.city}, ${eventWithTags.event.place.country}
+        <div id="latlng">
+            lat: ${eventWithTags.event.place.lat}, lng: ${eventWithTags.event.place.lng}
+        </div>
       </div>
-      <img width="600" id="staticMap"/>
-      <div>
-          ${eventWithTags.event.discription}
+      <div class="row" id="map">
+        <img width="600" id="staticMap"/>
       </div>
-      <div>
-          ${eventWithTags.event.start} - ${eventWithTags.event.finish}
-      </div>
-      <div>
-          ${eventWithTags.event.user.fullName}
-      </div>
-      <div>
-          ${eventWithTags.event.place.city} : ${eventWithTags.event.place.addressLine1}
-      </div>
+
+      <c:if test="${!eventWithTags.event.haveImgs}">
+
+      </c:if>
     </div>
 
     <c:forEach var="script" items="${javascripts}">

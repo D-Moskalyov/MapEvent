@@ -16,7 +16,7 @@ html, body {
 .container {
     position: relative;
     height: 90%;
-    width: 100%;
+    width: auto;
     left: 0;
     padding-right: 0px;
     padding-left: 0px;
