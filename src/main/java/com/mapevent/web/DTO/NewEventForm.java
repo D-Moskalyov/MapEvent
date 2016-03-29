@@ -3,11 +3,13 @@ package com.mapevent.web.DTO;
 
 import com.mapevent.web.utils.DateTimeFormatter;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.AssertTrue;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class NewEventForm {
 
@@ -45,6 +47,10 @@ public class NewEventForm {
     //@NotEmpty(message = "Введите краткое описание")
     //@Size(min = 5, message = "Не менее пяти символов")
     private String description;
+
+    private MultipartFile imageCover;
+
+    private List<MultipartFile> imagesList;
 
     private boolean edit;
 
@@ -127,6 +133,20 @@ public class NewEventForm {
     @AssertTrue(message="Проверьте описание")
     public boolean isValidDest() {
         if(description.length() > 5)
+            return true;
+        return false;
+    }
+
+    @AssertTrue(message="Допустимы только картинки")
+    public boolean isValidImageCover() {
+        if (imageCover != null && !imageCover.getContentType().contains("image"))
+            return false;
+        return true;
+    }
+
+    @AssertTrue(message="Вы можете добавить не более трёх картинок")
+    public boolean isValidImegesList() {
+        if(imagesList != null && imagesList.size() > 3)
             return true;
         return false;
     }
@@ -242,5 +262,21 @@ public class NewEventForm {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public MultipartFile getImageCover() {
+        return imageCover;
+    }
+
+    public void setImageCover(MultipartFile imageCover) {
+        this.imageCover = imageCover;
+    }
+
+    public List<MultipartFile> getImagesList() {
+        return imagesList;
+    }
+
+    public void setImagesList(List<MultipartFile> imagesList) {
+        this.imagesList = imagesList;
     }
 }

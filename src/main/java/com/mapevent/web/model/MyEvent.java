@@ -54,6 +54,9 @@ public class MyEvent {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "event", cascade = CascadeType.ALL)
     List<Favorite> favorites;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "event", cascade = CascadeType.ALL)
+    List<Image> images;
+
     public boolean isHaveImgs() {
         return haveImgs;
     }
@@ -175,5 +178,13 @@ public class MyEvent {
             return true;
         else
             return false;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

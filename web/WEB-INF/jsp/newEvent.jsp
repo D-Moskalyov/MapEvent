@@ -42,7 +42,7 @@
             <spring:url value="/event/newevent.json" var="formJsonUrl"/>
 
             <form:form modelAttribute="newEventForm" class="form-horizontal" action="${formUrl}" method="post"
-                       id="new-event-form" accept-charset="UTF-8">
+                       id="new-event-form" accept-charset="UTF-8" enctype="multipart/form-data">
                 <fieldset>
                     <div class="block">
                         <div class="title">
@@ -53,6 +53,13 @@
                                 <form:input type="text" path="what" class="form-control"/>
                                 <span class="help-inline"><form:errors path="validTitle"/></span>
                             </div>
+                        </div>
+                        <div class="title">
+                            <h4>Можете добавить обложку:</h4>
+                        </div>
+                        <div>
+                            <form:input type="file" path="imageCover"/>
+                            <span class="help-inline"><form:errors path="validImageCover"/></span>
                         </div>
                     </div>
                     <div class="block">
