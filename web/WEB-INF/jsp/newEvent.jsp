@@ -54,12 +54,15 @@
                                 <span class="help-inline"><form:errors path="validTitle"/></span>
                             </div>
                         </div>
+                    </div>
+                    <div class="block">
                         <div class="title">
                             <h4>Можете добавить обложку:</h4>
                         </div>
                         <div>
-                            <form:input type="file" path="imageCover"/>
-                            <span class="help-inline"><form:errors path="validImageCover"/></span>
+                            <form:input type="file" path="imageCover" accept="image/*" onchange="handleFiles(this.files)"/>
+                            <img src="" alt="Image preview" id="preview">
+                                <%--<span class="help-inline"><form:errors path="validImageCover"/></span>--%>
                         </div>
                     </div>
                     <div class="block">

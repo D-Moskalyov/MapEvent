@@ -50,7 +50,7 @@ public class NewEventForm {
 
     private MultipartFile imageCover;
 
-    private List<MultipartFile> imagesList;
+    //private List<MultipartFile> imagesList;
 
     private boolean edit;
 
@@ -137,19 +137,19 @@ public class NewEventForm {
         return false;
     }
 
-    @AssertTrue(message="Допустимы только картинки")
-    public boolean isValidImageCover() {
-        if (imageCover != null && !imageCover.getContentType().contains("image"))
-            return false;
-        return true;
-    }
-
-    @AssertTrue(message="Вы можете добавить не более трёх картинок")
-    public boolean isValidImegesList() {
-        if(imagesList != null && imagesList.size() > 3)
-            return true;
-        return false;
-    }
+//    @AssertTrue(message="Допустимы только картинки")
+//    public boolean isValidImageCover() {
+//        if (imageCover != null && !imageCover.getContentType().contains("image"))
+//            return false;
+//        return true;
+//    }
+//
+//    @AssertTrue(message="Вы можете добавить не более трёх картинок")
+//    public boolean isValidImegesList() {
+//        if(imagesList != null && imagesList.size() > 3)
+//            return true;
+//        return false;
+//    }
 
 
     public String getAdministrative_area_level_1() {
@@ -272,11 +272,11 @@ public class NewEventForm {
         this.imageCover = imageCover;
     }
 
-    public List<MultipartFile> getImagesList() {
-        return imagesList;
-    }
-
-    public void setImagesList(List<MultipartFile> imagesList) {
-        this.imagesList = imagesList;
-    }
+//    public List<MultipartFile> getImagesList() {
+//        return imagesList;
+//    }
+//
+//    public void setImagesList(List<MultipartFile> imagesList) {
+//        this.imagesList = imagesList;
+//    }
 }

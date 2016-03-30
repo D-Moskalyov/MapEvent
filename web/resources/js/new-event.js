@@ -38,6 +38,7 @@ $(function () {
     $form.bind('submit', function (e) {
         var $inputs = $form.find('input,textarea').not( "[name='whenStart']" ).not( "[name='whenFinish']" );
         var data = collectFormData($inputs);
+        console.log(data);
 
         if(isEditFromELtoJS == 'true') {
             data['edit'] = true;
@@ -102,9 +103,15 @@ function collectFormData(fields) {
     var data = {};
     for (var i = 0; i < fields.length; i++) {
         var $item = $(fields[i]);
+        console.log($item.attr('name'));
         if (typeof $item.attr('name') !== 'undefined') {
             //console.log($item.val());
-            data[$item.attr('name')] = $item.val();
+            if($item.attr('name') != 'imageCover') {
+                data[$item.attr('name')] = $item.val();
+            }
+            else {
+                data[$item.attr('name')] = $("input[name='imageCover']").get(0).files[0];
+            }
         }
     }
 
@@ -120,4 +127,9 @@ function collectFormData(fields) {
         data["whenFinish"] = "";
     //console.log(data);
     return data;
+}
+
+function handleFiles(files){
+    var preview = document.getElementById("preview");
+    preview.src = files[0].fullPath;
 }
